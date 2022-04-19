@@ -1,0 +1,23 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+    }
+}
+rootProject.name = "Dalil Muslim"
+include ':app'
+include ':core'
+include ':quran_feature'
+include ':hadith_feature'
+include ':azkar_feature'
+include ':history_feature'
+include ':radio_quran_feature'

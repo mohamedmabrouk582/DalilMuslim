@@ -1,0 +1,348 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "7d7e1359090c7eb322036bd44138a216",
+    "entities": [
+      {
+        "tableName": "Surah",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `bismillah_pre` INTEGER NOT NULL, `revelation_place` TEXT, `name_complex` TEXT, `name_arabic` TEXT, `name_simple` TEXT, `verses_count` INTEGER NOT NULL, `from_to` TEXT, `isDownload` INTEGER NOT NULL, `audiosDownloaded` INTEGER NOT NULL, `tafsirDownloaded` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bismillah_pre",
+            "columnName": "bismillah_pre",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "revelation_place",
+            "columnName": "revelation_place",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "name_complex",
+            "columnName": "name_complex",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "name_arabic",
+            "columnName": "name_arabic",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "name_simple",
+            "columnName": "name_simple",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "verses_count",
+            "columnName": "verses_count",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "from_to",
+            "columnName": "from_to",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "isDownload",
+            "columnName": "isDownload",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "audiosDownloaded",
+            "columnName": "audiosDownloaded",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tafsirDownloaded",
+            "columnName": "tafsirDownloaded",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Juz",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `juz_number` INTEGER NOT NULL, `verse_mapping` TEXT, `isDownload` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "juz_number",
+            "columnName": "juz_number",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "verse_mapping",
+            "columnName": "verse_mapping",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "isDownload",
+            "columnName": "isDownload",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Verse",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `verse_number` INTEGER NOT NULL, `chapter_id` INTEGER NOT NULL, `text_madani` TEXT, `text_indopak` TEXT, `text_simple` TEXT, `juz_number` INTEGER, `hizb_number` INTEGER, `rub_number` INTEGER, `sajdah` TEXT, `sajdah_number` INTEGER, `page_number` INTEGER, `translations` TEXT, `media_contents` TEXT, `words` TEXT, `selected` INTEGER NOT NULL, `url` TEXT, `duration` INTEGER, `format` TEXT, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "verse_number",
+            "columnName": "verse_number",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "chapter_id",
+            "columnName": "chapter_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "text_madani",
+            "columnName": "text_madani",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "text_indopak",
+            "columnName": "text_indopak",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "text_simple",
+            "columnName": "text_simple",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "juz_number",
+            "columnName": "juz_number",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "hizb_number",
+            "columnName": "hizb_number",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "rub_number",
+            "columnName": "rub_number",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sajdah",
+            "columnName": "sajdah",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sajdah_number",
+            "columnName": "sajdah_number",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "page_number",
+            "columnName": "page_number",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "translations",
+            "columnName": "translations",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "media_contents",
+            "columnName": "media_contents",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "words",
+            "columnName": "words",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "selected",
+            "columnName": "selected",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "audio.url",
+            "columnName": "url",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "audio.duration",
+            "columnName": "duration",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "audio.format",
+            "columnName": "format",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "TafsirAya",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`tafseerId` INTEGER NOT NULL, `verse_id` INTEGER NOT NULL, `text` TEXT NOT NULL, `language_name` TEXT, `resource_name` TEXT, `verse_key` TEXT NOT NULL, PRIMARY KEY(`text`))",
+        "fields": [
+          {
+            "fieldPath": "tafseerId",
+            "columnName": "tafseerId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "verse_id",
+            "columnName": "verse_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "text",
+            "columnName": "text",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "language_name",
+            "columnName": "language_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "resource_name",
+            "columnName": "resource_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "verse_key",
+            "columnName": "verse_key",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "text"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "QuranReader",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`readerId` INTEGER NOT NULL, `name` TEXT NOT NULL, `sufix` TEXT NOT NULL, `versesIds` TEXT, PRIMARY KEY(`readerId`))",
+        "fields": [
+          {
+            "fieldPath": "readerId",
+            "columnName": "readerId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sufix",
+            "columnName": "sufix",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "versesIds",
+            "columnName": "versesIds",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "readerId"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '7d7e1359090c7eb322036bd44138a216')"
+    ]
+  }
+}

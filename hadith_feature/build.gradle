@@ -1,0 +1,13 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+apply from: '../common_build.gradle'
+
+
+android {
+}
+
+dependencies {
+    api project(":core")
+}

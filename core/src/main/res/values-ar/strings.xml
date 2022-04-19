@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">دليل المسلم</string>
+    <string name="juz_txt">الجزء:</string>
+    <string name="sura_txt"> سوره :</string>
+    <string name="hadec">الاحاديث</string>
+    <string name="azqar">اذكار</string>
+    <string name="quran">القران</string>
+    <string name="stories">قصص</string>
+    <string name="mawarec">المواريث</string>
+    <string name="sourah_not_download">هذه السورة لم يتم تحميلها بعد</string>
+    <string name="basmalla_txt">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</string>
+    <string name="source">المصدر  :</string>
+    <string name="count">العدد  :</string>
+    <string name="reference">المرجع  :</string>
+    <string name="no_reference_here">لايوجد مرجع هنا</string>
+    <string name="txt_search">بحث…</string>
+    <string name="choose_readers">اختار القارئ الذي تريد</string>
+    <string name="socketTimeout">Socket Time Out</string>
+    <string name="Jsonpars">Json Parsing Error</string>
+    <string name="no_internet_connection">لا يوجد اتصال بالإنترنت</string>
+    <string name="txt_retry">Retry</string>
+</resources>

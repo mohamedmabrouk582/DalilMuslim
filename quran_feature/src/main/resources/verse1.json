@@ -1,0 +1,1188 @@
+{
+  "verses": [
+    {
+      "id": 1,
+      "verse_number": 1,
+      "chapter_id": 1,
+      "verse_key": "1:1",
+      "text_indopak": "بِسۡمِ اللهِ الرَّحۡمٰنِ الرَّحِيۡمِ",
+      "juz_number": 1,
+      "hizb_number": 1,
+      "rub_el_hizb_number": 1,
+      "page_number": 1,
+      "text_madani": "بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ",
+      "words": [
+        {
+          "id": 1,
+          "position": 1,
+          "text_indopak": "بِسۡمِ",
+          "verse_key": "1:1",
+          "line_number": 2,
+          "page_number": 1,
+          "code": "\u0026#xfb51;",
+          "class_name": "p1",
+          "text_madani": "بِسْمِ",
+          "char_type": "word",
+          "transliteration": {
+            "text": "bis\u0027mi",
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "In (the) name"
+          },
+          "audio": {
+            "url": "wbw/001_001_001.mp3"
+          }
+        },
+        {
+          "id": 2,
+          "position": 2,
+          "text_indopak": "اللهِ",
+          "verse_key": "1:1",
+          "line_number": 2,
+          "page_number": 1,
+          "code": "\u0026#xfb52;",
+          "class_name": "p1",
+          "text_madani": "ٱللَّهِ",
+          "char_type": "word",
+          "transliteration": {
+            "text": "l-lahi",
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "(of) Allah"
+          },
+          "audio": {
+            "url": "wbw/001_001_002.mp3"
+          }
+        },
+        {
+          "id": 3,
+          "position": 3,
+          "text_indopak": "الرَّحۡمٰنِ",
+          "verse_key": "1:1",
+          "line_number": 2,
+          "page_number": 1,
+          "code": "\u0026#xfb53;",
+          "class_name": "p1",
+          "text_madani": "ٱلرَّحْمَـٰنِ",
+          "char_type": "word",
+          "transliteration": {
+            "text": "l-raḥmāni",
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "the Most Gracious"
+          },
+          "audio": {
+            "url": "wbw/001_001_003.mp3"
+          }
+        },
+        {
+          "id": 4,
+          "position": 4,
+          "text_indopak": "الرَّحِيۡمِ",
+          "verse_key": "1:1",
+          "line_number": 2,
+          "page_number": 1,
+          "code": "\u0026#xfb54;",
+          "class_name": "p1",
+          "text_madani": "ٱلرَّحِيمِ",
+          "char_type": "word",
+          "transliteration": {
+            "text": "l-raḥīmi",
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "the Most Merciful"
+          },
+          "audio": {
+            "url": "wbw/001_001_004.mp3"
+          }
+        },
+        {
+          "id": 5,
+          "position": 5,
+          "text_indopak": "١",
+          "verse_key": "1:1",
+          "line_number": 2,
+          "page_number": 1,
+          "code": "\u0026#xfb55;",
+          "class_name": "p1",
+          "text_madani": "١",
+          "char_type": "end",
+          "transliteration": {
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "(1)"
+          },
+          "audio": {}
+        }
+      ],
+      "audio": {
+        "url": "AbdulBaset/Mujawwad/mp3/001001.mp3",
+        "duration": 6,
+        "segments": [
+          [
+            0,
+            1,
+            0,
+            960
+          ],
+          [
+            1,
+            2,
+            970,
+            1420
+          ],
+          [
+            2,
+            3,
+            1430,
+            2670
+          ],
+          [
+            3,
+            4,
+            2680,
+            6210
+          ]
+        ],
+        "format": "mp3"
+      },
+      "translations": [
+        {
+          "id": 102574,
+          "language_name": "english",
+          "text": "In the name of Allah, the Beneficent, the Merciful.",
+          "resource_name": "Shakir",
+          "resource_id": 21
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "verse_number": 2,
+      "chapter_id": 1,
+      "verse_key": "1:2",
+      "text_indopak": "اَلۡحَمۡدُ لِلّٰهِ رَبِّ الۡعٰلَمِيۡنَۙ‏",
+      "juz_number": 1,
+      "hizb_number": 1,
+      "rub_el_hizb_number": 1,
+      "page_number": 1,
+      "text_madani": "ٱلْحَمْدُ لِلَّهِ رَبِّ ٱلْعَـٰلَمِينَ",
+      "words": [
+        {
+          "id": 1130,
+          "position": 1,
+          "text_indopak": "اَلۡحَمۡدُ",
+          "verse_key": "1:2",
+          "line_number": 3,
+          "page_number": 1,
+          "code": "\u0026#xfb56;",
+          "class_name": "p1",
+          "text_madani": "ٱلْحَمْدُ",
+          "char_type": "word",
+          "transliteration": {
+            "text": "al-ḥamdu",
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "All praises and thanks"
+          },
+          "audio": {
+            "url": "wbw/001_002_001.mp3"
+          }
+        },
+        {
+          "id": 1131,
+          "position": 2,
+          "text_indopak": "لِلّٰهِ",
+          "verse_key": "1:2",
+          "line_number": 3,
+          "page_number": 1,
+          "code": "\u0026#xfb57;",
+          "class_name": "p1",
+          "text_madani": "لِلَّهِ",
+          "char_type": "word",
+          "transliteration": {
+            "text": "lillahi",
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "(be) to Allah"
+          },
+          "audio": {
+            "url": "wbw/001_002_002.mp3"
+          }
+        },
+        {
+          "id": 1132,
+          "position": 3,
+          "text_indopak": "رَبِّ",
+          "verse_key": "1:2",
+          "line_number": 3,
+          "page_number": 1,
+          "code": "\u0026#xfb58;",
+          "class_name": "p1",
+          "text_madani": "رَبِّ",
+          "char_type": "word",
+          "transliteration": {
+            "text": "rabbi",
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "the Lord"
+          },
+          "audio": {
+            "url": "wbw/001_002_003.mp3"
+          }
+        },
+        {
+          "id": 1133,
+          "position": 4,
+          "text_indopak": "الۡعٰلَمِيۡنَۙ‏",
+          "verse_key": "1:2",
+          "line_number": 3,
+          "page_number": 1,
+          "code": "\u0026#xfb59;",
+          "class_name": "p1",
+          "text_madani": "ٱلْعَـٰلَمِينَ",
+          "char_type": "word",
+          "transliteration": {
+            "text": "l-ʿālamīna",
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "of the universe"
+          },
+          "audio": {
+            "url": "wbw/001_002_004.mp3"
+          }
+        },
+        {
+          "id": 1134,
+          "position": 5,
+          "text_indopak": "٢",
+          "verse_key": "1:2",
+          "line_number": 3,
+          "page_number": 1,
+          "code": "\u0026#xfb5a;",
+          "class_name": "p1",
+          "text_madani": "٢",
+          "char_type": "end",
+          "transliteration": {
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "(2)"
+          },
+          "audio": {}
+        }
+      ],
+      "audio": {
+        "url": "AbdulBaset/Mujawwad/mp3/001002.mp3",
+        "duration": 10,
+        "segments": [
+          [
+            0,
+            1,
+            1700,
+            2490
+          ],
+          [
+            1,
+            2,
+            2500,
+            3880
+          ],
+          [
+            2,
+            3,
+            3890,
+            4910
+          ],
+          [
+            3,
+            4,
+            4920,
+            10000
+          ]
+        ],
+        "format": "mp3"
+      },
+      "translations": [
+        {
+          "id": 102546,
+          "language_name": "english",
+          "text": "All praise is due to Allah, the Lord of the Worlds.",
+          "resource_name": "Shakir",
+          "resource_id": 21
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "verse_number": 3,
+      "chapter_id": 1,
+      "verse_key": "1:3",
+      "text_indopak": "الرَّحۡمٰنِ الرَّحِيۡمِۙ‏",
+      "juz_number": 1,
+      "hizb_number": 1,
+      "rub_el_hizb_number": 1,
+      "page_number": 1,
+      "text_madani": "ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ",
+      "words": [
+        {
+          "id": 2953,
+          "position": 1,
+          "text_indopak": "الرَّحۡمٰنِ",
+          "verse_key": "1:3",
+          "line_number": 4,
+          "page_number": 1,
+          "code": "\u0026#xfb5b;",
+          "class_name": "p1",
+          "text_madani": "ٱلرَّحْمَـٰنِ",
+          "char_type": "word",
+          "transliteration": {
+            "text": "al-raḥmāni",
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "The Most Gracious"
+          },
+          "audio": {
+            "url": "wbw/001_003_001.mp3"
+          }
+        },
+        {
+          "id": 2954,
+          "position": 2,
+          "text_indopak": "الرَّحِيۡمِۙ‏",
+          "verse_key": "1:3",
+          "line_number": 4,
+          "page_number": 1,
+          "code": "\u0026#xfb5c;",
+          "class_name": "p1",
+          "text_madani": "ٱلرَّحِيمِ",
+          "char_type": "word",
+          "transliteration": {
+            "text": "l-raḥīmi",
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "the Most Merciful"
+          },
+          "audio": {
+            "url": "wbw/001_003_002.mp3"
+          }
+        },
+        {
+          "id": 2955,
+          "position": 3,
+          "text_indopak": "٣",
+          "verse_key": "1:3",
+          "line_number": 4,
+          "page_number": 1,
+          "code": "\u0026#xfb5d;",
+          "class_name": "p1",
+          "text_madani": "٣",
+          "char_type": "end",
+          "transliteration": {
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "(3)"
+          },
+          "audio": {}
+        }
+      ],
+      "audio": {
+        "url": "AbdulBaset/Mujawwad/mp3/001003.mp3",
+        "duration": 8,
+        "segments": [
+          [
+            0,
+            1,
+            1380,
+            4340
+          ],
+          [
+            1,
+            2,
+            4350,
+            8350
+          ]
+        ],
+        "format": "mp3"
+      },
+      "translations": [
+        {
+          "id": 102837,
+          "language_name": "english",
+          "text": "The Beneficent, the Merciful.",
+          "resource_name": "Shakir",
+          "resource_id": 21
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "verse_number": 4,
+      "chapter_id": 1,
+      "verse_key": "1:4",
+      "text_indopak": "مٰلِكِ يَوۡمِ الدِّيۡنِؕ‏",
+      "juz_number": 1,
+      "hizb_number": 1,
+      "rub_el_hizb_number": 1,
+      "page_number": 1,
+      "text_madani": "مَـٰلِكِ يَوْمِ ٱلدِّينِ",
+      "words": [
+        {
+          "id": 3252,
+          "position": 1,
+          "text_indopak": "مٰلِكِ",
+          "verse_key": "1:4",
+          "line_number": 4,
+          "page_number": 1,
+          "code": "\u0026#xfb5e;",
+          "class_name": "p1",
+          "text_madani": "مَـٰلِكِ",
+          "char_type": "word",
+          "transliteration": {
+            "text": "māliki",
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "(The) Master"
+          },
+          "audio": {
+            "url": "wbw/001_004_001.mp3"
+          }
+        },
+        {
+          "id": 3253,
+          "position": 2,
+          "text_indopak": "يَوۡمِ",
+          "verse_key": "1:4",
+          "line_number": 4,
+          "page_number": 1,
+          "code": "\u0026#xfb5f;",
+          "class_name": "p1",
+          "text_madani": "يَوْمِ",
+          "char_type": "word",
+          "transliteration": {
+            "text": "yawmi",
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "(of the) Day"
+          },
+          "audio": {
+            "url": "wbw/001_004_002.mp3"
+          }
+        },
+        {
+          "id": 3254,
+          "position": 3,
+          "text_indopak": "الدِّيۡنِؕ‏",
+          "verse_key": "1:4",
+          "line_number": 4,
+          "page_number": 1,
+          "code": "\u0026#xfb60;",
+          "class_name": "p1",
+          "text_madani": "ٱلدِّينِ",
+          "char_type": "word",
+          "transliteration": {
+            "text": "l-dīni",
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "(of the) Judgment"
+          },
+          "audio": {
+            "url": "wbw/001_004_003.mp3"
+          }
+        },
+        {
+          "id": 3255,
+          "position": 4,
+          "text_indopak": "٤",
+          "verse_key": "1:4",
+          "line_number": 4,
+          "page_number": 1,
+          "code": "\u0026#xfb61;",
+          "class_name": "p1",
+          "text_madani": "٤",
+          "char_type": "end",
+          "transliteration": {
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "(4)"
+          },
+          "audio": {}
+        }
+      ],
+      "audio": {
+        "url": "AbdulBaset/Mujawwad/mp3/001004.mp3",
+        "duration": 7,
+        "segments": [
+          [
+            0,
+            1,
+            5650,
+            7250
+          ]
+        ],
+        "format": "mp3"
+      },
+      "translations": [
+        {
+          "id": 102883,
+          "language_name": "english",
+          "text": "Master of the Day of Judgment.",
+          "resource_name": "Shakir",
+          "resource_id": 21
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "verse_number": 5,
+      "chapter_id": 1,
+      "verse_key": "1:5",
+      "text_indopak": "اِيَّاكَ نَعۡبُدُ وَاِيَّاكَ نَسۡتَعِيۡنُؕ‏",
+      "juz_number": 1,
+      "hizb_number": 1,
+      "rub_el_hizb_number": 1,
+      "page_number": 1,
+      "text_madani": "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ",
+      "words": [
+        {
+          "id": 5334,
+          "position": 1,
+          "text_indopak": "اِيَّاكَ",
+          "verse_key": "1:5",
+          "line_number": 5,
+          "page_number": 1,
+          "code": "\u0026#xfb62;",
+          "class_name": "p1",
+          "text_madani": "إِيَّاكَ",
+          "char_type": "word",
+          "transliteration": {
+            "text": "iyyāka",
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "You Alone"
+          },
+          "audio": {
+            "url": "wbw/001_005_001.mp3"
+          }
+        },
+        {
+          "id": 5335,
+          "position": 2,
+          "text_indopak": "نَعۡبُدُ",
+          "verse_key": "1:5",
+          "line_number": 5,
+          "page_number": 1,
+          "code": "\u0026#xfb63;",
+          "class_name": "p1",
+          "text_madani": "نَعْبُدُ",
+          "char_type": "word",
+          "transliteration": {
+            "text": "naʿbudu",
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "we worship"
+          },
+          "audio": {
+            "url": "wbw/001_005_002.mp3"
+          }
+        },
+        {
+          "id": 5336,
+          "position": 3,
+          "text_indopak": "وَاِيَّاكَ",
+          "verse_key": "1:5",
+          "line_number": 5,
+          "page_number": 1,
+          "code": "\u0026#xfb64;",
+          "class_name": "p1",
+          "text_madani": "وَإِيَّاكَ",
+          "char_type": "word",
+          "transliteration": {
+            "text": "wa-iyyāka",
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "and You Alone"
+          },
+          "audio": {
+            "url": "wbw/001_005_003.mp3"
+          }
+        },
+        {
+          "id": 5337,
+          "position": 4,
+          "text_indopak": "نَسۡتَعِيۡنُؕ‏",
+          "verse_key": "1:5",
+          "line_number": 5,
+          "page_number": 1,
+          "code": "\u0026#xfb65;",
+          "class_name": "p1",
+          "text_madani": "نَسْتَعِينُ",
+          "char_type": "word",
+          "transliteration": {
+            "text": "nastaʿīnu",
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "we ask for help"
+          },
+          "audio": {
+            "url": "wbw/001_005_004.mp3"
+          }
+        },
+        {
+          "id": 5338,
+          "position": 5,
+          "text_indopak": "٥",
+          "verse_key": "1:5",
+          "line_number": 5,
+          "page_number": 1,
+          "code": "\u0026#xfb66;",
+          "class_name": "p1",
+          "text_madani": "٥",
+          "char_type": "end",
+          "transliteration": {
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "(5)"
+          },
+          "audio": {}
+        }
+      ],
+      "audio": {
+        "url": "AbdulBaset/Mujawwad/mp3/001005.mp3",
+        "duration": 11,
+        "segments": [
+          [
+            0,
+            1,
+            1700,
+            2810
+          ],
+          [
+            1,
+            2,
+            2820,
+            4270
+          ],
+          [
+            2,
+            3,
+            4280,
+            6560
+          ],
+          [
+            3,
+            4,
+            6570,
+            11410
+          ]
+        ],
+        "format": "mp3"
+      },
+      "translations": [
+        {
+          "id": 102937,
+          "language_name": "english",
+          "text": "Thee do we serve and Thee do we beseech for help.",
+          "resource_name": "Shakir",
+          "resource_id": 21
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "verse_number": 6,
+      "chapter_id": 1,
+      "verse_key": "1:6",
+      "text_indopak": "اِهۡدِنَا الصِّرَاطَ الۡمُسۡتَقِيۡمَۙ‏",
+      "juz_number": 1,
+      "hizb_number": 1,
+      "rub_el_hizb_number": 1,
+      "page_number": 1,
+      "text_madani": "ٱهْدِنَا ٱلصِّرَٰطَ ٱلْمُسْتَقِيمَ",
+      "words": [
+        {
+          "id": 6844,
+          "position": 1,
+          "text_indopak": "اِهۡدِنَا",
+          "verse_key": "1:6",
+          "line_number": 5,
+          "page_number": 1,
+          "code": "\u0026#xfb67;",
+          "class_name": "p1",
+          "text_madani": "ٱهْدِنَا",
+          "char_type": "word",
+          "transliteration": {
+            "text": "ih\u0027dinā",
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "Guide us"
+          },
+          "audio": {
+            "url": "wbw/001_006_001.mp3"
+          }
+        },
+        {
+          "id": 6845,
+          "position": 2,
+          "text_indopak": "الصِّرَاطَ",
+          "verse_key": "1:6",
+          "line_number": 6,
+          "page_number": 1,
+          "code": "\u0026#xfb68;",
+          "class_name": "p1",
+          "text_madani": "ٱلصِّرَٰطَ",
+          "char_type": "word",
+          "transliteration": {
+            "text": "l-ṣirāṭa",
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "(to) the path"
+          },
+          "audio": {
+            "url": "wbw/001_006_002.mp3"
+          }
+        },
+        {
+          "id": 6846,
+          "position": 3,
+          "text_indopak": "الۡمُسۡتَقِيۡمَۙ‏",
+          "verse_key": "1:6",
+          "line_number": 6,
+          "page_number": 1,
+          "code": "\u0026#xfb69;",
+          "class_name": "p1",
+          "text_madani": "ٱلْمُسْتَقِيمَ",
+          "char_type": "word",
+          "transliteration": {
+            "text": "l-mus\u0027taqīma",
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "the straight"
+          },
+          "audio": {
+            "url": "wbw/001_006_003.mp3"
+          }
+        },
+        {
+          "id": 6847,
+          "position": 4,
+          "text_indopak": "٦",
+          "verse_key": "1:6",
+          "line_number": 6,
+          "page_number": 1,
+          "code": "\u0026#xfb6a;",
+          "class_name": "p1",
+          "text_madani": "٦",
+          "char_type": "end",
+          "transliteration": {
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "(6)"
+          },
+          "audio": {}
+        }
+      ],
+      "audio": {
+        "url": "AbdulBaset/Mujawwad/mp3/001006.mp3",
+        "duration": 9,
+        "segments": [
+          [
+            0,
+            1,
+            850,
+            1590
+          ],
+          [
+            1,
+            2,
+            1600,
+            3550
+          ],
+          [
+            2,
+            3,
+            3560,
+            9340
+          ]
+        ],
+        "format": "mp3"
+      },
+      "translations": [
+        {
+          "id": 103038,
+          "language_name": "english",
+          "text": "Keep us on the right path.",
+          "resource_name": "Shakir",
+          "resource_id": 21
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "verse_number": 7,
+      "chapter_id": 1,
+      "verse_key": "1:7",
+      "text_indopak": "صِرَاطَ الَّذِيۡنَ اَنۡعَمۡتَ عَلَيۡهِمۡ ۙ‏ غَيۡرِ الۡمَغۡضُوۡبِ عَلَيۡهِمۡ وَلَا الضَّآلِّيۡنَ‏",
+      "juz_number": 1,
+      "hizb_number": 1,
+      "rub_el_hizb_number": 1,
+      "page_number": 1,
+      "text_madani": "صِرَٰطَ ٱلَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ ٱلْمَغْضُوبِ عَلَيْهِمْ وَلَا ٱلضَّآلِّينَ",
+      "words": [
+        {
+          "id": 8411,
+          "position": 1,
+          "text_indopak": "صِرَاطَ",
+          "verse_key": "1:7",
+          "line_number": 6,
+          "page_number": 1,
+          "code": "\u0026#xfb6b;",
+          "class_name": "p1",
+          "text_madani": "صِرَٰطَ",
+          "char_type": "word",
+          "transliteration": {
+            "text": "ṣirāṭa",
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "(The) path"
+          },
+          "audio": {
+            "url": "wbw/001_007_001.mp3"
+          }
+        },
+        {
+          "id": 8412,
+          "position": 2,
+          "text_indopak": "الَّذِيۡنَ",
+          "verse_key": "1:7",
+          "line_number": 6,
+          "page_number": 1,
+          "code": "\u0026#xfb6c;",
+          "class_name": "p1",
+          "text_madani": "ٱلَّذِينَ",
+          "char_type": "word",
+          "transliteration": {
+            "text": "alladhīna",
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "(of) those"
+          },
+          "audio": {
+            "url": "wbw/001_007_002.mp3"
+          }
+        },
+        {
+          "id": 8413,
+          "position": 3,
+          "text_indopak": "اَنۡعَمۡتَ",
+          "verse_key": "1:7",
+          "line_number": 6,
+          "page_number": 1,
+          "code": "\u0026#xfb6d;",
+          "class_name": "p1",
+          "text_madani": "أَنْعَمْتَ",
+          "char_type": "word",
+          "transliteration": {
+            "text": "anʿamta",
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "You have bestowed (Your) Favors"
+          },
+          "audio": {
+            "url": "wbw/001_007_003.mp3"
+          }
+        },
+        {
+          "id": 8414,
+          "position": 4,
+          "text_indopak": "عَلَيۡهِمۡ ۙ‏",
+          "verse_key": "1:7",
+          "line_number": 7,
+          "page_number": 1,
+          "code": "\u0026#xfb6e;",
+          "class_name": "p1",
+          "text_madani": "عَلَيْهِمْ",
+          "char_type": "word",
+          "transliteration": {
+            "text": "ʿalayhim",
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "on them"
+          },
+          "audio": {
+            "url": "wbw/001_007_004.mp3"
+          }
+        },
+        {
+          "id": 8415,
+          "position": 5,
+          "text_indopak": "غَيۡرِ",
+          "verse_key": "1:7",
+          "line_number": 7,
+          "page_number": 1,
+          "code": "\u0026#xfb6f;",
+          "class_name": "p1",
+          "text_madani": "غَيْرِ",
+          "char_type": "word",
+          "transliteration": {
+            "text": "ghayri",
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "not (of)"
+          },
+          "audio": {
+            "url": "wbw/001_007_005.mp3"
+          }
+        },
+        {
+          "id": 8416,
+          "position": 6,
+          "text_indopak": "الۡمَغۡضُوۡبِ",
+          "verse_key": "1:7",
+          "line_number": 7,
+          "page_number": 1,
+          "code": "\u0026#xfb70;",
+          "class_name": "p1",
+          "text_madani": "ٱلْمَغْضُوبِ",
+          "char_type": "word",
+          "transliteration": {
+            "text": "l-maghḍūbi",
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "those who earned (Your) wrath"
+          },
+          "audio": {
+            "url": "wbw/001_007_006.mp3"
+          }
+        },
+        {
+          "id": 8417,
+          "position": 7,
+          "text_indopak": "عَلَيۡهِمۡ",
+          "verse_key": "1:7",
+          "line_number": 7,
+          "page_number": 1,
+          "code": "\u0026#xfb71;",
+          "class_name": "p1",
+          "text_madani": "عَلَيْهِمْ",
+          "char_type": "word",
+          "transliteration": {
+            "text": "ʿalayhim",
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "on themselves"
+          },
+          "audio": {
+            "url": "wbw/001_007_007.mp3"
+          }
+        },
+        {
+          "id": 8418,
+          "position": 8,
+          "text_indopak": "وَلَا",
+          "verse_key": "1:7",
+          "line_number": 8,
+          "page_number": 1,
+          "code": "\u0026#xfb72;",
+          "class_name": "p1",
+          "text_madani": "وَلَا",
+          "char_type": "word",
+          "transliteration": {
+            "text": "walā",
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "and not"
+          },
+          "audio": {
+            "url": "wbw/001_007_008.mp3"
+          }
+        },
+        {
+          "id": 8419,
+          "position": 9,
+          "text_indopak": "الضَّآلِّيۡنَ‏",
+          "verse_key": "1:7",
+          "line_number": 8,
+          "page_number": 1,
+          "code": "\u0026#xfb73;",
+          "class_name": "p1",
+          "text_madani": "ٱلضَّآلِّينَ",
+          "char_type": "word",
+          "transliteration": {
+            "text": "l-ḍālīna",
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "(of) those who go astray"
+          },
+          "audio": {
+            "url": "wbw/001_007_009.mp3"
+          }
+        },
+        {
+          "id": 8420,
+          "position": 10,
+          "text_indopak": "٧",
+          "verse_key": "1:7",
+          "line_number": 8,
+          "page_number": 1,
+          "code": "\u0026#xfb74;",
+          "class_name": "p1",
+          "text_madani": "٧",
+          "char_type": "end",
+          "transliteration": {
+            "language_name": "english"
+          },
+          "translation": {
+            "language_name": "english",
+            "text": "(7)"
+          },
+          "audio": {}
+        }
+      ],
+      "audio": {
+        "url": "AbdulBaset/Mujawwad/mp3/001007.mp3",
+        "duration": 25,
+        "segments": [
+          [
+            0,
+            1,
+            1550,
+            2990
+          ],
+          [
+            1,
+            2,
+            3000,
+            4730
+          ],
+          [
+            2,
+            3,
+            4740,
+            6640
+          ],
+          [
+            3,
+            4,
+            6650,
+            8760
+          ],
+          [
+            4,
+            5,
+            8770,
+            9800
+          ],
+          [
+            5,
+            6,
+            9810,
+            12460
+          ],
+          [
+            6,
+            7,
+            12470,
+            14560
+          ],
+          [
+            7,
+            8,
+            14570,
+            15410
+          ],
+          [
+            8,
+            9,
+            15420,
+            24980
+          ]
+        ],
+        "format": "mp3"
+      },
+      "translations": [
+        {
+          "id": 103168,
+          "language_name": "english",
+          "text": "The path of those upon whom Thou hast bestowed favors. Not (the path) of those upon whom Thy wrath is brought down, nor of those who go astray.",
+          "resource_name": "Shakir",
+          "resource_id": 21
+        }
+      ]
+    }
+  ],
+  "pagination": {
+    "current_page": 1,
+    "total_pages": 1,
+    "total_count": 7
+  }
+}

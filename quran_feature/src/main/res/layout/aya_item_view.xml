@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="verse"
+            type="com.mabrouk.quran_listing_feature.domain.models.Verse" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+<!--    android:background="@{verse.selected?@color/purple_200:@color/white}"-->
+
+
+    <TextView
+        android:gravity="center"
+        android:id="@+id/aya_content"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/quran"
+        android:paddingEnd="5dp"
+        android:paddingStart="1dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:textColor="@{verse.selected?@color/purple_200:@color/black}"
+        android:text="@{verse.text_madani.isEmpty() ? verse.text_simple : verse.text_madani}"
+        android:textSize="@{verse.selected?@dimen/selected_size:@dimen/un_selected_size}"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/aya_num"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="=يا ايها الذين امنوا اوفوا بالعقود احلت لكiirhgihgithgithgthgithgithightightighithgithgithgithgitghtightightighithgitghم بهيمة  " />
+
+    <TextView
+        android:id="@+id/aya_num"
+        android:layout_width="45dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/aya_num"
+        android:fontFamily="@font/quran"
+        android:textColor="@{verse.selected?@color/purple_200:@color/black}"
+        android:gravity="center"
+        android:text="@{String.valueOf(verse.verse_number)}"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/aya_content"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="960" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="18dp"
+        android:layout_height="20dp"
+        android:layout_marginBottom="5dp"
+        android:visibility="@{verse.sajdah==null?View.GONE:View.VISIBLE}"
+        app:layout_constraintBottom_toTopOf="@+id/aya_num"
+        app:layout_constraintEnd_toEndOf="@+id/aya_num"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_prayer_rug" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

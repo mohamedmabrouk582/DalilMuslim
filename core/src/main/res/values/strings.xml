@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Dalil Muslim</string>
+    <string name="juz_txt"> : Juz</string>
+    <string name="sura_txt"> : Sura</string>
+    <string name="hadec">Hadec</string>
+    <string name="azqar">Azqar</string>
+    <string name="quran">Quran</string>
+    <string name="stories">Stories</string>
+    <string name="mawarec">Mawarec</string>
+    <string name="sourah_not_download">This Sourah Not Downloaded Yet</string>
+    <string name="basmalla_txt">In the name of Allah, the Beneficent, the Merciful.</string>
+    <string name="source">Source :</string>
+    <string name="count">count :</string>
+    <string name="reference">Reference :</string>
+    <string name="no_reference_here">No Reference Here</string>
+    <string name="txt_search">Search</string>
+    <string name="choose_readers">اختار القارئ الذي تريد</string>
+    <string name="socketTimeout">Socket Time Out</string>
+    <string name="Jsonpars">Json Parsing Error</string>
+    <string name="no_internet_connection">No internet connection</string>
+    <string name="txt_retry">Retry</string>
+
+</resources>

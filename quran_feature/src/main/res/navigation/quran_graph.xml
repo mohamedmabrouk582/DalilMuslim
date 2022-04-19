@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/quran_graph"
+    app:startDestination="@id/quranFragment">
+
+    <fragment
+        android:id="@+id/quranFragment"
+        android:name="com.mabrouk.quran_listing_feature.presentation.views.ui.QuranFragment"
+        android:label="QuranFragment" >
+        <action
+            android:id="@+id/action_quranFragment_to_surahFragment"
+            app:destination="@id/surahFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/surahFragment"
+        android:name="com.mabrouk.quran_listing_feature.presentation.views.ui.SurahFragment"
+        android:label="SurahFragment" >
+        <argument
+            android:name="VERSES_LIST"
+            app:argType="com.mabrouk.quran_listing_feature.domain.models.Surah" />
+        <action
+            android:id="@+id/action_surahFragment_to_tafsirFragment"
+            app:destination="@id/tafsirFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/tafsirFragment"
+        android:name="com.mabrouk.quran_listing_feature.presentation.views.ui.TafsirFragment"
+        android:label="TafsirFragment" >
+        <argument
+            android:name="AYA_TAFSIRS"
+            app:argType="com.mabrouk.quran_listing_feature.domain.models.AyaTafsirs" />
+    </dialog>
+</navigation>

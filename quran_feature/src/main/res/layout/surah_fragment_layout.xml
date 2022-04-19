@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="surah"
+            type="com.mabrouk.quran_listing_feature.domain.models.Surah" />
+        <variable
+            name="isPlaying"
+            type="Boolean" />
+
+        <variable
+            name="show"
+            type="Boolean" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/loaderView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:textColor="@color/black"
+            android:id="@+id/textView9"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:text='@{@string/sura_txt+surah.name_arabic}'
+            android:background="@drawable/surah_header"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:fontFamily="@font/quran"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/scroll"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView9">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/basmala"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="@font/quran"
+                    android:gravity="center"
+                    android:text="@string/basmalla_txt"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:visibility="@{surah.bismillah_pre?View.VISIBLE:View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/ayat_rcv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="10dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/basmala" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/showHide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/white"
+            android:src="@{ show ? @drawable/ic_down : @drawable/ic_up }"
+            app:fabCustomSize="25dp"
+            app:layout_constraintBottom_toTopOf="@+id/prevAudio"
+            app:layout_constraintEnd_toEndOf="@+id/player"
+            app:layout_constraintStart_toStartOf="@+id/player"
+            tools:ignore="ContentDescription" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/prevAudio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/exo_icon_previous"
+            app:fabCustomSize="45dp"
+            app:layout_constraintBottom_toTopOf="@+id/nextAudio"
+            app:layout_constraintEnd_toEndOf="@+id/player"
+            app:layout_constraintStart_toStartOf="@+id/player"
+            tools:ignore="ContentDescription" />
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/nextAudio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/exo_icon_next"
+            app:fabCustomSize="45dp"
+            app:layout_constraintBottom_toTopOf="@+id/player"
+            app:layout_constraintEnd_toEndOf="@+id/player"
+            app:layout_constraintStart_toStartOf="@+id/player"
+            tools:ignore="ContentDescription" />
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/player"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/white"
+            android:src="@{ isPlaying ? @drawable/ic_pause_24 : @drawable/ic_baseline_play_arrow_24 }"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/readerImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/textView9"
+            app:layout_constraintEnd_toEndOf="@+id/textView9"
+            app:layout_constraintHorizontal_bias="0.19"
+            app:layout_constraintStart_toStartOf="@+id/textView9"
+            app:layout_constraintTop_toTopOf="@+id/textView9"
+            app:srcCompat="@drawable/ic_microphone" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

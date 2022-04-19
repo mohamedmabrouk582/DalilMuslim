@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:enabled="true"
+        android:id="@+id/hadec_item"
+        android:title="@string/hadec"
+        android:icon="@drawable/ic_hadec"
+        />
+    <item
+        android:enabled="true"
+        android:id="@+id/azqar_item"
+        android:title="@string/azqar"
+        android:icon="@drawable/ic_azqar"
+        />
+    <item
+        android:enabled="true"
+        android:id="@+id/quran_item"
+        android:title="@string/quran"
+        android:icon="@drawable/ic_quran"
+        />
+    <item
+        android:enabled="true"
+        android:id="@+id/story_item"
+        android:title="@string/stories"
+        android:icon="@drawable/ic_story"
+        />
+    <item
+        android:enabled="true"
+        android:id="@+id/mawarec_item"
+        android:title="@string/mawarec"
+        android:icon="@drawable/ic_inheritance"
+        />
+</menu>
