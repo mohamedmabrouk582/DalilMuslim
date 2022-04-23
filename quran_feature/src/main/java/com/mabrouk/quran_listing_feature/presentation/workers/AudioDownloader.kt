@@ -13,6 +13,7 @@ import com.mabrouk.core.network.decimalFormat
 import com.mabrouk.core.utils.FileUtils
 import com.mabrouk.quran_listing_feature.BuildConfig
 import com.mabrouk.quran_listing_feature.data.repository.AyaRepository
+import com.mabrouk.quran_listing_feature.domain.usecases.AyaRepositoryUseCases
 import com.mabrouk.quran_listing_feature.presentation.utils.*
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
@@ -28,7 +29,7 @@ import kotlinx.coroutines.withContext
 class AudioDownloader @AssistedInject constructor(
     @Assisted val context: Context,
     @Assisted params: WorkerParameters,
-    val repository: AyaRepository
+    val repository: AyaRepositoryUseCases
 ) : CoroutineWorker(context, params) {
 
     var result:String?=null

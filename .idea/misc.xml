@@ -38,12 +38,22 @@
         <entry key="app/src/main/res/drawable/ic_up.xml" value="0.1755" />
         <entry key="app/src/main/res/drawable/ic_youtube.xml" value="0.1755" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.24635416666666668" />
+        <entry key="app/src/main/res/layout/start_fragment.xml" value="0.24635416666666668" />
         <entry key="app/src/main/res/menu/nav_menu.xml" value="0.24635416666666668" />
+        <entry key="azkar_feature/src/main/res/layout/azqar_fragment_layout.xml" value="0.24635416666666668" />
         <entry key="core/src/main/res/drawable/btn_shape.xml" value="0.1505" />
         <entry key="core/src/main/res/layout/error_layout.xml" value="0.24635416666666668" />
         <entry key="core/src/main/res/layout/loader_layout.xml" value="0.24635416666666668" />
         <entry key="core/src/main/res/layout/shimmer_item_view.xml" value="0.24635416666666668" />
         <entry key="core/src/main/res/layout/shimmer_recyler_view.xml" value="0.24635416666666668" />
+        <entry key="hadith_feature/src/main/res/layout/hadec_fragment_layout.xml" value="0.24635416666666668" />
+        <entry key="history_feature/src/main/res/drawable-night/ic_up.xml" value="0.1755" />
+        <entry key="history_feature/src/main/res/drawable-notnight/drawable_night.xml" value="0.1755" />
+        <entry key="history_feature/src/main/res/drawable/ic_download.xml" value="0.1755" />
+        <entry key="history_feature/src/main/res/drawable/y.xml" value="0.1755" />
+        <entry key="history_feature/src/main/res/layout/story_fragment.xml" value="0.24635416666666668" />
+        <entry key="history_feature/src/main/res/layout/story_item_view.xml" value="0.24635416666666668" />
+        <entry key="history_feature/src/main/res/layout/y.xml" value="0.24635416666666668" />
         <entry key="quran_feature/src/main/res/drawable-night/avd_azqar.xml" value="0.1755" />
         <entry key="quran_feature/src/main/res/drawable-night/avd_hadec.xml" value="0.1755" />
         <entry key="quran_feature/src/main/res/drawable-night/avd_inhertince.xml" value="0.1755" />
@@ -100,6 +110,7 @@
         <entry key="quran_feature/src/main/res/layout/surah_fragment_layout.xml" value="0.24635416666666668" />
         <entry key="quran_feature/src/main/res/layout/tafsir_item_view.xml" value="0.24635416666666668" />
         <entry key="quran_listing_feature/src/main/res/layout/quran_list_fragment.xml" value="0.24635416666666668" />
+        <entry key="radio_quran_feature/src/main/res/layout/quran_radio_layout.xml" value="0.24635416666666668" />
       </map>
     </option>
   </component>

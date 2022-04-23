@@ -4,31 +4,31 @@
 
     <item
         android:enabled="true"
-        android:id="@+id/hadec_item"
+        android:id="@+id/hadith_graph"
         android:title="@string/hadec"
         android:icon="@drawable/ic_hadec"
         />
     <item
         android:enabled="true"
-        android:id="@+id/azqar_item"
+        android:id="@+id/azkar_graph"
         android:title="@string/azqar"
         android:icon="@drawable/ic_azqar"
         />
     <item
         android:enabled="true"
-        android:id="@+id/quran_item"
+        android:id="@+id/quran_graph"
         android:title="@string/quran"
         android:icon="@drawable/ic_quran"
         />
     <item
         android:enabled="true"
-        android:id="@+id/story_item"
+        android:id="@+id/story_graph"
         android:title="@string/stories"
         android:icon="@drawable/ic_story"
         />
     <item
         android:enabled="true"
-        android:id="@+id/mawarec_item"
+        android:id="@+id/quran_radio_graph"
         android:title="@string/mawarec"
         android:icon="@drawable/ic_inheritance"
         />

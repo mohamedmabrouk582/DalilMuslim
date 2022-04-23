@@ -2,6 +2,8 @@ package com.mabrouk.core.network
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.util.Log
@@ -213,6 +215,7 @@ fun Context.loader(stream: SharedFlow<String> = MutableSharedFlow(), scope: Coro
     }
     builder.setView(view)
     return builder.create().apply {
+        window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
         setCanceledOnTouchOutside(false)
     }
 }

@@ -9,6 +9,7 @@ import com.mabrouk.core.network.Result
 import com.mabrouk.core.network.Result.*
 import com.mabrouk.core.utils.EventBus
 import com.mabrouk.quran_listing_feature.data.repository.QuranRepository
+import com.mabrouk.quran_listing_feature.domain.usecases.QuranRepositoryUseCase
 import com.mabrouk.quran_listing_feature.presentation.utils.*
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
@@ -24,7 +25,7 @@ import kotlinx.coroutines.withContext
 class SurahDownloadWorker @AssistedInject constructor(
     @Assisted val context: Context,
     @Assisted params: WorkerParameters,
-    val repository: QuranRepository,
+    val repository: QuranRepositoryUseCase,
     val event: EventBus
 ) : CoroutineWorker(context, params) {
 

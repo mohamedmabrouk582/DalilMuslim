@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph"
-    >
-    <navigation android:id="@+id/quran_graph" app:startDestination="@id/quranFragment" />
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
+    app:startDestination="@id/quran_graph">
 
+    <include app:graph="@navigation/quran_graph" />
+    <include app:graph="@navigation/azkar_graph" />
+    <include app:graph="@navigation/hadith_graph" />
+    <include app:graph="@navigation/quran_radio_graph" />
+    <include app:graph="@navigation/story_graph" />
 </navigation>
