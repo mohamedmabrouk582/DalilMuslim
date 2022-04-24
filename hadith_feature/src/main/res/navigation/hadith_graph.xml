@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/hadithFragment"
-        android:name="com.mabrouk.hadith_feature.HadithFragment"
+        android:name="com.mabrouk.hadith_feature.presentaion.ui.fragments.HadithFragment"
         android:label="HadithFragment" />
 </navigation>

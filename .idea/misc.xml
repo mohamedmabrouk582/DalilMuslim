@@ -47,6 +47,14 @@
         <entry key="core/src/main/res/layout/shimmer_item_view.xml" value="0.24635416666666668" />
         <entry key="core/src/main/res/layout/shimmer_recyler_view.xml" value="0.24635416666666668" />
         <entry key="hadith_feature/src/main/res/layout/hadec_fragment_layout.xml" value="0.24635416666666668" />
+        <entry key="hadith_feature/src/main/res/layout/hadith_book_item_view.xml" value="0.24635416666666668" />
+        <entry key="hadith_feature/src/main/res/layout/hadith_category_item_view.xml" value="0.24635416666666668" />
+        <entry key="hadith_feature/src/main/res/layout/hadith_fragment_layout.xml" value="0.24635416666666668" />
+        <entry key="hadith_feature/src/main/res/layout/hadith_item_view.xml" value="0.24635416666666668" />
+        <entry key="hadith_feature/src/main/res/layout/hadith_layout.xml" value="0.24635416666666668" />
+        <entry key="hadith_feature/src/main/res/layout/shimmer_item_view.xml" value="0.24635416666666668" />
+        <entry key="hadith_feature/src/main/res/layout/shimmer_layout.xml" value="0.24635416666666668" />
+        <entry key="hadith_feature/src/main/res/layout/shimmers_layout.xml" value="0.24635416666666668" />
         <entry key="history_feature/src/main/res/drawable-night/ic_up.xml" value="0.1755" />
         <entry key="history_feature/src/main/res/drawable-notnight/drawable_night.xml" value="0.1755" />
         <entry key="history_feature/src/main/res/drawable/ic_download.xml" value="0.1755" />
