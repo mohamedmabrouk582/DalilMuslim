@@ -40,6 +40,8 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.24635416666666668" />
         <entry key="app/src/main/res/layout/start_fragment.xml" value="0.24635416666666668" />
         <entry key="app/src/main/res/menu/nav_menu.xml" value="0.24635416666666668" />
+        <entry key="azkar_feature/src/main/res/layout/azkar_category_item_view.xml" value="0.24635416666666668" />
+        <entry key="azkar_feature/src/main/res/layout/azkar_item_view.xml" value="0.24635416666666668" />
         <entry key="azkar_feature/src/main/res/layout/azqar_fragment_layout.xml" value="0.24635416666666668" />
         <entry key="core/src/main/res/drawable/btn_shape.xml" value="0.1505" />
         <entry key="core/src/main/res/layout/error_layout.xml" value="0.24635416666666668" />

@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/azqarFragment"
-        android:name="com.mabrouk.azkar_feature.AzqarFragment"
+        android:name="com.mabrouk.azkar_feature.presentaion.ui.fragments.AzqarFragment"
         android:label="AzqarFragment" />
 </navigation>

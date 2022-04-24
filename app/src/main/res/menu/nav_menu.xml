@@ -30,6 +30,6 @@
         android:enabled="true"
         android:id="@+id/quran_radio_graph"
         android:title="@string/mawarec"
-        android:icon="@drawable/ic_inheritance"
+        android:icon="@drawable/ic_radio"
         />
 </menu>
