@@ -21,6 +21,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.work.WorkInfo
 import com.google.android.exoplayer2.*
+import com.google.android.exoplayer2.ui.PlayerNotificationManager
+import com.google.android.exoplayer2.util.NotificationUtil
 import com.google.android.material.snackbar.Snackbar
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
@@ -28,6 +30,7 @@ import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.mabrouk.core.network.loader
+import com.mabrouk.core.utils.DescriptionAdapter
 import com.mabrouk.core.utils.FileUtils
 import com.mabrouk.quran_listing_feature.R
 import com.mabrouk.quran_listing_feature.databinding.SurahFragmentLayoutBinding
@@ -40,6 +43,7 @@ import com.mabrouk.quran_listing_feature.presentation.viewmodels.QuranViewModel
 import com.mabrouk.quran_listing_feature.presentation.viewmodels.SurahViewModel
 import com.mabrouk.quran_listing_feature.presentation.views.adapters.AyaAdapter
 import com.mabrouk.quran_listing_feature.presentation.views.adapters.AyaPoupAdapter
+import com.readystatesoftware.chuck.internal.ui.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -61,6 +65,15 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener,
     private val quranViewModel: QuranViewModel by viewModels()
     var playbackPosition: Long = 0
     private val adapter: AyaAdapter by lazy { AyaAdapter(::onAyaClick) }
+    private val notificationManager by lazy {
+        PlayerNotificationManager.Builder(
+            requireContext()  , 1 , "quran"
+        ).also {
+            it.setMediaDescriptionAdapter(DescriptionAdapter(surahViewModel.currentReader.name,requireContext(),MainActivity::class.java))
+            it.setChannelImportance(NotificationUtil.IMPORTANCE_HIGH)
+            it.setSmallIconResourceId(R.drawable.logo)
+        }.build()
+    }
     private val popAdapter: AyaPoupAdapter by lazy {
         AyaPoupAdapter(
             ::onPlayClick,
@@ -335,6 +348,7 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener,
         })
         // player.addMediaItem(MediaItem.fromUri("http://www.liveradiu.com/2018/06/holy-quran-radio-station-cairo-live.html"))
         player.prepare()
+        notificationManager.setPlayer(player)
     }
 
     private fun addMediaItem(path: String, id: String): MediaItem {
@@ -393,6 +407,7 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener,
 
     override fun onDestroy() {
         super.onDestroy()
+        notificationManager.setPlayer(null)
         playbackPosition = player.currentPosition
         player.release()
     }

@@ -1,5 +1,6 @@
 package com.mabrouk.quran_listing_feature.presentation.views.ui
 
+import android.content.Context
 import androidx.navigation.Navigation
 import androidx.navigation.testing.TestNavHostController
 import androidx.recyclerview.widget.RecyclerView
@@ -9,11 +10,17 @@ import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.filters.MediumTest
+import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import com.google.common.truth.Truth.assertThat
+import com.google.firebase.FirebaseApp
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.mabrouk.core.utils.CoroutineTestRule
 import com.mabrouk.quran_listing_feature.R
+import com.mabrouk.quran_listing_feature.presentation.viewmodels.QuranViewModel
+import dagger.hilt.android.testing.BindValue
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
+import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import launchFragmentInHiltContainer
 import org.junit.Before
@@ -37,6 +44,9 @@ class QuranFragmentTest{
 
     val navController = TestNavHostController(ApplicationProvider.getApplicationContext())
 
+    @BindValue
+    @JvmField
+    val viewModel = mockk<QuranViewModel>(relaxed = true)
 
     @Before
     fun setUp(){

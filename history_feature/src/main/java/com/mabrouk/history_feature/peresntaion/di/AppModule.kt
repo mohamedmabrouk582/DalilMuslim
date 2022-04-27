@@ -34,17 +34,6 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun getQuranRetrofit(client: OkHttpClient): Retrofit =
-        Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
-            .addCallAdapterFactory(CoroutineCallAdapterFactory())
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(client)
-            .build()
-
-
-    @Provides
-    @Singleton
     fun getStoryDao(@ApplicationContext context: Context): StoryDao =
         Room.databaseBuilder(context, StoryDb::class.java, "story.db").build().getDao()
 

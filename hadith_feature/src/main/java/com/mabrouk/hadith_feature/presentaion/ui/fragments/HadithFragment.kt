@@ -9,6 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.mabrouk.hadith_feature.R
 import com.mabrouk.hadith_feature.databinding.HadithLayoutBinding
+import com.mabrouk.hadith_feature.databinding.HadithLayoutFragmentBinding
 import com.mabrouk.hadith_feature.presentaion.states.HadithStates
 import com.mabrouk.hadith_feature.presentaion.ui.adapters.HadithCategoryAdapter
 import com.mabrouk.hadith_feature.presentaion.viewmodels.HadithViewModel
@@ -20,8 +21,8 @@ import kotlinx.coroutines.launch
  * Copyright (c) 4/20/22
  */
 @AndroidEntryPoint
-class HadithFragment : Fragment(R.layout.hadith_layout) {
-    lateinit var viewBinding: HadithLayoutBinding
+class HadithFragment : Fragment(R.layout.hadith_layout_fragment) {
+    lateinit var viewBinding: HadithLayoutFragmentBinding
     val viewModel: HadithViewModel by viewModels()
     private val adapter by lazy {
         HadithCategoryAdapter {

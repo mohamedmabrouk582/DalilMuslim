@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/quranRadioFragment"
-        android:name="com.mabrouk.radio_quran_feature.QuranRadioFragment"
+        android:name="com.mabrouk.radio_quran_feature.presentaion.ui.QuranRadioFragment"
         android:label="QuranRadioFragment" />
 </navigation>

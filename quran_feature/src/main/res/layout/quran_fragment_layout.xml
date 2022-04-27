@@ -33,8 +33,7 @@
                 android:iconifiedByDefault="false"
                 android:layoutDirection="rtl"
                 android:queryBackground="@null"
-                android:queryHint="@string/txt_search"
-                app:searchListener="@{viewModel.searchListener}" />
+                android:queryHint="@string/txt_search" />
         </androidx.cardview.widget.CardView>
 
         <include

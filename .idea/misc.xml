@@ -15,6 +15,7 @@
         <entry key="app/src/main/res/drawable-night/ic_launcher_background.xml" value="0.1755" />
         <entry key="app/src/main/res/drawable-night/ic_prayer_rug.xml" value="0.1755" />
         <entry key="app/src/main/res/drawable-night/ic_quran.xml" value="0.1755" />
+        <entry key="app/src/main/res/drawable-night/ic_radio.xml" value="0.1755" />
         <entry key="app/src/main/res/drawable-night/ic_story.xml" value="0.1755" />
         <entry key="app/src/main/res/drawable/audio_shape.xml" value="0.1755" />
         <entry key="app/src/main/res/drawable/avd_azqar.xml" value="0.1755" />
@@ -112,7 +113,7 @@
         <entry key="quran_feature/src/main/res/layout/aya_tafsir_layout.xml" value="0.24635416666666668" />
         <entry key="quran_feature/src/main/res/layout/aya_translate_layout.xml" value="0.24635416666666668" />
         <entry key="quran_feature/src/main/res/layout/juz_item_view.xml" value="0.24635416666666668" />
-        <entry key="quran_feature/src/main/res/layout/quran_fragment_layout.xml" value="0.24635416666666668" />
+        <entry key="quran_feature/src/main/res/layout/quran_fragment_layout.xml" value="0.160676532769556" />
         <entry key="quran_feature/src/main/res/layout/quran_list_fragment.xml" value="0.24635416666666668" />
         <entry key="quran_feature/src/main/res/layout/reader_item_view.xml" value="0.24635416666666668" />
         <entry key="quran_feature/src/main/res/layout/readers_layout.xml" value="0.24635416666666668" />
@@ -121,6 +122,7 @@
         <entry key="quran_feature/src/main/res/layout/tafsir_item_view.xml" value="0.24635416666666668" />
         <entry key="quran_listing_feature/src/main/res/layout/quran_list_fragment.xml" value="0.24635416666666668" />
         <entry key="radio_quran_feature/src/main/res/layout/quran_radio_layout.xml" value="0.24635416666666668" />
+        <entry key="radio_quran_feature/src/main/res/layout/radio_item_view.xml" value="0.24635416666666668" />
       </map>
     </option>
   </component>

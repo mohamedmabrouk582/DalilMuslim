@@ -88,7 +88,7 @@ class TestQuranApi {
     }
 
     @Test
-    fun getAyaTafseer_502() = runBlocking {
+    fun getAyaTafseer(): Unit = runBlocking {
         try {
             tafseerApi.getAyaTafseer(1,1,1).await()
         }catch (e : HttpException){

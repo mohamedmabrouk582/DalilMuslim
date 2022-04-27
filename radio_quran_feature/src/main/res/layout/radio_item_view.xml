@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="radio"
+            type="com.mabrouk.radio_quran_feature.domain.models.Radio" />
+    </data>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="5dp"
+    android:layout_margin="10dp"
+    >
+
+    <TextView
+        android:padding="10dp"
+        android:fontFamily="@font/quran"
+        android:textSize="16sp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@{radio.name}"
+        tools:text="urhirhurhugrhghrughur"
+        />
+
+</androidx.cardview.widget.CardView>
+</layout>
