@@ -9,6 +9,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.source.DefaultMediaSourceFactory
@@ -60,10 +62,8 @@ class QuranRadioFragment : Fragment() {
         player.seekTo(playbackPosition)
         viewModel.requestRadios()
         viewBinding.rcv.adapter = adapter
-        val layoutManager = FlexboxLayoutManager(requireContext())
-        layoutManager.flexDirection = FlexDirection.ROW
-        viewBinding.rcv.layoutManager = layoutManager
-
+        viewBinding.rcv.layoutManager =
+            StaggeredGridLayoutManager(2, GridLayoutManager.VERTICAL)
         player.addMediaItem(addLiveMediaItem("http://live.mp3quran.net:9722/;"))
         player.prepare()
         player.play()
