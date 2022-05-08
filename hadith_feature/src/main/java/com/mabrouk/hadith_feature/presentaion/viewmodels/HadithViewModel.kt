@@ -102,7 +102,7 @@ class HadithViewModel @Inject constructor(
                     when (it) {
                         is Result.NoInternetConnect -> error.set(it.error)
                         is Result.OnFailure -> error.set(it.throwable.message ?: "")
-                        is Result.OnLoading -> loader.set(true)
+                        is Result.OnLoading -> if (page?:1==1) loader.set(true)
                         is Result.OnSuccess -> {
                             _states.value = HadithStates.LoadHadith(it.data.data)
                             withContext(Dispatchers.IO) {

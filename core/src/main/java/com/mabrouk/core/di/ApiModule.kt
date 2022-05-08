@@ -36,7 +36,7 @@ class ApiModule {
         @ApplicationContext context: Context
     ): OkHttpClient =
         OkHttpClient.Builder()
-            .addInterceptor(ChuckInterceptor(context))
+           // .addInterceptor(ChuckInterceptor(context))
             .addInterceptor(interceptor)
             .build()
 

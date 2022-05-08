@@ -49,7 +49,7 @@ class ApiModule {
     ): OkHttpClient =
         OkHttpClient.Builder()
             .addInterceptor(interceptor)
-            .addInterceptor(ChuckInterceptor(context))
+            //.addInterceptor(ChuckInterceptor(context))
             .addInterceptor { chain ->
                 var request = chain.request()
                 request = request.newBuilder()

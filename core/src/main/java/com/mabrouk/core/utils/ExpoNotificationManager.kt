@@ -28,11 +28,13 @@ class DescriptionAdapter(val reader:String , val context: Context, val activity 
         val intent = Intent(context, activity::class.java)
         intent.putExtra(VERSES_ID,player.currentMediaItem?.mediaId)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+
+
         return PendingIntent.getActivity(
             context,
             0,
             intent,
-            PendingIntent.FLAG_UPDATE_CURRENT
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) PendingIntent.FLAG_IMMUTABLE else  PendingIntent.FLAG_UPDATE_CURRENT
         )
     }
 
