@@ -1,6 +1,5 @@
 package com.mabrouk.radio_quran_feature.presentaion.ui
 
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,8 +13,6 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.source.DefaultMediaSourceFactory
-import com.google.android.flexbox.FlexDirection
-import com.google.android.flexbox.FlexboxLayoutManager
 import com.mabrouk.radio_quran_feature.R
 import com.mabrouk.radio_quran_feature.databinding.QuranRadioLayoutBinding
 import com.mabrouk.radio_quran_feature.presentaion.viewmodels.RadioStates
@@ -74,7 +71,6 @@ class QuranRadioFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.states.collect {
                 when (it) {
-                    RadioStates.Idle -> {}
                     is RadioStates.LoadData -> {
                         adapter.items = it.data
                         viewBinding.progress.visibility = View.GONE

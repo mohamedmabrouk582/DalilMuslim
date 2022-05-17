@@ -13,7 +13,7 @@ import javax.inject.Inject
  */
 class RadioUseCase @Inject constructor(val repository: RadioDefaultRepository) {
 
-    suspend fun requestRadios(): Flow<Result<RadioResponse>>{
+    fun requestRadios(): Flow<Result<RadioResponse>>{
         return repository.requestRadios()
     }
 

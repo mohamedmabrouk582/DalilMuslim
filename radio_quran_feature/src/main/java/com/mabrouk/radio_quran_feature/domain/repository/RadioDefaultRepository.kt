@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
  * Copyright (c) 4/26/22
  */
 interface RadioDefaultRepository {
-    suspend fun requestRadios(): Flow<Result<RadioResponse>>
+    fun requestRadios(): Flow<Result<RadioResponse>>
     suspend fun getSavedRadios() : ArrayList<Radio>
     suspend fun saveRadios(data : ArrayList<Radio>)
 }

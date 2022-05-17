@@ -8,11 +8,8 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.findViewTreeLifecycleOwner
 import com.google.gson.JsonSyntaxException
 import com.mabrouk.core.R
 import kotlinx.coroutines.*
@@ -41,7 +38,7 @@ sealed class Result<out T : Any> {
 typealias ApiResult<T> = suspend () -> Response<T>
 typealias ApiResult2<T> = suspend () -> Deferred<T>
 
-suspend fun <T : Any> executeCall(
+ fun <T : Any> executeCall(
     context: Context,
     messageInCaseOfError: String = "Network error",
     allowRetries: Boolean = true,
@@ -88,9 +85,8 @@ suspend fun <T : Any> executeCall(
 }
 
 
-suspend fun <T : Any> executeCall2(
+ fun <T : Any> executeCall2(
     context: Context,
-    messageInCaseOfError: String = "Network error",
     allowRetries: Boolean = true,
     numberOfRetries: Int = 2,
     apiCall: ApiResult2<T>
@@ -128,11 +124,11 @@ interface OnCheckConnection {
 class CheckNetwork {
     companion object {
 
-        fun isConnected(context: Context, OnCheckConnection: OnCheckConnection) {
+        fun isConnected(context: Context, onCheckConnection: OnCheckConnection) {
             if (isOnline(context)) {
-                OnCheckConnection.ConnectionTrue()
+                onCheckConnection.ConnectionTrue()
             } else {
-                OnCheckConnection.ConnectionError()
+                onCheckConnection.ConnectionError()
             }
         }
 
@@ -165,13 +161,7 @@ class CheckNetwork {
 
 fun errorMsg(e: Throwable, context: Context): String =
     when (e) {
-        is HttpException -> {
-            val error: String = analysisError(e)
-            when (e.code()) {
-                401, 403 -> error
-                else -> error
-            }
-        }
+        is HttpException -> analysisError(e)
         is SocketTimeoutException -> context.getString(R.string.socketTimeout)
         is JsonSyntaxException -> context.getString(R.string.Jsonpars)
         is SSLHandshakeException -> e.message.toString()

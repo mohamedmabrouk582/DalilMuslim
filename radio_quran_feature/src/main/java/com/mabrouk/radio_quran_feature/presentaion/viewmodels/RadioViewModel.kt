@@ -1,6 +1,5 @@
 package com.mabrouk.radio_quran_feature.presentaion.viewmodels
 
-import android.widget.Toast
 import androidx.lifecycle.viewModelScope
 import com.mabrouk.core.base.BaseViewModel
 import com.mabrouk.core.network.Result.*
@@ -8,11 +7,9 @@ import com.mabrouk.core.utils.DataStorePreferences
 import com.mabrouk.radio_quran_feature.domain.usecases.RadioUseCase
 import com.mabrouk.radio_quran_feature.presentaion.RADIOS_DOWNLOADS
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 /**
@@ -38,14 +35,10 @@ class RadioViewModel @Inject constructor(
                         is NoInternetConnect -> {
                             _states.value = RadioStates.LoadData(repository.getSavedRadios())
                         }
-                        is OnFailure -> {}
-                        is OnLoading -> {}
                         is OnSuccess -> {
                             _states.value = RadioStates.LoadData(it.data.radios)
-                            withContext(Dispatchers.IO) {
-                                repository.saveRadios(it.data.radios)
-                                dataStore.setBoolean(RADIOS_DOWNLOADS, true)
-                            }
+                            repository.saveRadios(it.data.radios)
+                            dataStore.setBoolean(RADIOS_DOWNLOADS, true)
                         }
                     }
                 }

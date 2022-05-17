@@ -23,7 +23,7 @@ class RadioRepository @Inject constructor(
     val api: RadioApi ,
     val dao: RadioDao
 ) : RadioDefaultRepository {
-    override suspend fun requestRadios(): Flow<Result<RadioResponse>> {
+    override fun requestRadios(): Flow<Result<RadioResponse>> {
         return executeCall(context){api.getRadios("http://api.mp3quran.net/radios/radio_arabic.json")}
     }
 

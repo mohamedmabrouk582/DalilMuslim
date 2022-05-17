@@ -7,6 +7,8 @@ apply from: '../common_build.gradle'
 
 
 android {
+
+    namespace 'com.mabrouk.quran_listing_feature'
     defaultConfig {
         testInstrumentationRunner "com.mabrouk.quran_listing_feature.HiltTestRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -17,5 +19,6 @@ android {
 dependencies {
     api project(":core")
     implementation 'com.google.firebase:firebase-config:21.0.2'
+    implementation 'com.google.firebase:firebase-analytics-ktx:21.0.0'
 
 }

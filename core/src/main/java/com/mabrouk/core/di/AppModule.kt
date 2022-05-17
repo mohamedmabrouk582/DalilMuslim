@@ -1,8 +1,11 @@
 package com.mabrouk.core.di
 
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 
 /**
  * @name Mohamed Mabrouk
@@ -10,4 +13,9 @@ import dagger.hilt.components.SingletonComponent
  */
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class AppModule
+class AppModule {
+
+    @IoDispatcher
+    @Provides
+    fun getIoDispatcher() : CoroutineDispatcher = Dispatchers.IO
+}

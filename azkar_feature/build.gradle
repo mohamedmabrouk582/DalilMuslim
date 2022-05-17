@@ -1,13 +1,17 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'com.google.gms.google-services'
 }
 apply from: '../common_build.gradle'
 
 
 android {
+
+    namespace 'com.mabrouk.azkar_feature'
 }
 
 dependencies {
     api project(":core")
+    implementation 'com.google.firebase:firebase-analytics-ktx:21.0.0'
 }

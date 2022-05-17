@@ -1,14 +1,18 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'com.google.gms.google-services'
 }
 apply from: '../common_build.gradle'
 
 
 android {
+
+    namespace 'com.mabrouk.radio_quran_feature'
 }
 
 dependencies {
     api project(":core")
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.23'
+    implementation 'com.google.firebase:firebase-analytics-ktx:21.0.0'
 }
