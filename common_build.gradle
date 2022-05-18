@@ -54,6 +54,11 @@ android {
         useIR = true
 
     }
+
+    lint {
+        abortOnError false
+    }
+
     buildFeatures {
         dataBinding true
         viewBinding true
