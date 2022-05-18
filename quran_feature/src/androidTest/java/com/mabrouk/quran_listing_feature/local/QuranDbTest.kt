@@ -71,11 +71,11 @@ class QuranDbTest {
         assertThat(dao.getSavedSurah().first()).isEqualTo(TestUtils.surahs)
     }
 
-//    @Test
-//    fun saveJuzs() = runBlocking {
-//        dao.saveJuzs(TestUtils.juzs)
-//        assertThat(dao.getSavedJuzs().first()).isEqualTo(TestUtils.juzs)
-//    }
+    @Test
+    fun saveJuz() = runBlocking {
+        dao.saveJuzs(TestUtils.juz)
+        assertThat(dao.getSavedJuzs().first()).isEqualTo(TestUtils.juz)
+    }
 
     @Test
     fun saveVerses() = runBlocking {

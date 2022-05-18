@@ -16,6 +16,9 @@ object TestUtils {
     val juzs = (1..30).map {
         Juz(it,it)
     }.toArrayList()
+    val juz = (1..30).map {
+        Juz(it,it)
+    }.toArrayList()
 
     val surahs = (1 .. 114).map {
         Surah(it, name_arabic = "name$it")
