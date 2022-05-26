@@ -1,6 +1,4 @@
 
-P
- app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
 ‘
 ahadith_feature/src/main/java/com/mabrouk/hadith_feature/presentaion/viewmodels/HadithViewModel.kt,e/1/e16cd2b0f9c3e9b26258592847f7ddc68d4cad51
 ™
