@@ -45,7 +45,7 @@ class FakeQuranRepository : QuranDefaultRepository {
     }
 
     override suspend fun saveJuz(juz: ArrayList<Juz>) {
-        TestUtils.savedJuz.addAll(juz)
+        TestUtils.savedJuz= juz
     }
 
     override suspend fun saveSurahs(surahs: ArrayList<Surah>) {
