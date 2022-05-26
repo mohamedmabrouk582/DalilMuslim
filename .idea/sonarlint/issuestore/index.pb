@@ -17,8 +17,6 @@ A
 core/build.gradle,9/1/918ca359602392354123b7d3b63264baf7ea9dde
 i
 9core/src/main/java/com/mabrouk/core/base/BaseViewModel.kt,8/b/8bf4e07320c23c4adfffd2726b36d6833bebce58
-c
-3core/src/main/java/com/mabrouk/core/di/ApiModule.kt,1/9/1944db05a78fc6671f04ce2c70b57c3b371d88e6
 h
 8core/src/main/java/com/mabrouk/core/di/FireBaseModule.kt,e/0/e0047bb8891b1107c81555c2968eff60a6b0b43a
 n
