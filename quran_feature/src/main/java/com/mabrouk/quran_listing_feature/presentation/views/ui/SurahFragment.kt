@@ -30,7 +30,6 @@ import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.mabrouk.core.network.loader
-import com.mabrouk.core.utils.DescriptionAdapter
 import com.mabrouk.core.utils.FileUtils
 import com.mabrouk.quran_listing_feature.R
 import com.mabrouk.quran_listing_feature.databinding.SurahFragmentLayoutBinding
@@ -43,7 +42,6 @@ import com.mabrouk.quran_listing_feature.presentation.viewmodels.QuranViewModel
 import com.mabrouk.quran_listing_feature.presentation.viewmodels.SurahViewModel
 import com.mabrouk.quran_listing_feature.presentation.views.adapters.AyaAdapter
 import com.mabrouk.quran_listing_feature.presentation.views.adapters.AyaPoupAdapter
-import com.readystatesoftware.chuck.internal.ui.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
