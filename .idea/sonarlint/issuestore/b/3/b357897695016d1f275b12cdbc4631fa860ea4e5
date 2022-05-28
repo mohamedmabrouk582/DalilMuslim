@@ -1,0 +1,17 @@
+
+Mkotlin:S108À")Either remove or fill this block of code.(ÍÖ¥ºÿÿÿÿÿ8ˆõ¥‡0
+Hkotlin:S108ó")Either remove or fill this block of code.(òã¤’8‰õ¥‡0
+Mkotlin:S108€")Either remove or fill this block of code.(ÍÖ¥ºÿÿÿÿÿ8‰õ¥‡0
+Mkotlin:S108†")Either remove or fill this block of code.(ÍÖ¥ºÿÿÿÿÿ8‰õ¥‡0
+kotlin:S5612ï"kThis lambda has 28 lines of code, which is greater than the 20 authorized. Split it into smaller functions.(¼âáşÿÿÿÿ8‹õ¥‡0
+kotlin:S5612"kThis lambda has 22 lines of code, which is greater than the 20 authorized. Split it into smaller functions.(œÉ…Ìıÿÿÿÿ8‹õ¥‡0
+kotlin:S5612ò"kThis lambda has 21 lines of code, which is greater than the 20 authorized. Split it into smaller functions.(ˆŒ°™ûÿÿÿÿ8Œõ¥‡0
+kotlin:S5612ğ"kThis lambda has 26 lines of code, which is greater than the 20 authorized. Split it into smaller functions.(ÆÄìæÿÿÿÿÿ8Œõ¥‡0
+>kotlin:S1128	"Remove this unused import.(ÊÒÅ­ùÿÿÿÿ8šõ¥‡0
+9kotlin:S1128"Remove this unused import.(´Ùí8›õ¥‡0
+>kotlin:S1128"Remove this unused import.(ÚÁÊ“şÿÿÿÿ8›õ¥‡0
+>kotlin:S1128"Remove this unused import.(æ’öäüÿÿÿÿ8›õ¥‡0
+Bkotlin:S126 "Add the missing "else" clause.(ü—ÆËúÿÿÿÿ8õ¥‡0
+kotlin:S1151ô"kReduce this case clause number of lines from 22 to at most 15, for example by extracting code into methods.(¿Ê¸ùÿÿÿÿ8 õ¥‡0
+rkotlin:S3776î"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(“çÊÅ8¼õ¥‡0
+Nkotlin:S1066×".Merge this "if" statement with the nested one.(”õÏ8Çõ¥‡0

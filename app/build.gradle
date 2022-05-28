@@ -25,6 +25,11 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            firebaseAppDistribution {
+                artifactType="APK"
+                releaseNotesFile="/path/to/releasenotes.txt"
+                testers="mohamedmabrouk679@gmail.com"
+            }
         }
     }
     compileOptions {
