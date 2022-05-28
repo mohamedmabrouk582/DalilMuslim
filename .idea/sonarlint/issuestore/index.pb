@@ -51,8 +51,6 @@ Zquran_feature/src/main/java/com/mabrouk/quran_listing_feature/presentation/di/A
 gquran_feature/src/main/java/com/mabrouk/quran_listing_feature/domain/usecases/QuranRepositoryUseCase.kt,e/d/edb691db7f0edf3d300e33dddf48605e6c896a43
 ê
 `quran_feature/src/main/java/com/mabrouk/quran_listing_feature/data/repository/QuranRepository.kt,f/3/f3c629f6aaca71f6fb6595517c0209725ff24745
-ü
-oquran_feature/src/androidTest/java/com/mabrouk/quran_listing_feature/presentation/views/ui/QuranFragmentTest.kt,f/8/f8f049480f0c65bc511c8b05de09d20ad4876676
 î
 dquran_feature/src/main/java/com/mabrouk/quran_listing_feature/presentation/views/ui/SurahFragment.kt,b/3/b357897695016d1f275b12cdbc4631fa860ea4e5
 ó
@@ -65,7 +63,5 @@ bquran_feature/src/test/java/com/mabrouk/quran_listing_feature/presentation/view
 lquran_feature/src/test/java/com/mabrouk/quran_listing_feature/presentation/viewmodels/FakeQuranRepository.kt,f/6/f68dc14f8aa45d5b2924226644328334381d97e8
 õ
 kquran_feature/src/test/java/com/mabrouk/quran_listing_feature/presentation/viewmodels/QuranViewModelTest.kt,1/5/15430ff97dedaf7fb20ddb510d438dfa178ba16f
-â
-Yquran_feature/src/androidTest/java/com/mabrouk/quran_listing_feature/local/QuranDbTest.kt,d/4/d4997440910a5a77d2ef555cd41e3f9d9c542f89
 P
  app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e

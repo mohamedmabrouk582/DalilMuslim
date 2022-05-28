@@ -20,9 +20,9 @@ android {
     hilt {
         enableTransformForLocalTests = true
     }
-    lint {
-        abortOnError false
-    }
+//    lint {
+//        abortOnError false
+//    }
     namespace 'com.mabrouk.core'
 
 }
