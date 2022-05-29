@@ -57,11 +57,7 @@ dquran_feature/src/main/java/com/mabrouk/quran_listing_feature/presentation/view
 gquran_feature/src/main/java/com/mabrouk/quran_listing_feature/presentation/viewmodels/QuranViewModel.kt,f/9/f98b3a256d39f923fbc167e39c4f81ce4292b2b2
 œ
 lquran_feature/src/test/java/com/mabrouk/quran_listing_feature/presentation/viewmodels/FakeSurahRepository.kt,9/7/970184815787d04fa00ff68947b423498feb8481
-’
-bquran_feature/src/test/java/com/mabrouk/quran_listing_feature/presentation/viewmodels/TestUtils.kt,7/2/725016843292a05c16350db095fb6b7b22b81c49
 œ
 lquran_feature/src/test/java/com/mabrouk/quran_listing_feature/presentation/viewmodels/FakeQuranRepository.kt,f/6/f68dc14f8aa45d5b2924226644328334381d97e8
-›
-kquran_feature/src/test/java/com/mabrouk/quran_listing_feature/presentation/viewmodels/QuranViewModelTest.kt,1/5/15430ff97dedaf7fb20ddb510d438dfa178ba16f
 P
  app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e

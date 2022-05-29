@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "641311743165",
+    "project_id": "dalil-muslim-50dfb",
+    "storage_bucket": "dalil-muslim-50dfb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:641311743165:android:047920de9cc36b39172bd4",
+        "android_client_info": {
+          "package_name": "com.mabrouk.dalilmuslim"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "641311743165-4uukkimd2udi53upot7jvvgobdtqht8a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoUpbkOFO5lr1G_ZHK6Ot3iV90Hfjsi1I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "641311743165-4uukkimd2udi53upot7jvvgobdtqht8a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
