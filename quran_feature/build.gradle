@@ -2,6 +2,7 @@ plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
 }
 apply from: '../common_build.gradle'
 
@@ -20,5 +21,4 @@ dependencies {
     api project(":core")
     implementation 'com.google.firebase:firebase-config:21.0.2'
     implementation 'com.google.firebase:firebase-analytics-ktx:21.0.0'
-
 }

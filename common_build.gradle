@@ -185,6 +185,8 @@ dependencies {
 
     implementation "com.airbnb.android:lottie:3.4.0"
 
+    implementation 'com.google.firebase:firebase-crashlytics:18.2.11'
+
 }
 
 sonarqube {
