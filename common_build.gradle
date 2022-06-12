@@ -183,7 +183,7 @@ dependencies {
     compileOnly 'javax.annotation:jsr250-api:1.0'
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.8.1'
 
-    implementation "com.airbnb.android:lottie:3.4.0"
+    implementation "com.airbnb.android:lottie:5.0.3"
 
     implementation 'com.google.firebase:firebase-crashlytics:18.2.11'
 

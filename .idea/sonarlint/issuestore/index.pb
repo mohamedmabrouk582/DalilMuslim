@@ -9,8 +9,6 @@ Dcore/src/main/java/com/mabrouk/core/utils/ExpoNotificationManager.kt,3/b/3b626
 khadith_feature/src/main/java/com/mabrouk/hadith_feature/presentaion/ui/fragments/HadithDetailBottomSheet.kt,b/5/b5e27141f917c88ff2d7f4867bc7305aefe7ba4b
 í
 bhadith_feature/src/main/java/com/mabrouk/hadith_feature/presentaion/ui/fragments/HadithFragment.kt,e/3/e33e68c506b5e6468919a68568877fab1218f599
-É
-Shadith_feature/src/main/java/com/mabrouk/hadith_feature/presentaion/di/ApiModule.kt,b/6/b6afcd059c70158a3457baa4a62d09be79dbe03a
 i
 9core/src/main/java/com/mabrouk/core/base/BaseViewModel.kt,8/b/8bf4e07320c23c4adfffd2726b36d6833bebce58
 h
@@ -47,8 +45,6 @@ Zquran_feature/src/main/java/com/mabrouk/quran_listing_feature/presentation/di/A
 gquran_feature/src/main/java/com/mabrouk/quran_listing_feature/domain/usecases/QuranRepositoryUseCase.kt,e/d/edb691db7f0edf3d300e33dddf48605e6c896a43
 ê
 `quran_feature/src/main/java/com/mabrouk/quran_listing_feature/data/repository/QuranRepository.kt,f/3/f3c629f6aaca71f6fb6595517c0209725ff24745
-î
-dquran_feature/src/main/java/com/mabrouk/quran_listing_feature/presentation/views/ui/SurahFragment.kt,b/3/b357897695016d1f275b12cdbc4631fa860ea4e5
 ó
 gquran_feature/src/main/java/com/mabrouk/quran_listing_feature/presentation/viewmodels/QuranViewModel.kt,f/9/f98b3a256d39f923fbc167e39c4f81ce4292b2b2
 ú
@@ -63,3 +59,11 @@ bquran_feature/src/test/java/com/mabrouk/quran_listing_feature/presentation/view
 lquran_feature/src/test/java/com/mabrouk/quran_listing_feature/presentation/viewmodels/FakeQuranRepository.kt,f/6/f68dc14f8aa45d5b2924226644328334381d97e8
 }
 Mquran_feature/src/androidTest/java/com/mabrouk/quran_listing_feature/utils.kt,1/f/1f8ae7a02984ff9d0fb16249cc8b23fe0f28c231
+H
+common_test_build.gradle,7/9/79c1853d94ee8762ac14048ee9893d11ad3542bf
+ä
+Zquran_feature/src/main/java/com/mabrouk/quran_listing_feature/presentation/di/ApiModule.kt,7/b/7b6440f95a249ca1200ab33fbda8e8ca162fa337
+c
+3core/src/main/java/com/mabrouk/core/di/ApiModule.kt,1/9/1944db05a78fc6671f04ce2c70b57c3b371d88e6
+b
+2app/src/main/java/com/mabrouk/dalilmuslim/MyApp.kt,1/8/18b1e68feb6b9dc115a1aefa599b396be36dd012
