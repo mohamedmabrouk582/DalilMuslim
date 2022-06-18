@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "7d7e1359090c7eb322036bd44138a216",
+    "identityHash": "a51f0b708b076509487b3cd8bbd6f675",
     "entities": [
       {
         "tableName": "Surah",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `bismillah_pre` INTEGER NOT NULL, `revelation_place` TEXT, `name_complex` TEXT, `name_arabic` TEXT, `name_simple` TEXT, `verses_count` INTEGER NOT NULL, `from_to` TEXT, `isDownload` INTEGER NOT NULL, `audiosDownloaded` INTEGER NOT NULL, `tafsirDownloaded` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `bismillahPre` INTEGER NOT NULL, `revelationPlace` TEXT, `nameComplex` TEXT, `nameArabic` TEXT, `nameSimple` TEXT, `versesCount` INTEGER NOT NULL, `fromTo` TEXT, `isDownload` INTEGER NOT NULL, `audiosDownloaded` INTEGER NOT NULL, `tafsirDownloaded` INTEGER NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -15,44 +15,44 @@
             "notNull": true
           },
           {
-            "fieldPath": "bismillah_pre",
-            "columnName": "bismillah_pre",
+            "fieldPath": "bismillahPre",
+            "columnName": "bismillahPre",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "revelation_place",
-            "columnName": "revelation_place",
+            "fieldPath": "revelationPlace",
+            "columnName": "revelationPlace",
             "affinity": "TEXT",
             "notNull": false
           },
           {
-            "fieldPath": "name_complex",
-            "columnName": "name_complex",
+            "fieldPath": "nameComplex",
+            "columnName": "nameComplex",
             "affinity": "TEXT",
             "notNull": false
           },
           {
-            "fieldPath": "name_arabic",
-            "columnName": "name_arabic",
+            "fieldPath": "nameArabic",
+            "columnName": "nameArabic",
             "affinity": "TEXT",
             "notNull": false
           },
           {
-            "fieldPath": "name_simple",
-            "columnName": "name_simple",
+            "fieldPath": "nameSimple",
+            "columnName": "nameSimple",
             "affinity": "TEXT",
             "notNull": false
           },
           {
-            "fieldPath": "verses_count",
-            "columnName": "verses_count",
+            "fieldPath": "versesCount",
+            "columnName": "versesCount",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "from_to",
-            "columnName": "from_to",
+            "fieldPath": "fromTo",
+            "columnName": "fromTo",
             "affinity": "TEXT",
             "notNull": false
           },
@@ -86,7 +86,7 @@
       },
       {
         "tableName": "Juz",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `juz_number` INTEGER NOT NULL, `verse_mapping` TEXT, `isDownload` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `juzNumber` INTEGER NOT NULL, `verseMapping` TEXT, `isDownload` INTEGER NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -95,14 +95,14 @@
             "notNull": true
           },
           {
-            "fieldPath": "juz_number",
-            "columnName": "juz_number",
+            "fieldPath": "juzNumber",
+            "columnName": "juzNumber",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "verse_mapping",
-            "columnName": "verse_mapping",
+            "fieldPath": "verseMapping",
+            "columnName": "verseMapping",
             "affinity": "TEXT",
             "notNull": false
           },
@@ -124,7 +124,7 @@
       },
       {
         "tableName": "Verse",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `verse_number` INTEGER NOT NULL, `chapter_id` INTEGER NOT NULL, `text_madani` TEXT, `text_indopak` TEXT, `text_simple` TEXT, `juz_number` INTEGER, `hizb_number` INTEGER, `rub_number` INTEGER, `sajdah` TEXT, `sajdah_number` INTEGER, `page_number` INTEGER, `translations` TEXT, `media_contents` TEXT, `words` TEXT, `selected` INTEGER NOT NULL, `url` TEXT, `duration` INTEGER, `format` TEXT, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `verseNumber` INTEGER NOT NULL, `chapterId` INTEGER NOT NULL, `textMadani` TEXT, `textIndopak` TEXT, `textSimple` TEXT, `juzNumber` INTEGER, `hizbNumber` INTEGER, `rubNumber` INTEGER, `sajdah` TEXT, `sajdahNumber` INTEGER, `pageNumber` INTEGER, `translations` TEXT, `mediaContents` TEXT, `words` TEXT, `selected` INTEGER NOT NULL, `url` TEXT, `duration` INTEGER, `format` TEXT, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -133,50 +133,50 @@
             "notNull": true
           },
           {
-            "fieldPath": "verse_number",
-            "columnName": "verse_number",
+            "fieldPath": "verseNumber",
+            "columnName": "verseNumber",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "chapter_id",
-            "columnName": "chapter_id",
+            "fieldPath": "chapterId",
+            "columnName": "chapterId",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "text_madani",
-            "columnName": "text_madani",
+            "fieldPath": "textMadani",
+            "columnName": "textMadani",
             "affinity": "TEXT",
             "notNull": false
           },
           {
-            "fieldPath": "text_indopak",
-            "columnName": "text_indopak",
+            "fieldPath": "textIndopak",
+            "columnName": "textIndopak",
             "affinity": "TEXT",
             "notNull": false
           },
           {
-            "fieldPath": "text_simple",
-            "columnName": "text_simple",
+            "fieldPath": "textSimple",
+            "columnName": "textSimple",
             "affinity": "TEXT",
             "notNull": false
           },
           {
-            "fieldPath": "juz_number",
-            "columnName": "juz_number",
+            "fieldPath": "juzNumber",
+            "columnName": "juzNumber",
             "affinity": "INTEGER",
             "notNull": false
           },
           {
-            "fieldPath": "hizb_number",
-            "columnName": "hizb_number",
+            "fieldPath": "hizbNumber",
+            "columnName": "hizbNumber",
             "affinity": "INTEGER",
             "notNull": false
           },
           {
-            "fieldPath": "rub_number",
-            "columnName": "rub_number",
+            "fieldPath": "rubNumber",
+            "columnName": "rubNumber",
             "affinity": "INTEGER",
             "notNull": false
           },
@@ -187,14 +187,14 @@
             "notNull": false
           },
           {
-            "fieldPath": "sajdah_number",
-            "columnName": "sajdah_number",
+            "fieldPath": "sajdahNumber",
+            "columnName": "sajdahNumber",
             "affinity": "INTEGER",
             "notNull": false
           },
           {
-            "fieldPath": "page_number",
-            "columnName": "page_number",
+            "fieldPath": "pageNumber",
+            "columnName": "pageNumber",
             "affinity": "INTEGER",
             "notNull": false
           },
@@ -205,8 +205,8 @@
             "notNull": false
           },
           {
-            "fieldPath": "media_contents",
-            "columnName": "media_contents",
+            "fieldPath": "mediaContents",
+            "columnName": "mediaContents",
             "affinity": "TEXT",
             "notNull": false
           },
@@ -252,7 +252,7 @@
       },
       {
         "tableName": "TafsirAya",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`tafseerId` INTEGER NOT NULL, `verse_id` INTEGER NOT NULL, `text` TEXT NOT NULL, `language_name` TEXT, `resource_name` TEXT, `verse_key` TEXT NOT NULL, PRIMARY KEY(`text`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`tafseerId` INTEGER NOT NULL, `verseId` INTEGER NOT NULL, `text` TEXT NOT NULL, `languageName` TEXT, `resourceName` TEXT, `verseKey` TEXT NOT NULL, PRIMARY KEY(`text`))",
         "fields": [
           {
             "fieldPath": "tafseerId",
@@ -261,8 +261,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "verse_id",
-            "columnName": "verse_id",
+            "fieldPath": "verseId",
+            "columnName": "verseId",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -273,20 +273,20 @@
             "notNull": true
           },
           {
-            "fieldPath": "language_name",
-            "columnName": "language_name",
+            "fieldPath": "languageName",
+            "columnName": "languageName",
             "affinity": "TEXT",
             "notNull": false
           },
           {
-            "fieldPath": "resource_name",
-            "columnName": "resource_name",
+            "fieldPath": "resourceName",
+            "columnName": "resourceName",
             "affinity": "TEXT",
             "notNull": false
           },
           {
-            "fieldPath": "verse_key",
-            "columnName": "verse_key",
+            "fieldPath": "verseKey",
+            "columnName": "verseKey",
             "affinity": "TEXT",
             "notNull": true
           }
@@ -342,7 +342,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '7d7e1359090c7eb322036bd44138a216')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a51f0b708b076509487b3cd8bbd6f675')"
     ]
   }
 }

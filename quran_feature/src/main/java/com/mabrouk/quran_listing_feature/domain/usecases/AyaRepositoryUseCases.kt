@@ -15,16 +15,16 @@ import javax.inject.Inject
  */
 class AyaRepositoryUseCases @Inject constructor(val repository: AyaDefaultRepository) {
 
-    suspend fun requestTafsir(chapter_id:Int , verse_id:Int,id:Int) : Flow<Result<TafsirAya>>{
-      return repository.requestTafsir(chapter_id, verse_id, id)
+     fun requestTafsir(chapterId:Int , verseId:Int,id:Int) : Flow<Result<TafsirAya>>{
+      return repository.requestTafsir(chapterId, verseId, id)
     }
     suspend fun saveTafsir(data: TafsirAya){
         repository.saveTafsir(data)
     }
-    fun getSavedTafsir(chapter_id: Int,verse_id: Int) : Flow<List<TafsirAya>>{
-       return repository.getSavedTafsir(chapter_id, verse_id)
+    fun getSavedTafsir(chapterId: Int,verseId: Int) : Flow<List<TafsirAya>>{
+       return repository.getSavedTafsir(chapterId, verseId)
     }
-    suspend fun downloadAudio(url:String) : Flow<Result<ResponseBody>>{
+     fun downloadAudio(url:String) : Flow<Result<ResponseBody>>{
         return repository.downloadAudio(url)
     }
     suspend fun updateSurah(surah: Surah){

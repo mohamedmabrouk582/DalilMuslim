@@ -16,7 +16,11 @@ import javax.inject.Singleton
 @Singleton
 class DataStorePreferences @Inject constructor(@ApplicationContext val context: Context) {
 
-    val Context.dataStore by preferencesDataStore(name = "settings")
+    companion object{
+       const val  FILE_NAME = "settings"
+    }
+
+    val Context.dataStore by preferencesDataStore(name = FILE_NAME)
     inline fun <reified  t:Any> getData(key:String) : Flow<t> {
        return context.dataStore.data.map {
            val type=object : TypeToken<t>(){}.type

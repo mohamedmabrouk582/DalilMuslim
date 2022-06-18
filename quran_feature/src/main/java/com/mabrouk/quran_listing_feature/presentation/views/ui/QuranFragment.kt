@@ -1,6 +1,7 @@
 package com.mabrouk.quran_listing_feature.presentation.views.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.dynamicfeatures.Constants
 import androidx.navigation.fragment.findNavController
 import androidx.work.WorkInfo
 import com.mabrouk.core.network.loader
@@ -58,16 +60,15 @@ class QuranFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.quranStates.collect {
                 when (it) {
-                    QuranStates.IDLE -> {}
                     is QuranStates.Error -> {
-
+                        Log.e("Error",it.error)
                     }
                     is QuranStates.LoadJuzSurahs -> {
                         viewModel.surahListDownloads()
                         adapter.data = it.juzSurah
                     }
                     is QuranStates.SearchResult -> {
-
+                        Log.e("Error",it.query)
                     }
                 }
             }
@@ -95,22 +96,24 @@ class QuranFragment : Fragment() {
 
     private fun onJuzDownload(item: JuzSurah, postion: Int) {
         loader.show()
-        val ids = item.verse_ids.filter { verse_id -> !viewModel.surahs[verse_id - 1].isDownload }
+        val ids = item.verseIds.filter { verseId -> !viewModel.surahs[verseId - 1].isDownload }
         viewModel.downloadJuz(ids, requireContext()).observe(this) {
             if (it.state == WorkInfo.State.SUCCEEDED) {
                 lifecycleScope.launch {
                     item.isDownload = true
                     adapter.update(postion)
-                    ids.forEach { sura_id ->
-                        viewModel.updateSurah(viewModel.surahs[sura_id - 1].apply {
+                    ids.forEach { suraId ->
+                        viewModel.updateSurah(viewModel.surahs[suraId - 1].apply {
                             isDownload = true
                         })
                     }
-                    viewModel.updateJuz(Juz(item.juz_num, item.juz_num, item.verse_map, true))
+                    viewModel.updateJuz(Juz(item.juzNum, item.juzNum, item.verseMap, true))
                     loader.dismiss()
                 }
             } else if (it.state == WorkInfo.State.FAILED) {
                 loader.dismiss()
+            } else {
+                Log.d(Constants.DESTINATION_ARGS , it.state.name)
             }
         }
 

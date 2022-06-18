@@ -1,12 +1,14 @@
 package com.mabrouk.history_feature.peresntaion.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.dynamicfeatures.Constants
 import com.mabrouk.core.network.CheckNetwork
 import com.mabrouk.history_feature.R
 import com.mabrouk.history_feature.databinding.StoryFragmentBinding
@@ -30,13 +32,13 @@ class StoryFragment : Fragment(R.layout.story_fragment) {
     var youTubePlayer: YouTubePlayer? = null
 
 
-    val adapter by lazy {
+    private val adapter by lazy {
         StoryAdapter { item, _ ->
             selectedItem = item
             viewBinding.playing = true
             viewBinding.story = item
             youTubePlayer?.apply {
-                this.loadVideo(item.video_key, 0f)
+                this.loadVideo(item.videoKey, 0f)
             }
             if (!CheckNetwork.isOnline(requireContext())) {
                 Toast.makeText(
@@ -83,13 +85,14 @@ class StoryFragment : Fragment(R.layout.story_fragment) {
                         it.error,
                         Toast.LENGTH_SHORT
                     ).show()
-                    StoryStates.Idle -> {}
-                    StoryStates.ShowNotification -> {}//Notification.showNotification(requireContext(),adapter.data,player,1)
                     is StoryStates.DownloadVideo -> {
                         it.workInfo.observe(viewLifecycleOwner) { info ->
                             Toast.makeText(requireContext(), info.state.name, Toast.LENGTH_SHORT)
                                 .show()
                         }
+                    }
+                    else -> {
+                        Log.d(Constants.DESTINATION_ARGS , it.toString())
                     }
                 }
             }

@@ -1,6 +1,4 @@
 
-ë
-ahadith_feature/src/main/java/com/mabrouk/hadith_feature/presentaion/viewmodels/HadithViewModel.kt,e/1/e16cd2b0f9c3e9b26258592847f7ddc68d4cad51
 ô
 ihadith_feature/src/main/java/com/mabrouk/hadith_feature/presentaion/ui/fragments/HadithBookBottomSheet.kt,b/1/b1ed542553bd087ebd33fd353b00a77f82f7bff9
 t
@@ -31,8 +29,6 @@ f
 Lhadith_feature/src/main/java/com/mabrouk/hadith_feature/data/db/HadithDao.kt,5/2/529e00bd11aca8e773424940a7711fb960e2e46a
 Ä
 Phadith_feature/src/main/java/com/mabrouk/hadith_feature/data/db/DataConverter.kt,8/f/8f54dd2f35ecefae01d2f5466db10ccb689fdde7
-ô
-iazkar_feature/src/main/java/com/mabrouk/azkar_feature/presentaion/ui/fragments/AzkarDetailsBottomSheet.kt,1/c/1cee6bc99191636e5200e98787279af6504f2eed
 y
 Iazkar_feature/src/main/java/com/mabrouk/azkar_feature/data/db/AzkarDao.kt,4/8/487bc2d06d93886da5d4650588c80c99492f6605
 x
@@ -41,12 +37,6 @@ Hazkar_feature/src/main/java/com/mabrouk/azkar_feature/data/db/AzkarDb.kt,2/6/2
 Rquran_feature/src/debug/java/com/mabrouk/quran_listing_feature/HiltTestActivity.kt,7/9/7991d32f3542885f5340af3624baf73be0545401
 ä
 Zquran_feature/src/main/java/com/mabrouk/quran_listing_feature/presentation/di/AppModule.kt,d/b/db35a77145d096eddf5c8f2446cf3f7d1a63a6c6
-ó
-gquran_feature/src/main/java/com/mabrouk/quran_listing_feature/domain/usecases/QuranRepositoryUseCase.kt,e/d/edb691db7f0edf3d300e33dddf48605e6c896a43
-ê
-`quran_feature/src/main/java/com/mabrouk/quran_listing_feature/data/repository/QuranRepository.kt,f/3/f3c629f6aaca71f6fb6595517c0209725ff24745
-ó
-gquran_feature/src/main/java/com/mabrouk/quran_listing_feature/presentation/viewmodels/QuranViewModel.kt,f/9/f98b3a256d39f923fbc167e39c4f81ce4292b2b2
 ú
 lquran_feature/src/test/java/com/mabrouk/quran_listing_feature/presentation/viewmodels/FakeSurahRepository.kt,9/7/970184815787d04fa00ff68947b423498feb8481
 â
@@ -63,7 +53,3 @@ H
 common_test_build.gradle,7/9/79c1853d94ee8762ac14048ee9893d11ad3542bf
 ä
 Zquran_feature/src/main/java/com/mabrouk/quran_listing_feature/presentation/di/ApiModule.kt,7/b/7b6440f95a249ca1200ab33fbda8e8ca162fa337
-c
-3core/src/main/java/com/mabrouk/core/di/ApiModule.kt,1/9/1944db05a78fc6671f04ce2c70b57c3b371d88e6
-b
-2app/src/main/java/com/mabrouk/dalilmuslim/MyApp.kt,1/8/18b1e68feb6b9dc115a1aefa599b396be36dd012

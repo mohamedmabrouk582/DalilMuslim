@@ -1,6 +1,7 @@
 package com.mabrouk.quran_listing_feature.domain.models
 
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 
@@ -8,8 +9,10 @@ import kotlinx.parcelize.Parcelize
 data class Word(
     val id:Long,
     val position:Int,
-    val text_indopak:String,
-    val verse_key:String,
+    @SerializedName("text_indopak")
+    val textIndopak:String,
+    @SerializedName("verse_key")
+    val verseKey:String,
     val transliteration: Transliteration,
     val audio: Audio,
     val translation: Translation
@@ -28,6 +31,7 @@ data class Word(
     @Parcelize
     data class Translation(
         val text: String,
-        val language_name:String
+        @SerializedName("language_name")
+        val languageName:String
     ) : Parcelable
 }

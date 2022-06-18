@@ -3,7 +3,6 @@ package com.mabrouk.quran_listing_feature.presentation.viewmodels
 import android.content.Context
 import android.widget.SearchView
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.work.Data
 import androidx.work.OneTimeWorkRequest

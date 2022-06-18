@@ -27,16 +27,16 @@ const val AYA_TAFSIRS = "AYA_TAFSIRS"
 fun mapJuz(juzs: ArrayList<Juz>, suras: ArrayList<Surah>): ArrayList<JuzSurah> {
     val data: ArrayList<JuzSurah> = ArrayList()
     juzs.forEach { juz ->
-        val ids = juz.verse_mapping?.keys?.map {
+        val ids = juz.verseMapping?.keys?.map {
             it.toInt()
         }!!
-        data.add(JuzSurah(juz.juz_number, ids, juz.verse_mapping, isDownload = juz.isDownload))
-        data.addAll(juz.verse_mapping.keys.map { key ->
+        data.add(JuzSurah(juz.juzNumber, ids, juz.verseMapping, isDownload = juz.isDownload))
+        data.addAll(juz.verseMapping.keys.map { key ->
             suras[key.toInt() - 1].apply {
-                from_to = juz.verse_mapping[key]
+                fromTo = juz.verseMapping[key]
             }
         }.map {
-            JuzSurah(juz.juz_number, ids, juz.verse_mapping, it, it.from_to, juz.isDownload)
+            JuzSurah(juz.juzNumber, ids, juz.verseMapping, it, it.fromTo, juz.isDownload)
         })
     }
 

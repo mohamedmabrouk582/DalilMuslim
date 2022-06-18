@@ -2,12 +2,13 @@ package com.mabrouk.hadith_feature.presentaion.viewmodels
 
 import androidx.lifecycle.viewModelScope
 import com.mabrouk.core.base.BaseViewModel
+import com.mabrouk.core.di.IoDispatcher
 import com.mabrouk.core.utils.DataStorePreferences
 import com.mabrouk.hadith_feature.domain.usecases.HadithRepositoryUseCase
 import com.mabrouk.hadith_feature.presentaion.HADITH_CATEGORIES_DOWNLOADED
 import com.mabrouk.hadith_feature.presentaion.states.HadithStates
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.first
@@ -22,8 +23,9 @@ import com.mabrouk.core.network.Result as Result
  */
 @HiltViewModel
 class HadithViewModel @Inject constructor(
-    val repository: HadithRepositoryUseCase,
-    val dataStore: DataStorePreferences
+    private val repository: HadithRepositoryUseCase,
+    private val dataStore: DataStorePreferences ,
+    @IoDispatcher val io : CoroutineDispatcher
 ) : BaseViewModel() {
     private val _states = MutableStateFlow<HadithStates>(HadithStates.Idle)
     val states: StateFlow<HadithStates> = _states
@@ -40,21 +42,25 @@ class HadithViewModel @Inject constructor(
                 }
             } else {
                 _states.value = HadithStates.Idle
-                repository.getHadithCategories().collect {
-                    when (it) {
-                        is Result.NoInternetConnect -> error.set(it.error)
-                        is Result.OnFailure -> error.set(it.throwable.message ?: "")
-                        is Result.OnLoading -> loader.set(true)
-                        is Result.OnSuccess -> {
-                            _states.value = HadithStates.LoadCategories(it.data.data)
-                            withContext(Dispatchers.IO) {
-                                repository.savedHadithCategories(it.data.data)
-                                dataStore.setBoolean(HADITH_CATEGORIES_DOWNLOADED, true)
-                            }
-                        }
-                        Result.OnFinish -> loader.set(false)
+                getHadithCategoriesRequest()
+            }
+        }
+    }
+
+    private suspend fun getHadithCategoriesRequest(){
+        repository.getHadithCategories().collect {
+            when (it) {
+                is Result.NoInternetConnect -> error.set(it.error)
+                is Result.OnFailure -> error.set(it.throwable.message ?: "")
+                is Result.OnLoading -> loader.set(true)
+                is Result.OnSuccess -> {
+                    _states.value = HadithStates.LoadCategories(it.data.data)
+                    withContext(io) {
+                        repository.savedHadithCategories(it.data.data)
+                        dataStore.setBoolean(HADITH_CATEGORIES_DOWNLOADED, true)
                     }
                 }
+                Result.OnFinish -> loader.set(false)
             }
         }
     }
@@ -67,24 +73,28 @@ class HadithViewModel @Inject constructor(
             if (savedHadithBooks.isNotEmpty()) {
                 _states.value = HadithStates.LoadHadithBooks(ArrayList(savedHadithBooks))
             } else {
-                repository.getHadithBookNumber(name).collect {
-                    when (it) {
-                        is Result.NoInternetConnect -> error.set(it.error)
-                        is Result.OnFailure -> error.set(it.throwable.message ?: "")
-                        is Result.OnLoading -> loader.set(true)
-                        is Result.OnSuccess -> {
-                            val books = ArrayList(it.data.data.map {
-                                it.collectionName = name
-                                it
-                            })
-                            _states.value = HadithStates.LoadHadithBooks(books)
-                            withContext(Dispatchers.IO) {
-                                repository.saveHadithBook(books)
-                            }
-                        }
-                        Result.OnFinish -> loader.set(false)
+               loadHadithBookRequest(name)
+            }
+        }
+    }
+
+    private suspend fun loadHadithBookRequest(name: String){
+        repository.getHadithBookNumber(name).collect {
+            when (it) {
+                is Result.NoInternetConnect -> error.set(it.error)
+                is Result.OnFailure -> error.set(it.throwable.message ?: "")
+                is Result.OnLoading -> loader.set(true)
+                is Result.OnSuccess -> {
+                    val books = ArrayList(it.data.data.map { num ->
+                        num.collectionName = name
+                        num
+                    })
+                    _states.value = HadithStates.LoadHadithBooks(books)
+                    withContext(io) {
+                        repository.saveHadithBook(books)
                     }
                 }
+                Result.OnFinish -> loader.set(false)
             }
         }
     }
@@ -98,23 +108,27 @@ class HadithViewModel @Inject constructor(
             if (hadith.isNotEmpty() && page == null) {
                 _states.value = HadithStates.LoadHadith(ArrayList(hadith))
             } else {
-                repository.getHadith(name, bookNumber, page ?: 1).collect {
-                    when (it) {
-                        is Result.NoInternetConnect -> error.set(it.error)
-                        is Result.OnFailure -> error.set(it.throwable.message ?: "")
-                        is Result.OnLoading -> if (page?:1==1) loader.set(true)
-                        is Result.OnSuccess -> {
-                            _states.value = HadithStates.LoadHadith(it.data.data)
-                            withContext(Dispatchers.IO) {
-                                repository.saveHadith(it.data.data)
-                            }
-                            if (it.data.next != null) {
-                                loadHadiths(name, bookNumber, it.data.next)
-                            }
-                        }
-                        Result.OnFinish -> loader.set(false)
+               loadHadithRequest(name, bookNumber, page)
+            }
+        }
+    }
+
+    private suspend fun loadHadithRequest(name: String, bookNumber: String, page: Int? = null){
+        repository.getHadith(name, bookNumber, page ?: 1).collect {
+            when (it) {
+                is Result.NoInternetConnect -> error.set(it.error)
+                is Result.OnFailure -> error.set(it.throwable.message ?: "")
+                is Result.OnLoading -> if ((page ?: 1) == 1) loader.set(true)
+                is Result.OnSuccess -> {
+                    _states.value = HadithStates.LoadHadith(it.data.data)
+                    withContext(io) {
+                        repository.saveHadith(it.data.data)
+                    }
+                    if (it.data.next != null) {
+                        loadHadiths(name, bookNumber, it.data.next)
                     }
                 }
+                Result.OnFinish -> loader.set(false)
             }
         }
     }

@@ -8,16 +8,16 @@ import androidx.work.Data
 import androidx.work.WorkerParameters
 import com.google.common.reflect.TypeToken
 import com.google.gson.Gson
+import com.mabrouk.core.di.IoDispatcher
 import com.mabrouk.core.network.Result.*
 import com.mabrouk.core.network.decimalFormat
 import com.mabrouk.core.utils.FileUtils
 import com.mabrouk.quran_listing_feature.BuildConfig
-import com.mabrouk.quran_listing_feature.data.repository.AyaRepository
 import com.mabrouk.quran_listing_feature.domain.usecases.AyaRepositoryUseCases
 import com.mabrouk.quran_listing_feature.presentation.utils.*
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.withContext
 
@@ -29,7 +29,8 @@ import kotlinx.coroutines.withContext
 class AudioDownloader @AssistedInject constructor(
     @Assisted val context: Context,
     @Assisted params: WorkerParameters,
-    val repository: AyaRepositoryUseCases
+    val repository: AyaRepositoryUseCases ,
+    @IoDispatcher val io : CoroutineDispatcher
 ) : CoroutineWorker(context, params) {
 
     var result:String?=null
@@ -45,14 +46,14 @@ class AudioDownloader @AssistedInject constructor(
                     downloadAya(this.first().url,1,0)
                 }
                 forEach { item ->
-                    result = if (FileUtils.fileIsFound(item.url,item.chapter_id,item.ayaNum)){
+                    result = if (FileUtils.fileIsFound(item.url,item.chapterId,item.ayaNum)){
                         null
                     }else {
-                        downloadAya(item.url, item.chapter_id, item.ayaNum)
+                        downloadAya(item.url, item.chapterId, item.ayaNum)
                     }
 
-                    if (repository.getSavedTafsir(item.chapter_id,item.ayaNum).firstOrNull().isNullOrEmpty()){
-                        downloadTafsir(item.chapter_id,item.ayaNum,4)
+                    if (repository.getSavedTafsir(item.chapterId,item.ayaNum).firstOrNull().isNullOrEmpty()){
+                        downloadTafsir(item.chapterId,item.ayaNum,4)
                     }
                 }
                 data.putInt(LAST_ID,last().id)
@@ -78,16 +79,16 @@ class AudioDownloader @AssistedInject constructor(
         return result
     }
 
-    suspend fun downloadTafsir(chapter_id:Int,verse_id:Int,count:Int) : String?{
+    suspend fun downloadTafsir(chapterId:Int, verseId:Int, count:Int) : String?{
         var result:String? =null
-        repository.requestTafsir(chapter_id, verse_id,count).collect{
+        repository.requestTafsir(chapterId, verseId,count).collect{
             when(it){
                 is OnSuccess -> {
-                    withContext(Dispatchers.IO) {
+                    withContext(io) {
                         repository.saveTafsir(it.data)
                     }
                     if (count>1){
-                        downloadTafsir(chapter_id, verse_id, count-1)
+                        downloadTafsir(chapterId, verseId, count-1)
                     }
                 }
                 is OnFailure -> result= it.throwable.message!!

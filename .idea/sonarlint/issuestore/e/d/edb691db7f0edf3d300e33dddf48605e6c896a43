@@ -1,7 +1,0 @@
-
-Xkotlin:S6309"@Functions returning "Flow" or "Channel" should not be suspending(¼Ÿ–Ô
-_kotlin:S6309"@Functions returning "Flow" or "Channel" should not be suspending(®Ò«¡8œğŸ»0
-dkotlin:S6309"@Functions returning "Flow" or "Channel" should not be suspending(¼‹â·şÿÿÿÿ8ğŸ»0
-dkotlin:S6309?"@Functions returning "Flow" or "Channel" should not be suspending(ò Ãúÿÿÿÿ8şøá†0
-jkotlin:S117"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(¼‹â·şÿÿÿÿ
-jkotlin:S117)"NRename this parameter to match the regular expression ^`?[_a-z][a-zA-Z0-9]*`?$(é¦®¾şÿÿÿÿ

@@ -12,10 +12,10 @@ import okhttp3.ResponseBody
  * Copyright (c) 4/16/22
  */
 interface AyaDefaultRepository {
-    suspend fun requestTafsir(chapter_id:Int , verse_id:Int,id:Int) : Flow<Result<TafsirAya>>
+     fun requestTafsir(chapterId:Int , verseId:Int,id:Int) : Flow<Result<TafsirAya>>
     suspend fun saveTafsir(data:TafsirAya)
-    fun getSavedTafsir(chapter_id: Int,verse_id: Int) : Flow<List<TafsirAya>>
-    suspend fun downloadAudio(url:String) : Flow<Result<ResponseBody>>
+    fun getSavedTafsir(chapterId: Int,verseId: Int) : Flow<List<TafsirAya>>
+     fun downloadAudio(url:String) : Flow<Result<ResponseBody>>
     suspend fun updateSurah(surah: Surah)
     fun getReader(id:Int):Flow<QuranReader>
     suspend fun getReaders() : ArrayList<QuranReader>

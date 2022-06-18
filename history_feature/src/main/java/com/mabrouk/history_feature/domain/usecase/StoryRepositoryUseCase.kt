@@ -14,7 +14,7 @@ import javax.inject.Inject
  */
 class StoryRepositoryUseCase @Inject constructor(val repository: StoryDefaultRepository) {
 
-    suspend fun downloadAudio(url: String): Flow<Result<ResponseBody>> {
+     fun downloadAudio(url: String): Flow<Result<ResponseBody>> {
         return repository.downloadAudio(url)
     }
 

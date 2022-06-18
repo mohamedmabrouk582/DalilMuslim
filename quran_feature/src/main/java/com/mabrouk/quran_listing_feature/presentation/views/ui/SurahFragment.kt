@@ -10,19 +10,17 @@ import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.ListPopupWindow
-import android.widget.Toast
 import androidx.core.widget.NestedScrollView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.dynamicfeatures.Constants
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.work.WorkInfo
 import com.google.android.exoplayer2.*
-import com.google.android.exoplayer2.ui.PlayerNotificationManager
-import com.google.android.exoplayer2.util.NotificationUtil
 import com.google.android.material.snackbar.Snackbar
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
@@ -156,7 +154,7 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener,
 
     private fun onPlayClick(verse: Verse?) {
         verse?.apply {
-            player.seekTo(verse.verse_number - if (sura?.bismillah_pre!!) -1 else 0, C.TIME_UNSET)
+            player.seekTo(verse.verseNumber - if (sura?.bismillahPre!!) -1 else 0, C.TIME_UNSET)
             player.prepare()
             player.play()
             popupWindow.dismiss()
@@ -169,8 +167,8 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener,
         verse?.getTranslation()?.let {
             AyaTranslateFragment.start(
                 it,
-                if (verse.text_madani.isNullOrEmpty()) verse.text_indopak
-                    ?: "" else verse.text_madani
+                if (verse.textMadani.isNullOrEmpty()) verse.textIndopak
+                    ?: "" else verse.textMadani
             ).show(
                 activity?.supportFragmentManager!!,
                 ""
@@ -182,14 +180,15 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener,
     private fun onTafsirClick(verse: Verse?) {
         popupWindow.dismiss()
         lifecycleScope.launch {
-            surahViewModel.getTafsier(verse?.chapter_id!!, verse.verse_number).first().let {
+            surahViewModel.getTafsier(verse?.chapterId!!, verse.verseNumber).first().let {
                 val bundle = Bundle()
-                bundle.putParcelable(AYA_TAFSIRS, AyaTafsirs(verse.text_madani!!, ArrayList(it)))
+                bundle.putParcelable(AYA_TAFSIRS, AyaTafsirs(verse.textMadani!!, ArrayList(it)))
                 try {
                     findNavController().navigate(
                         R.id.action_surahFragment_to_tafsirFragment, bundle
                     )
                 } catch (e: Exception) {
+                    Log.d(Constants.DESTINATION_ARGS, e.toString())
                 }
             }
         }
@@ -212,11 +211,9 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener,
     }
 
     private fun checkPermission() {
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
-            if (!Environment.isExternalStorageManager()) {
-                val permissionIntent = Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION)
-                startActivity(permissionIntent)
-            }
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R && !Environment.isExternalStorageManager()) {
+            val permissionIntent = Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION)
+            startActivity(permissionIntent)
         }
 
         surahViewModel.getReader {
@@ -240,58 +237,67 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener,
             surahViewModel.states.collect {
                 when (it) {
                     is SurahStates.DownloadVerse -> downloadVerse(it.workInfo)
-                    SurahStates.IDLE -> {}
-                    is SurahStates.UpdateReader -> {
-                        player.clearMediaItems()
-                        initPlayer()
-                        playbackPosition = 0
-                        index = 0
-                        adapter.updateVerse(-1, lastPosition)
-                        lastPosition = 0
-                        if (viewBinding.isPlaying == true) player.play()
-                        checkPermission()
-                        viewBinding.scroll.post {
-                            try {
-                                val pos =
-                                    (viewBinding.ayatRcv.layoutManager!! as LinearLayoutManager).findFirstVisibleItemPosition()
-                                if (currentPosition >= pos) {
-                                    viewBinding.scroll.smoothScrollTo(
-                                        0, 0
-                                    )
-                                }
-                            } catch (e: Exception) {
-                            }
-                        }
-                    }
+                    is SurahStates.UpdateReader -> updateReader()
                 }
+            }
+        }
+    }
+
+    private fun updateReader() {
+        player.clearMediaItems()
+        initPlayer()
+        playbackPosition = 0
+        index = 0
+        adapter.updateVerse(-1, lastPosition)
+        lastPosition = 0
+        if (viewBinding.isPlaying == true) player.play()
+        checkPermission()
+        viewBinding.scroll.post {
+            try {
+                val pos =
+                    (viewBinding.ayatRcv.layoutManager!! as LinearLayoutManager).findFirstVisibleItemPosition()
+                if (currentPosition >= pos) {
+                    viewBinding.scroll.smoothScrollTo(
+                        0, 0
+                    )
+                }
+            } catch (e: Exception) {
+                Log.d(Constants.DESTINATION_ARGS, e.message.toString())
             }
         }
     }
 
     private fun downloadVerse(workInfo: LiveData<WorkInfo>) {
         workInfo.observe(viewLifecycleOwner) { info ->
-            if (info.state == WorkInfo.State.SUCCEEDED) {
-                loader.dismiss()
-                prepareAudios()
-                if (index < data.size) {
-                    surahViewModel.downloadVerseAudio(
-                        requireContext(),
-                        sura?.name_arabic!!,
-                        ArrayList(data[index])
-                    )
-                    index += 1
-                } else {
-                    sura?.audiosDownloaded = true
-                    surahViewModel.updateSurah(sura!!)
-                    surahViewModel.updateReader(sura?.id?.toLong() ?: 0L)
+            when (info.state) {
+                WorkInfo.State.SUCCEEDED -> {
+                    downloadVerseSuccess()
                 }
-            } else if (info.state == WorkInfo.State.FAILED) {
-                val error = info.outputData.getString(AUDIO_DOWNLOAD)
-                if (!error.isNullOrBlank()) {
-                    Snackbar.make(viewBinding.root, error, Snackbar.LENGTH_SHORT).show()
+                WorkInfo.State.FAILED -> {
+                    val error = info.outputData.getString(AUDIO_DOWNLOAD)
+                    if (!error.isNullOrBlank()) {
+                        Snackbar.make(viewBinding.root, error, Snackbar.LENGTH_SHORT).show()
+                    }
+                    loader.dismiss()
                 }
-                loader.dismiss()
             }
+        }
+    }
+
+    private fun downloadVerseSuccess() {
+        loader.dismiss()
+        prepareAudios()
+        if (index < data.size) {
+            surahViewModel.downloadVerseAudio(
+                requireContext(),
+                sura?.nameArabic!!,
+                ArrayList(data[index])
+            )
+            index += 1
+        } else {
+            sura?.audiosDownloaded = true
+            surahViewModel.updateSurah(sura!!)
+            surahViewModel.updateReader(sura?.id?.toLong() ?: 0L)
         }
     }
 
@@ -317,7 +323,7 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener,
                 ), "-1"
             )
         )
-        if (sura?.bismillah_pre!!)
+        if (sura?.bismillahPre!!)
             player.addMediaItem(
                 addMediaItem(
                     FileUtils.getAudioPath(
@@ -331,9 +337,9 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener,
             addMediaItem(
                 FileUtils.getAudioPath(
                     surahViewModel.currentReader.sufix,
-                    it.chapter_id,
-                    it.verse_number
-                ), "${it.verse_number - 1}"
+                    it.chapterId,
+                    it.verseNumber
+                ), "${it.verseNumber - 1}"
             )
         })
         // player.addMediaItem(MediaItem.fromUri("http://www.liveradiu.com/2018/06/holy-quran-radio-station-cairo-live.html"))
@@ -350,7 +356,7 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener,
                 loader.show()
                 surahViewModel.downloadVerseAudio(
                     requireContext(),
-                    sura?.name_arabic!!,
+                    sura?.nameArabic!!,
                     arrayListOf(adapter.verses.first())
                 )
             }
@@ -371,25 +377,30 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener,
             if (this >= 0) {
                 currentPosition = mediaItem.mediaId.toInt()
                 adapter.updateVerse(currentPosition, lastPosition)
-                viewBinding.scroll.post {
-                    try {
-                        val pos =
-                            (viewBinding.ayatRcv.layoutManager!! as LinearLayoutManager).findFirstVisibleItemPosition()
-                        if (currentPosition >= pos) {
-                            viewBinding.scroll.smoothScrollTo(
-                                0,
-                                viewBinding.ayatRcv.getChildAt(currentPosition).y.toInt()
-                            )
-                        }
-                    } catch (e: Exception) {
-                    }
-                }
+                handleScrolling()
                 lastPosition = currentPosition
 
-                if (mediaItem.mediaId.toInt() == adapter.verses.size){
+                if (mediaItem.mediaId.toInt() == adapter.verses.size) {
                     player.stop()
                 }
 
+            }
+        }
+    }
+
+    private fun handleScrolling() {
+        viewBinding.scroll.post {
+            try {
+                val pos =
+                    (viewBinding.ayatRcv.layoutManager!! as LinearLayoutManager).findFirstVisibleItemPosition()
+                if (currentPosition >= pos) {
+                    viewBinding.scroll.smoothScrollTo(
+                        0,
+                        viewBinding.ayatRcv.getChildAt(currentPosition).y.toInt()
+                    )
+                }
+            } catch (e: Exception) {
+                Log.d(Constants.DESTINATION_ARGS, e.message ?: "")
             }
         }
     }

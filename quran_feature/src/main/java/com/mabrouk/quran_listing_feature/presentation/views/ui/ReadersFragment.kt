@@ -12,7 +12,6 @@ import com.mabrouk.quran_listing_feature.databinding.ReadersLayoutBinding
 import com.mabrouk.quran_listing_feature.presentation.viewmodels.SurahViewModel
 import com.mabrouk.quran_listing_feature.presentation.views.adapters.ReaderAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 /**
  * @name Mohamed Mabrouk

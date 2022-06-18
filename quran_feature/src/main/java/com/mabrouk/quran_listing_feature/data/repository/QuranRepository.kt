@@ -21,21 +21,21 @@ import dagger.hilt.android.qualifiers.ApplicationContext
  */
 class QuranRepository @Inject constructor(
     @ApplicationContext
-    val context: Context,
-    val api: QuranApi,
-    val dao: QuranDao
+    private val context: Context,
+    private val api: QuranApi,
+    private val dao: QuranDao
 ) : QuranDefaultRepository {
 
-    override suspend fun requestJuz(): Flow<Result<JuzResponse>> {
+    override  fun requestJuz(): Flow<Result<JuzResponse>> {
         return executeCall(context){ api.getJuzs() }
     }
 
-    override suspend fun requestSurahs(): Flow<Result<SurahResponse>> {
+    override  fun requestSurahs(): Flow<Result<SurahResponse>> {
         return executeCall(context){ api.getAllSurah() }
     }
 
-    override suspend fun requestVerses(chapter_id: Int, page: Int): Flow<Result<VersesResponse>> {
-        return executeCall(context){ api.getSurahVerses(chapter_id, page) }
+    override  fun requestVerses(chapterId: Int, page: Int): Flow<Result<VersesResponse>> {
+        return executeCall(context){ api.getSurahVerses(chapterId, page) }
     }
 
     override suspend fun saveJuz(juz: ArrayList<Juz>) {
@@ -54,8 +54,8 @@ class QuranRepository @Inject constructor(
        return dao.getSavedSurah()
     }
 
-    override fun getSavedVerses(chapter_id: Int): Flow<List<Verse>> {
-        return dao.getSaveVerses(chapter_id)
+    override fun getSavedVerses(chapterId: Int): Flow<List<Verse>> {
+        return dao.getSaveVerses(chapterId)
     }
 
     override fun getSavedJuz(): Flow<List<Juz>> {
@@ -82,7 +82,7 @@ class QuranRepository @Inject constructor(
         dao.updateReader(readers)
     }
 
-    override suspend fun searchBySurah(query: String): Flow<List<Surah>> {
+    override  fun searchBySurah(query: String): Flow<List<Surah>> {
         return dao.searchByAtSurah(query)
     }
 

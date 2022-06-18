@@ -20,10 +20,10 @@ interface QuranApi {
     suspend fun getJuzs() : Response<JuzResponse>
 
     @GET("chapters/{chapter_id}/verses?recitation=1&translations=21&language=en&text_type=words")
-    suspend fun getSurahVerses(@Path("chapter_id") chapter_id:Int, @Query("page") page:Int) : Response<VersesResponse>
+    suspend fun getSurahVerses(@Path("chapter_id") chapterId:Int, @Query("page") page:Int) : Response<VersesResponse>
 
     @GET("chapters/{chapter_id}/verses/{verse_id}/tafsirs")
-    suspend fun getVerseTafsir(@Path("chapter_id") chapter_id:Int, @Path("verse_id") verse_id:Int) : Response<TafsirResponse>
+    suspend fun getVerseTafsir(@Path("chapter_id") chapterId:Int, @Path("verse_id") verseId:Int) : Response<TafsirResponse>
 
     @GET
     @Streaming

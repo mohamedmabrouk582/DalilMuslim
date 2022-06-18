@@ -2,7 +2,6 @@ package com.mabrouk.history_feature.peresntaion.viewmodels
 
 import android.annotation.SuppressLint
 import android.app.Application
-import android.content.Context
 import android.util.SparseArray
 import android.widget.Toast
 import androidx.lifecycle.viewModelScope
@@ -24,7 +23,6 @@ import com.mabrouk.history_feature.peresntaion.VIDEO_KEY
 import com.mabrouk.history_feature.peresntaion.states.StoryStates
 import com.mabrouk.history_feature.peresntaion.workers.VideoDownloader
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -78,7 +76,7 @@ class StoriesViewModel @Inject constructor(
 //                            if (item!=null){
 //                                _states.value = StoryStates.AddStory(item)
 //                            }else{
-                            getYoutubeUrl(story.video_key)
+                            getYoutubeUrl(story.videoKey)
                             //  }
                         }
                     }

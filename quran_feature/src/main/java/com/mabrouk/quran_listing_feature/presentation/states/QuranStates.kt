@@ -1,8 +1,6 @@
 package com.mabrouk.quran_listing_feature.presentation.states
 
-import com.mabrouk.quran_listing_feature.domain.models.Juz
 import com.mabrouk.quran_listing_feature.domain.models.JuzSurah
-import com.mabrouk.quran_listing_feature.domain.models.Surah
 
 /**
  * @name Mohamed Mabrouk

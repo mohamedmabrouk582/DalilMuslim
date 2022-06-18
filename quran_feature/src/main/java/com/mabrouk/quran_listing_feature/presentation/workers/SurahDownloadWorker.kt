@@ -5,17 +5,13 @@ import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.Data
 import androidx.work.WorkerParameters
-import com.mabrouk.core.network.Result
 import com.mabrouk.core.network.Result.*
 import com.mabrouk.core.utils.EventBus
-import com.mabrouk.quran_listing_feature.data.repository.QuranRepository
 import com.mabrouk.quran_listing_feature.domain.usecases.QuranRepositoryUseCase
 import com.mabrouk.quran_listing_feature.presentation.utils.*
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.firstOrNull
-import kotlinx.coroutines.withContext
 
 /**
  * @name Mohamed Mabrouk
@@ -34,7 +30,7 @@ class SurahDownloadWorker @AssistedInject constructor(
         val data = Data.Builder()
         inputData.getIntArray(VERSES_IDS)?.toList()?.forEach {
             repository.getSurahById(it)
-                .firstOrNull()?.name_arabic?.let { it1 -> event.sendType(it1) }
+                .firstOrNull()?.nameArabic?.let { it1 -> event.sendType(it1) }
             result = downloadSurah(it)
         }
         data.putString(DOWNLOAD_VERSES_IDS, result)
@@ -48,8 +44,8 @@ class SurahDownloadWorker @AssistedInject constructor(
             when (it) {
                 is OnSuccess -> {
                     repository.saveVerses(it.data.verses)
-                    if (it.data.meta.current_page <= it.data.meta.total_pages!!) {
-                        downloadSurah(id, it.data.meta.current_page + 1)
+                    if (it.data.meta.currentPage <= it.data.meta.totalPages!!) {
+                        downloadSurah(id, it.data.meta.currentPage + 1)
                     }
                 }
                 is OnFailure -> result = it.throwable.message!!

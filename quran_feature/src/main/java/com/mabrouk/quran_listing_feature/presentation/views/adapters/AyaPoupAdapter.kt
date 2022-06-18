@@ -11,9 +11,9 @@ import com.mabrouk.quran_listing_feature.databinding.AyaOpationsLayoutBinding
 import com.mabrouk.quran_listing_feature.domain.models.Verse
 
 class AyaPoupAdapter(
-    val OnPlayClick: (verse: Verse?) -> Unit,
-    val OnTranlationClick: (verse: Verse?) -> Unit,
-    val OnTafsirClick: (verse: Verse?) -> Unit
+    val onPlayClick: (verse: Verse?) -> Unit,
+    val onTranlationClick: (verse: Verse?) -> Unit,
+    val onTafsirClick: (verse: Verse?) -> Unit
 ) : BaseAdapter() {
     var verse: Verse? = null
     override fun getCount(): Int = 1
@@ -32,9 +32,9 @@ class AyaPoupAdapter(
             LayoutInflater.from(parent?.context),
             R.layout.aya_opations_layout, parent, false
         )
-        view.playImg.setOnClickListener { OnPlayClick(verse) }
-        view.translationImg.setOnClickListener { OnTranlationClick(verse) }
-        view.tafsirImg.setOnClickListener { OnTafsirClick(verse) }
+        view.playImg.setOnClickListener { onPlayClick(verse) }
+        view.translationImg.setOnClickListener { onTranlationClick(verse) }
+        view.tafsirImg.setOnClickListener { onTafsirClick(verse) }
         //view.youtube.setOnClickListener { listener.OnYoutClick(verse) }
         return view.root
     }

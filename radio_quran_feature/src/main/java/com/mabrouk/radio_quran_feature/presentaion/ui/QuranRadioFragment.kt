@@ -36,7 +36,7 @@ class QuranRadioFragment : Fragment() {
     private val adapter by lazy {
         RadioAdapter {
             player.clearMediaItems()
-            player.addMediaItem(addLiveMediaItem(it.radio_url))
+            player.addMediaItem(addLiveMediaItem(it.radioUrl))
             player.seekTo(playbackPosition)
             player.prepare()
             player.play()

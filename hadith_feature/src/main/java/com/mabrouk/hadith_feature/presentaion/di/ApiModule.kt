@@ -1,14 +1,12 @@
 package com.mabrouk.hadith_feature.presentaion.di
 
-import android.content.Context
+import com.facebook.flipper.plugins.network.FlipperOkhttpInterceptor
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.mabrouk.hadith_feature.BuildConfig
 import com.mabrouk.hadith_feature.data.api.HadithApi
-import com.readystatesoftware.chuck.ChuckInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -45,11 +43,11 @@ class ApiModule {
     @Hadith
     fun getClients(
         interceptor: HttpLoggingInterceptor,
-        @ApplicationContext context: Context
+        flipperOkhttpInterceptor : FlipperOkhttpInterceptor
     ): OkHttpClient =
         OkHttpClient.Builder()
             .addInterceptor(interceptor)
-            //.addInterceptor(ChuckInterceptor(context))
+            .addNetworkInterceptor(flipperOkhttpInterceptor)
             .addInterceptor { chain ->
                 var request = chain.request()
                 request = request.newBuilder()

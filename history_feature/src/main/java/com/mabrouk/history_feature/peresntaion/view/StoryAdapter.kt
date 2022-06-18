@@ -13,7 +13,7 @@ class StoryAdapter(val onItemClick: (item: Story, pos: Int) -> Unit) :
     var data: ArrayList<Story> = ArrayList()
     var lastPosition: Int = -1
     fun addItem(item: Story) {
-        if (!data.any { it.video_key == item.video_key }) {
+        if (!data.any { it.videoKey == item.videoKey }) {
             data.add(item)
             notifyItemInserted(data.size - 1)
         }
@@ -58,7 +58,7 @@ class StoryAdapter(val onItemClick: (item: Story, pos: Int) -> Unit) :
     override fun getItemCount(): Int = data.size
 
     fun updateItem(key: String) {
-        data.find { it.video_key == key }?.apply {
+        data.find { it.videoKey == key }?.apply {
             isPlaying = true
             notifyItemChanged(data.indexOf(this))
         }

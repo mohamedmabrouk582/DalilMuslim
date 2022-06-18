@@ -17,14 +17,14 @@ import javax.inject.Inject
  * Copyright (c) 4/17/22
  */
 class QuranRepositoryUseCase @Inject constructor(val repository: QuranDefaultRepository) {
-    suspend fun requestJuz() : Flow<Result<JuzResponse>>{
+     fun requestJuz() : Flow<Result<JuzResponse>>{
         return repository.requestJuz()
     }
-    suspend fun requestSurahs() : Flow<Result<SurahResponse>>{
+     fun requestSurahs() : Flow<Result<SurahResponse>>{
         return repository.requestSurahs()
     }
-    suspend fun requestVerses(chapter_id:Int,page:Int=0) : Flow<Result<VersesResponse>>{
-        return repository.requestVerses(chapter_id, page)
+     fun requestVerses(chapterId:Int,page:Int=0) : Flow<Result<VersesResponse>>{
+        return repository.requestVerses(chapterId, page)
     }
     suspend fun saveJuz(juz:ArrayList<Juz>){
         repository.saveJuz(juz)
@@ -38,8 +38,8 @@ class QuranRepositoryUseCase @Inject constructor(val repository: QuranDefaultRep
     fun getSavedSurah() : Flow<List<Surah>>{
        return repository.getSavedSurah()
     }
-    fun getSavedVerses(chapter_id:Int) : Flow<List<Verse>>{
-        return repository.getSavedVerses(chapter_id)
+    fun getSavedVerses(chapterId:Int) : Flow<List<Verse>>{
+        return repository.getSavedVerses(chapterId)
     }
     fun getSavedJuz() : Flow<List<Juz>>{
         return repository.getSavedJuz()
@@ -60,7 +60,7 @@ class QuranRepositoryUseCase @Inject constructor(val repository: QuranDefaultRep
         repository.updateReader(readers)
     }
 
-    suspend fun searchBySurah(query:String) : Flow<List<Surah>>{
+     fun searchBySurah(query:String) : Flow<List<Surah>>{
         return repository.searchBySurah(query)
     }
 }

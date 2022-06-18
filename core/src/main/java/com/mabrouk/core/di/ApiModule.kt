@@ -1,6 +1,7 @@
 package com.mabrouk.core.di
 
 import android.content.Context
+import com.facebook.flipper.plugins.network.FlipperOkhttpInterceptor
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.mabrouk.core.BuildConfig
 import dagger.Module
@@ -32,10 +33,10 @@ class ApiModule {
     @Singleton
     fun getClient(
         interceptor: HttpLoggingInterceptor,
-        @ApplicationContext context: Context
+        flipperOkhttpInterceptor : FlipperOkhttpInterceptor
     ): OkHttpClient =
         OkHttpClient.Builder()
-           // .addInterceptor(ChuckInterceptor(context))
+            .addNetworkInterceptor(flipperOkhttpInterceptor)
             .addInterceptor(interceptor)
             .build()
 

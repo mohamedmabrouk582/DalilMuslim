@@ -16,9 +16,13 @@ import javax.inject.Inject
  * @name Mohamed Mabrouk
  * Copyright (c) 4/19/22
  */
-class StoryRepository @Inject constructor(@ApplicationContext val context: Context , val api: StoryApi , val dao: StoryDao) : StoryDefaultRepository {
-    override suspend fun downloadAudio(url: String): Flow<Result<ResponseBody>> {
-       return executeCall(context){api.downloadAudio(url)}
+class StoryRepository @Inject constructor(
+    @ApplicationContext val context: Context,
+    private val api: StoryApi,
+    private val dao: StoryDao
+) : StoryDefaultRepository {
+    override fun downloadAudio(url: String): Flow<Result<ResponseBody>> {
+        return executeCall(context) { api.downloadAudio(url) }
     }
 
     override suspend fun insertStory(storyEntity: Story): Long {

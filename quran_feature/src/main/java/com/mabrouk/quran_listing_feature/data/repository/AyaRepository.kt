@@ -24,29 +24,29 @@ import javax.inject.Inject
  */
 class AyaRepository @Inject constructor(
     @ApplicationContext val context: Context,
-    val quranApi: QuranApi,
-    val api: TafseerApi,
-    val dao: QuranDao
+    private val quranApi: QuranApi,
+    private val api: TafseerApi,
+    private val dao: QuranDao
 )  : AyaDefaultRepository{
 
 
-    override suspend fun requestTafsir(
-        chapter_id: Int,
-        verse_id: Int,
+    override  fun requestTafsir(
+        chapterId: Int,
+        verseId: Int,
         id: Int
     ): Flow<Result<TafsirAya>> {
-        return executeCall2(context = context) { api.getAyaTafseer(id,chapter_id,verse_id) }
+        return executeCall2(context = context) { api.getAyaTafseer(id,chapterId,verseId) }
     }
 
     override suspend fun saveTafsir(data: TafsirAya) {
         dao.saveVerseTafsir(data)
     }
 
-    override fun getSavedTafsir(chapter_id: Int, verse_id: Int): Flow<List<TafsirAya>> {
-        return dao.getSavedTafsir("/quran/$chapter_id/$verse_id/")
+    override fun getSavedTafsir(chapterId: Int, verseId: Int): Flow<List<TafsirAya>> {
+        return dao.getSavedTafsir("/quran/$chapterId/$verseId/")
     }
 
-    override suspend fun downloadAudio(url: String): Flow<Result<ResponseBody>> {
+    override  fun downloadAudio(url: String): Flow<Result<ResponseBody>> {
         return executeCall(context){
             quranApi.downloadAudio(url)
         }

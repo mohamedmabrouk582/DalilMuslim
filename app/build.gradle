@@ -15,8 +15,8 @@ android {
         applicationId "com.mabrouk.dalilmuslim"
         minSdk 24
         targetSdk 32
-        versionCode 1
-        versionName "1.0.1"
+        versionCode 2
+        versionName "1.0.$versionCode"
         archivesBaseName = "dalilMuslim-$versionName"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -25,9 +25,23 @@ android {
 
     buildTypes {
         release {
+            debuggable false
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
+        debug {
+            debuggable true
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        releaseDebug {
+            debuggable true
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
@@ -73,8 +87,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
    // implementation 'np.com.susanthapa:curved_bottom_navigation:0.6.5'
     // hilt
-    implementation("com.google.dagger:hilt-android:2.38.1")
-    kapt("com.google.dagger:hilt-android-compiler:2.38.1")
+    implementation("com.google.dagger:hilt-android:2.40.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.40.1")
     implementation "androidx.navigation:navigation-ui-ktx:2.4.2"
     implementation "androidx.navigation:navigation-fragment-ktx:2.4.2"
     implementation 'androidx.hilt:hilt-work:1.0.0'
@@ -85,6 +99,10 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-crashlytics:18.2.11'
 
+    //flipper
+    implementation "com.facebook.flipper:flipper:$flipperVersion"
+    implementation "com.facebook.soloader:soloader:$soLoaderVersion"
+    implementation "com.facebook.flipper:flipper-network-plugin:$flipperVersion"
 }
 
 kapt {

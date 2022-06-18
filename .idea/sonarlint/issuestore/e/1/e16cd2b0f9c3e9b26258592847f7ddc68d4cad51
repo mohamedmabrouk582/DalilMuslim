@@ -1,8 +1,0 @@
-
-kotlin:S5612$"kThis lambda has 22 lines of code, which is greater than the 20 authorized. Split it into smaller functions.(β›–”ϊÿÿÿÿ
-kotlin:S5612A"kThis lambda has 23 lines of code, which is greater than the 20 authorized. Split it into smaller functions.(β›–”ϊÿÿÿÿ
-kotlin:S5612`"kThis lambda has 22 lines of code, which is greater than the 20 authorized. Split it into smaller functions.(β›–”ϊÿÿÿÿ
-jkotlin:S3776\"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(σι°
-4kotlin:S63102"Avoid hardcoded dispatchers.(Τ¥‚ό
-4kotlin:S6310Q"Avoid hardcoded dispatchers.(Τ¥‚ό
-4kotlin:S6310l"Avoid hardcoded dispatchers.(Τ¥‚ό

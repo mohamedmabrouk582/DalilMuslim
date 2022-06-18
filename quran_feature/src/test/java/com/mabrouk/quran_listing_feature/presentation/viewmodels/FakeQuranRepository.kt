@@ -64,7 +64,7 @@ class FakeQuranRepository : QuranDefaultRepository {
 
     override fun getSavedVerses(chapter_id: Int): Flow<List<Verse>> {
         return flow {
-            emit(TestUtils.verses.filter { it.chapter_id == chapter_id })
+            emit(TestUtils.verses.filter { it.chapterId == chapter_id })
         }
     }
 

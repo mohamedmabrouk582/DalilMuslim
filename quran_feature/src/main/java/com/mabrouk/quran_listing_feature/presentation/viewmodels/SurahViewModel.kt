@@ -13,7 +13,6 @@ import com.mabrouk.quran_listing_feature.domain.models.QuranReader
 import com.mabrouk.quran_listing_feature.domain.models.Surah
 import com.mabrouk.quran_listing_feature.domain.models.TafsirAya
 import com.mabrouk.quran_listing_feature.domain.models.Verse
-import com.mabrouk.quran_listing_feature.domain.respository.AyaDefaultRepository
 import com.mabrouk.quran_listing_feature.domain.usecases.AyaRepositoryUseCases
 import com.mabrouk.quran_listing_feature.presentation.utils.*
 import com.mabrouk.quran_listing_feature.presentation.states.SurahStates
@@ -51,8 +50,8 @@ class SurahViewModel @Inject constructor(
             AudioDataPass(
                 it.id,
                 currentReader.sufix,
-                it.chapter_id,
-                it.verse_number,
+                it.chapterId,
+                it.verseNumber,
                 surahname
             )
         }
@@ -64,8 +63,8 @@ class SurahViewModel @Inject constructor(
         _states.value = SurahStates.DownloadVerse(workManger.getWorkInfoByIdLiveData(request.id))
     }
 
-    fun getTafsier(id: Int, verse_id: Int): Flow<List<TafsirAya>> =
-        repository.getSavedTafsir(id, verse_id)
+    fun getTafsier(id: Int, verseId: Int): Flow<List<TafsirAya>> =
+        repository.getSavedTafsir(id, verseId)
 
     fun updateSurah(surah: Surah) = viewModelScope.launch { repository.updateSurah(surah) }
 

@@ -55,7 +55,7 @@ class QuranAdapter(
     override fun getItemCount(): Int = data.size
 
     override fun getItemViewType(position: Int): Int {
-        return if (data[position].sura?.name_arabic != null) 1 else 0
+        return if (data[position].sura?.nameArabic != null) 1 else 0
     }
 
 

@@ -10,7 +10,7 @@ import okhttp3.ResponseBody
  * Copyright (c) 4/19/22
  */
 interface StoryDefaultRepository {
-    suspend fun downloadAudio(url:String) : Flow<Result<ResponseBody>>
+    fun downloadAudio(url:String) : Flow<Result<ResponseBody>>
     suspend fun insertStory(storyEntity: Story) : Long
     fun getStories() : Flow<List<Story>>
     fun searchStory(query:String) : Flow<Story>

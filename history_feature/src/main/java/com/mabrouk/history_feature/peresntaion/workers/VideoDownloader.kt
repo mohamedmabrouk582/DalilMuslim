@@ -1,7 +1,9 @@
 package com.mabrouk.history_feature.peresntaion.workers
 
 import android.content.Context
+import android.util.Log
 import androidx.hilt.work.HiltWorker
+import androidx.navigation.dynamicfeatures.Constants
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.google.gson.Gson
@@ -35,9 +37,6 @@ class VideoDownloader @AssistedInject constructor (
                 }
                 is OnFailure -> {
                     result = Result.failure()
-                }
-                is OnLoading -> {
-
                 }
                 is OnSuccess -> {
                     FileUtils.saveVideo(it.data, storyEntity.title, storyEntity.ext)

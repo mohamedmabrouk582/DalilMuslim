@@ -3,6 +3,7 @@ package com.mabrouk.history_feature.domain.models
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 /**
@@ -12,8 +13,9 @@ import kotlinx.parcelize.Parcelize
 @Entity
 @Parcelize
 data class Story(
+    @SerializedName("video_key")
     @PrimaryKey
-    val video_key:String ,
+    val videoKey:String,
     var url:String,
     var title:String,
     var getThumbUrl:String,

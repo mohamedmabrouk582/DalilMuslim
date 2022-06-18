@@ -1,6 +1,5 @@
 package com.mabrouk.quran_listing_feature.data.db
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.mabrouk.quran_listing_feature.domain.models.*
 import kotlinx.coroutines.flow.Flow
@@ -27,7 +26,7 @@ interface QuranDao {
     suspend fun updateJUz(juz:Juz)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun updateVerse(Verse:Verse)
+    suspend fun updateVerse(verse:Verse)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     suspend fun updateReader(readerEntity: QuranReader)
@@ -51,14 +50,14 @@ interface QuranDao {
     @Query("select * from juz")
     fun getSavedJuzs() : Flow<List<Juz>>
 
-    @Query("select * from verse where chapter_id =:id")
+    @Query("select * from verse where chapterId =:id")
     fun getSaveVerses(id:Int) : Flow<List<Verse>>
 
-    @Query("select * from tafsiraya where verse_key=:key ")
+    @Query("select * from tafsiraya where verseKey=:key ")
     fun getSavedTafsir(key:String) : Flow<List<TafsirAya>>
 
 
-    @Query("select * from Surah where name_arabic LIKE '%' || :search || '%' ")
+    @Query("select * from Surah where nameArabic LIKE '%' || :search || '%' ")
     fun searchByAtSurah(search:String) : Flow<List<Surah>>
 
 }

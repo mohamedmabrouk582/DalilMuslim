@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "1808fdc7ba3b8f8888a576a406b7af59",
+    "identityHash": "3731658148c2bb1a02a2609a71edfb2d",
     "entities": [
       {
         "tableName": "Radio",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT NOT NULL, `radio_url` TEXT NOT NULL, PRIMARY KEY(`name`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT NOT NULL, `radioUrl` TEXT NOT NULL, PRIMARY KEY(`name`))",
         "fields": [
           {
             "fieldPath": "name",
@@ -15,8 +15,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "radio_url",
-            "columnName": "radio_url",
+            "fieldPath": "radioUrl",
+            "columnName": "radioUrl",
             "affinity": "TEXT",
             "notNull": true
           }
@@ -34,7 +34,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '1808fdc7ba3b8f8888a576a406b7af59')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '3731658148c2bb1a02a2609a71edfb2d')"
     ]
   }
 }

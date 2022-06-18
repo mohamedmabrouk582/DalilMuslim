@@ -22,7 +22,7 @@ object TestUtils {
     }.toArrayList()
 
     val surahs = (1 .. 114).map {
-        Surah(it, name_arabic = "name$it")
+        Surah(it, nameArabic = "name$it")
     }.toArrayList()
 
     val verses = (1..200).map {

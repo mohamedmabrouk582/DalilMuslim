@@ -16,14 +16,15 @@ data class TafsirAya(
     @SerializedName("tafseer_id")
     val tafseerId: Int,
     @SerializedName("ayah_number")
-    val verse_id: Int,
+    val verseId: Int,
     @PrimaryKey
     val text: String = "",
-    val language_name: String? = null,
+    @SerializedName("language_name")
+    val languageName: String? = null,
     @SerializedName("tafseer_name")
-    val resource_name: String? = null,
+    val resourceName: String? = null,
     @SerializedName("ayah_url")
-    val verse_key: String = "/quran/1/1/"
+    val verseKey: String = "/quran/1/1/"
 ) : Parcelable {
-    fun getChapter() = verse_key.replace("/quran/","").split("/")[0].toInt()
+    fun getChapter() = verseKey.replace("/quran/","").split("/")[0].toInt()
 }

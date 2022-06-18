@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             tools:text="TextView"
-            android:text='@{@string/sura_txt+juz.sura.name_arabic}'
+            android:text="@{@string/sura_txt+juz.sura.nameArabic}"
             android:textStyle="bold"
             android:textSize="17sp"
             android:fontFamily="@font/quran"
@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             tools:text="TextView"
-            android:text="@{juz.from_to}"
+            android:text="@{juz.fromTo}"
             android:textSize="17sp"
             android:fontFamily="@font/quran"
             app:layout_constraintBottom_toBottomOf="parent"

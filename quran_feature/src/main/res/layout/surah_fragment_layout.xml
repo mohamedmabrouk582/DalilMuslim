@@ -36,7 +36,7 @@
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_margin="10dp"
-            android:text='@{@string/sura_txt+surah.name_arabic}'
+            android:text="@{@string/sura_txt+surah.nameArabic}"
             android:background="@drawable/surah_header"
             android:gravity="center"
             android:textSize="20sp"
@@ -70,7 +70,7 @@
                     android:text="@string/basmalla_txt"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:visibility="@{surah.bismillah_pre?View.VISIBLE:View.GONE}"
+                    android:visibility="@{surah.bismillahPre?View.VISIBLE:View.GONE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

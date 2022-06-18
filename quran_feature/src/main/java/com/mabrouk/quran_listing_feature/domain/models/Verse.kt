@@ -2,6 +2,7 @@ package com.mabrouk.quran_listing_feature.domain.models
 
 import android.os.Parcelable
 import androidx.room.*
+import com.google.gson.annotations.SerializedName
 import com.mabrouk.core.network.toArrayList
 import kotlinx.parcelize.Parcelize
 
@@ -14,21 +15,32 @@ import kotlinx.parcelize.Parcelize
 data class Verse(
     @PrimaryKey
     val id: Int,
-    val verse_number: Int,
-    val chapter_id: Int,
-    val text_madani: String? = null,
-    val text_indopak: String? = null,
-    val text_simple: String? = null,
-    val juz_number: Int? = null,
-    val hizb_number: Int? = null,
-    val rub_number: Int? = null,
+    @SerializedName("verse_number")
+    val verseNumber: Int,
+    @SerializedName("chapter_id")
+    val chapterId: Int,
+    @SerializedName("text_madani")
+    val textMadani: String? = null,
+    @SerializedName("text_indopak")
+    val textIndopak: String? = null,
+    @SerializedName("text_simple")
+    val textSimple: String? = null,
+    @SerializedName("juz_number")
+    val juzNumber: Int? = null,
+    @SerializedName("hizb_number")
+    val hizbNumber: Int? = null,
+    @SerializedName("rub_number")
+    val rubNumber: Int? = null,
     val sajdah: String? = null,
-    val sajdah_number: Int? = null,
-    val page_number: Int? = null,
+    @SerializedName("sajdah_number")
+    val sajdahNumber: Int? = null,
+    @SerializedName("page_number")
+    val pageNumber: Int? = null,
     @Embedded
     val audio: Audio? = null,
     val translations: ArrayList<Translation>? = null,
-    val media_contents: ArrayList<Media>? = null,
+    @SerializedName("media_contents")
+    val mediaContents: ArrayList<Media>? = null,
     val words: ArrayList<Word>? = null,
     var selected: Boolean = false
 ) : Parcelable {
@@ -40,10 +52,10 @@ data class Verse(
         }?.map {
             Translation(
                 it.id,
-                it.translation.language_name,
+                it.translation.languageName,
                 it.translation.text,
-                it.text_indopak,
-                it.verse_key,
+                it.textIndopak,
+                it.verseKey,
                 it.audio.url,
                 it.transliteration.text
             )
