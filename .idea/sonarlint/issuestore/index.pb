@@ -35,16 +35,10 @@ x
 Hazkar_feature/src/main/java/com/mabrouk/azkar_feature/data/db/AzkarDb.kt,2/6/266373af653ce9754b61bed3969b3cb3f5ab5588
 ‚
 Rquran_feature/src/debug/java/com/mabrouk/quran_listing_feature/HiltTestActivity.kt,7/9/7991d32f3542885f5340af3624baf73be0545401
-œ
-lquran_feature/src/test/java/com/mabrouk/quran_listing_feature/presentation/viewmodels/FakeSurahRepository.kt,9/7/970184815787d04fa00ff68947b423498feb8481
 ‰
 Yquran_feature/src/androidTest/java/com/mabrouk/quran_listing_feature/local/QuranDbTest.kt,d/4/d4997440910a5a77d2ef555cd41e3f9d9c542f89
-’
-bquran_feature/src/test/java/com/mabrouk/quran_listing_feature/presentation/viewmodels/TestUtils.kt,7/2/725016843292a05c16350db095fb6b7b22b81c49
 ‹
 [quran_feature/src/androidTest/java/com/mabrouk/quran_listing_feature/remote/TestQuranApi.kt,5/3/5379625046f220b044859e99e5e5519c296f49a3
-œ
-lquran_feature/src/test/java/com/mabrouk/quran_listing_feature/presentation/viewmodels/FakeQuranRepository.kt,f/6/f68dc14f8aa45d5b2924226644328334381d97e8
 }
 Mquran_feature/src/androidTest/java/com/mabrouk/quran_listing_feature/utils.kt,1/f/1f8ae7a02984ff9d0fb16249cc8b23fe0f28c231
 H

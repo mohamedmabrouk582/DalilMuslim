@@ -14,7 +14,7 @@ import okhttp3.ResponseBody
  * Copyright (c) 4/17/22
  */
 class FakeSurahRepository : AyaDefaultRepository {
-    override suspend fun requestTafsir(
+    override  fun requestTafsir(
         chapter_id: Int,
         verse_id: Int,
         id: Int
@@ -34,7 +34,7 @@ class FakeSurahRepository : AyaDefaultRepository {
         }
     }
 
-    override suspend fun downloadAudio(url: String): Flow<Result<ResponseBody>> {
+    override  fun downloadAudio(url: String): Flow<Result<ResponseBody>> {
         return flow {  }
     }
 

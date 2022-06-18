@@ -19,19 +19,19 @@ import kotlinx.coroutines.flow.flow
  */
 class FakeQuranRepository : QuranDefaultRepository {
 
-    override suspend fun requestJuz(): Flow<Result<JuzResponse>> {
+    override  fun requestJuz(): Flow<Result<JuzResponse>> {
         return flow {
             emit(Result.OnSuccess(JuzResponse(TestUtils.juzs)))
         }
     }
 
-    override suspend fun requestSurahs(): Flow<Result<SurahResponse>> {
+    override  fun requestSurahs(): Flow<Result<SurahResponse>> {
         return flow {
             emit(Result.OnSuccess(SurahResponse(TestUtils.surahs)))
         }
     }
 
-    override suspend fun requestVerses(chapter_id: Int, page: Int): Flow<Result<VersesResponse>> {
+    override  fun requestVerses(chapter_id: Int, page: Int): Flow<Result<VersesResponse>> {
         return flow {
             emit(
                 Result.OnSuccess(
@@ -105,7 +105,7 @@ class FakeQuranRepository : QuranDefaultRepository {
         TestUtils.readers.add(readers)
     }
 
-    override suspend fun searchBySurah(query: String): Flow<List<Surah>> {
+    override  fun searchBySurah(query: String): Flow<List<Surah>> {
         return flow {
             emit(arrayListOf())
         }
