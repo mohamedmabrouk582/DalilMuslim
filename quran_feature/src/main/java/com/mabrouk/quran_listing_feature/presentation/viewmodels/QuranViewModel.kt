@@ -19,7 +19,6 @@ import com.mabrouk.quran_listing_feature.domain.models.Juz
 import com.mabrouk.quran_listing_feature.domain.models.QuranReader
 import com.mabrouk.quran_listing_feature.domain.models.Surah
 import com.mabrouk.quran_listing_feature.domain.models.Verse
-import com.mabrouk.quran_listing_feature.domain.respository.QuranDefaultRepository
 import com.mabrouk.quran_listing_feature.domain.usecases.QuranRepositoryUseCase
 import com.mabrouk.quran_listing_feature.presentation.utils.*
 import com.mabrouk.quran_listing_feature.presentation.states.QuranStates

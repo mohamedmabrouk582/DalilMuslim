@@ -1,7 +1,6 @@
 package com.mabrouk.history_feature.domain.usecase
 
 import com.mabrouk.core.network.Result
-import com.mabrouk.core.network.executeCall
 import com.mabrouk.history_feature.domain.models.Story
 import com.mabrouk.history_feature.domain.repository.StoryDefaultRepository
 import kotlinx.coroutines.flow.Flow

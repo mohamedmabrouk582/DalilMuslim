@@ -2,11 +2,8 @@ package com.mabrouk.quran_listing_feature.presentation.di
 
 import com.mabrouk.quran_listing_feature.data.repository.AyaRepository
 import com.mabrouk.quran_listing_feature.data.repository.QuranRepository
-import com.mabrouk.quran_listing_feature.domain.respository.AyaDefaultRepository
-import com.mabrouk.quran_listing_feature.domain.respository.QuranDefaultRepository
 import com.mabrouk.quran_listing_feature.domain.usecases.AyaRepositoryUseCases
 import com.mabrouk.quran_listing_feature.domain.usecases.QuranRepositoryUseCase
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
