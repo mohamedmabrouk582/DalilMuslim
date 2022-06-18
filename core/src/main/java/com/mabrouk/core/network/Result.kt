@@ -38,15 +38,13 @@ sealed class Result<out T : Any> {
 typealias ApiResult<T> = suspend () -> Response<T>
 typealias ApiResult2<T> = suspend () -> Deferred<T>
 
- fun <T : Any> executeCall(
+fun <T : Any> executeCall(
     context: Context,
     messageInCaseOfError: String = "Network error",
     allowRetries: Boolean = true,
     numberOfRetries: Int = 2,
     apiCall: ApiResult<T>
 ): Flow<Result<T>> {
-    var delayDuration = 1000L
-    val delayFactor = 2
     return flow {
         emit(Result.OnLoading)
         val response = apiCall()
@@ -67,38 +65,32 @@ typealias ApiResult2<T> = suspend () -> Deferred<T>
             )
         )
         return@flow
-    }.catch { e ->
-        if (CheckNetwork.isOnline(context)) {
-            emit(Result.OnFailure(IOException(errorMsg(e, context))))
-        } else {
-            emit(Result.NoInternetConnect(context.getString(R.string.no_internet_connection)))
-        }
-        return@catch
-    }.retryWhen { cause, attempt ->
-        if (!allowRetries || attempt > numberOfRetries || cause !is IOException) return@retryWhen false
-        delay(delayDuration)
-        delayDuration *= delayFactor
-        return@retryWhen true
-    }.onCompletion {
-        emit(Result.OnFinish)
-    }.flowOn(Dispatchers.IO)
+    }.final(context, allowRetries, numberOfRetries)
 }
 
 
- fun <T : Any> executeCall2(
+fun <T : Any> executeCall2(
     context: Context,
     allowRetries: Boolean = true,
     numberOfRetries: Int = 2,
     apiCall: ApiResult2<T>
 ): Flow<Result<T>> {
-    var delayDuration = 1000L
-    val delayFactor = 2
     return flow {
         emit(Result.OnLoading)
         val response = apiCall()
         emit(Result.OnSuccess(response.await()))
         return@flow
-    }.catch { e ->
+    }.final(context, allowRetries, numberOfRetries)
+}
+
+fun <T : Any> Flow<Result<T>>.final(
+    context: Context,
+    allowRetries: Boolean = true,
+    numberOfRetries: Int = 2,
+) : Flow<Result<T>>{
+    var delayDuration = 1000L
+    val delayFactor = 2
+   return this.catch { e ->
         if (CheckNetwork.isOnline(context)) {
             emit(Result.OnFailure(IOException(errorMsg(e, context))))
         } else {
@@ -114,6 +106,7 @@ typealias ApiResult2<T> = suspend () -> Deferred<T>
         emit(Result.OnFinish)
     }.flowOn(Dispatchers.IO)
 }
+
 
 
 interface OnCheckConnection {
@@ -194,7 +187,10 @@ fun Int.decimalFormat(): String {
 }
 
 
-fun Context.loader(stream: SharedFlow<String> = MutableSharedFlow(), scope: CoroutineScope): AlertDialog {
+fun Context.loader(
+    stream: SharedFlow<String> = MutableSharedFlow(),
+    scope: CoroutineScope
+): AlertDialog {
     val builder: AlertDialog.Builder = AlertDialog.Builder(this, R.style.WrapContentDialog)
     val view = LayoutInflater.from(this).inflate(R.layout.loader_layout, null, false)
     val textView = view.findViewById<TextView>(R.id.file_txt)
