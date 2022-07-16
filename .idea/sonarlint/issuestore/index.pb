@@ -45,3 +45,5 @@ H
 common_test_build.gradle,7/9/79c1853d94ee8762ac14048ee9893d11ad3542bf
 Š
 Zquran_feature/src/main/java/com/mabrouk/quran_listing_feature/presentation/di/ApiModule.kt,7/b/7b6440f95a249ca1200ab33fbda8e8ca162fa337
+Z
+*quran_feature/src/main/AndroidManifest.xml,e/b/ebe730c35d7af76542e59b0ff1cc4df765496b9e

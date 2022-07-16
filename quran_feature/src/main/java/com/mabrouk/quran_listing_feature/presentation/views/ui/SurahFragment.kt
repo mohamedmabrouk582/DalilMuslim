@@ -10,9 +10,11 @@ import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.ListPopupWindow
+import android.widget.Toast
 import androidx.core.widget.NestedScrollView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.lifecycleScope
@@ -32,6 +34,7 @@ import com.mabrouk.core.utils.FileUtils
 import com.mabrouk.quran_listing_feature.R
 import com.mabrouk.quran_listing_feature.databinding.SurahFragmentLayoutBinding
 import com.mabrouk.quran_listing_feature.domain.models.AyaTafsirs
+import com.mabrouk.quran_listing_feature.domain.models.Juz
 import com.mabrouk.quran_listing_feature.domain.models.Surah
 import com.mabrouk.quran_listing_feature.domain.models.Verse
 import com.mabrouk.quran_listing_feature.presentation.states.SurahStates
@@ -58,7 +61,7 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener,
     var lastPosition: Int = 0
     var sura: Surah? = null
     private val surahViewModel: SurahViewModel by viewModels()
-    private val quranViewModel: QuranViewModel by viewModels()
+    private val quranViewModel: QuranViewModel by activityViewModels()
     var playbackPosition: Long = 0
     private val adapter: AyaAdapter by lazy { AyaAdapter(::onAyaClick) }
 
@@ -105,7 +108,25 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener,
         actions()
     }
 
+    private fun initApp(surah: Surah) {
+        viewBinding.isPlaying = player.isPlaying
+        viewBinding.surah = surah
+        this@SurahFragment.sura = surah
+
+        loadSurah()
+    }
+
     private fun actions() {
+        viewBinding.nextSurah.setOnClickListener {
+            viewBinding.nextSurah.visibility = View.GONE
+            if (quranViewModel.surahs.size > sura?.id!!) {
+                quranViewModel.surahs[sura?.id!!].apply {
+                    reset()
+                    initApp(this)
+                }
+
+            }
+        }
 
         viewBinding.player.setOnClickListener {
             if (player.isPlaying) {
@@ -201,13 +222,32 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener,
 
     private fun loadSurah() {
         lifecycleScope.launch {
-            val data = quranViewModel.fetchVerse(arguments?.getInt(VERSES_ID) ?: 0).first()
-            viewBinding.loaderView.visibility = View.GONE
-            if (data.isNullOrEmpty()) return@launch
-            adapter.verses = ArrayList(data)
-            checkPermission()
+            val data = quranViewModel.fetchVerse(sura?.id ?: 0).first()
+            if (data.isEmpty()) {
+                sura?.apply {
+                    downloadSurahVerses(this)
+                }
+            }else{
+                viewBinding.loaderView.visibility = View.GONE
+                adapter.verses = ArrayList(data)
+                checkPermission()
+            }
             handleStates()
         }
+    }
+
+    private fun downloadSurahVerses(surah: Surah){
+        quranViewModel.downloadJuz(listOf(surah.id),requireContext())
+            .observe(viewLifecycleOwner){
+                if (it.state == WorkInfo.State.SUCCEEDED) {
+                    lifecycleScope.launch {
+                        quranViewModel.updateSurah(surah.apply {
+                            isDownload = true
+                        })
+                        loadSurah()
+                    }
+                }
+            }
     }
 
     private fun checkPermission() {
@@ -314,6 +354,7 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener,
     }
 
     private fun prepareAudios() {
+        if (player.mediaItemCount >= adapter.verses.size) return
         player.addMediaItem(
             addMediaItem(
                 FileUtils.getAudioPath(
@@ -379,11 +420,7 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener,
                 adapter.updateVerse(currentPosition, lastPosition)
                 handleScrolling()
                 lastPosition = currentPosition
-
-                if (mediaItem.mediaId.toInt() == adapter.verses.size) {
-                    player.stop()
-                }
-
+                player.nextMediaItemIndex
             }
         }
     }
@@ -409,6 +446,23 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener,
         super.onDestroy()
         playbackPosition = player.currentPosition
         player.release()
+    }
+
+    override fun onPlaybackStateChanged(playbackState: Int) {
+        super.onPlaybackStateChanged(playbackState)
+        if (playbackState == ExoPlayer.STATE_ENDED && lastPosition > 0) {
+            viewBinding.nextSurah.visibility = View.VISIBLE
+            player.stop()
+        }
+    }
+
+    private fun reset() {
+        currentPosition = 0
+        lastPosition = 0
+        playbackPosition = 0
+        adapter.verses = arrayListOf()
+        player.clearMediaItems()
+        viewBinding.loaderView.visibility = View.VISIBLE
     }
 
 

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.dynamicfeatures.Constants
@@ -31,7 +32,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class QuranFragment : Fragment() {
     lateinit var viewBinding: QuranFragmentLayoutBinding
-    private val viewModel: QuranViewModel by viewModels()
+    private val viewModel: QuranViewModel by activityViewModels()
 
     @Inject
     lateinit var eventBus: EventBus

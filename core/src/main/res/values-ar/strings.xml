@@ -19,4 +19,6 @@
     <string name="Jsonpars">Json Parsing Error</string>
     <string name="no_internet_connection">لا يوجد اتصال بالإنترنت</string>
     <string name="txt_retry">Retry</string>
+    <string name="txt_next_surah">السوره التاليه</string>
+
 </resources>

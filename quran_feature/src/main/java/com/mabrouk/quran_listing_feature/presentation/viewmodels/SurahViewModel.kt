@@ -104,8 +104,11 @@ class SurahViewModel @Inject constructor(
         Log.d("downloadVerse", currentReader.toString())
         viewModelScope.launch(Dispatchers.IO) {
             repository.updateQuranReader(currentReader.let {
-                if (it.versesIds == null) it.versesIds = arrayListOf()
-                it.versesIds?.add(suraId)
+                if (it.versesIds == null) {
+                    it.versesIds = arrayListOf()
+                }else{
+                    it.versesIds!!.toHashSet().add(suraId)
+                }
                 it
             })
             dataStore.setData(READER_KEY,currentReader)

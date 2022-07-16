@@ -164,5 +164,34 @@
             app:srcCompat="@drawable/ic_microphone" />
 
 
+        <androidx.cardview.widget.CardView
+            android:visibility="gone"
+            android:id="@+id/nextSurah"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+
+
+            <TextView
+                android:background="@drawable/next_shape"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:fontFamily="@font/quran"
+                android:text="@string/txt_next_surah"
+                android:textAlignment="center"
+                android:drawableEnd="@drawable/ic_next"
+                app:drawableEndCompat="@drawable/ic_next" />
+        </androidx.cardview.widget.CardView>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
