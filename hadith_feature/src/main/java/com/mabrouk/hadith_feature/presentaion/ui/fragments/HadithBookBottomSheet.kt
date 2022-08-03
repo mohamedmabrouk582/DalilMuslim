@@ -18,6 +18,7 @@ import com.mabrouk.hadith_feature.presentaion.ui.adapters.HadithBookAdapter
 import com.mabrouk.hadith_feature.presentaion.viewmodels.HadithViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import java.util.ArrayList
 
 /**
  * @name Mohamed Mabrouk
@@ -26,7 +27,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class HadithBookBottomSheet : BottomSheetDialogFragment() {
     private lateinit var viewBinding: HadithLayoutBinding
-    val viewModel: HadithViewModel
+    val viewModel: HadithViewModel by viewModels()
     private val adapter by lazy {
         HadithBookAdapter {
             HadithDetailBottomSheet.start(PassHadithKeys(it.collectionName, it.bookNumber))
