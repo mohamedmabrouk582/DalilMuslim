@@ -26,7 +26,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class HadithBookBottomSheet : BottomSheetDialogFragment() {
     private lateinit var viewBinding: HadithLayoutBinding
-    val viewModel: HadithViewModel by viewModels()
+    val viewModel: HadithViewModel
     private val adapter by lazy {
         HadithBookAdapter {
             HadithDetailBottomSheet.start(PassHadithKeys(it.collectionName, it.bookNumber))
