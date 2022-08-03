@@ -20,7 +20,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.util.ArrayList
 
-
 /**
  * @name Mohamed Mabrouk
  * Copyright (c) 4/24/22
