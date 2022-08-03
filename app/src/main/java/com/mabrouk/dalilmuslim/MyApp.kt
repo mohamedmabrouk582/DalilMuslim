@@ -1,6 +1,5 @@
 package com.mabrouk.dalilmuslim
 
-import android.app.Application
 import android.content.Context
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
@@ -37,7 +36,6 @@ class MyApp : LocalizationApplication()  , Configuration.Provider{
         FirebaseApp.initializeApp(this)
         if (BuildConfig.DEBUG) {
             SoLoader.init(this, false)
-
             if (FlipperUtils.shouldEnableFlipper(this)) {
                 AndroidFlipperClient.getInstance(this).apply {
                     addPlugin(InspectorFlipperPlugin(this@MyApp, DescriptorMapping.withDefaults()))
