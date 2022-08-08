@@ -9,8 +9,6 @@ i
 9core/src/main/java/com/mabrouk/core/base/BaseViewModel.kt,8/b/8bf4e07320c23c4adfffd2726b36d6833bebce58
 h
 8core/src/main/java/com/mabrouk/core/di/FireBaseModule.kt,e/0/e0047bb8891b1107c81555c2968eff60a6b0b43a
-?
-settings.gradle,0/5/05efc8b1657769a27696d478ded1e95f38737233
 ù
 mradio_quran_feature/src/main/java/com/mabrouk/radio_quran_feature/domain/repository/RadioDefaultRepository.kt,1/8/184c4095122fc0f7e8ada87470f8dde9d50cdda4
 î
@@ -37,11 +35,11 @@ Rquran_feature/src/debug/java/com/mabrouk/quran_listing_feature/HiltTestActivity
 Yquran_feature/src/androidTest/java/com/mabrouk/quran_listing_feature/local/QuranDbTest.kt,d/4/d4997440910a5a77d2ef555cd41e3f9d9c542f89
 ã
 [quran_feature/src/androidTest/java/com/mabrouk/quran_listing_feature/remote/TestQuranApi.kt,5/3/5379625046f220b044859e99e5e5519c296f49a3
-}
-Mquran_feature/src/androidTest/java/com/mabrouk/quran_listing_feature/utils.kt,1/f/1f8ae7a02984ff9d0fb16249cc8b23fe0f28c231
 H
 common_test_build.gradle,7/9/79c1853d94ee8762ac14048ee9893d11ad3542bf
 ä
 Zquran_feature/src/main/java/com/mabrouk/quran_listing_feature/presentation/di/ApiModule.kt,7/b/7b6440f95a249ca1200ab33fbda8e8ca162fa337
 Z
 *quran_feature/src/main/AndroidManifest.xml,e/b/ebe730c35d7af76542e59b0ff1cc4df765496b9e
+S
+#.idea/sonarlint/issuestore/index.pb,9/f/9fe84ebb15faf917b7def6236dba604453cc61e0

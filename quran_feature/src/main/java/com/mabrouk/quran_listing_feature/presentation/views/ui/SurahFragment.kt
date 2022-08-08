@@ -10,7 +10,6 @@ import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.ListPopupWindow
-import android.widget.Toast
 import androidx.core.widget.NestedScrollView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -34,7 +33,6 @@ import com.mabrouk.core.utils.FileUtils
 import com.mabrouk.quran_listing_feature.R
 import com.mabrouk.quran_listing_feature.databinding.SurahFragmentLayoutBinding
 import com.mabrouk.quran_listing_feature.domain.models.AyaTafsirs
-import com.mabrouk.quran_listing_feature.domain.models.Juz
 import com.mabrouk.quran_listing_feature.domain.models.Surah
 import com.mabrouk.quran_listing_feature.domain.models.Verse
 import com.mabrouk.quran_listing_feature.presentation.states.SurahStates
@@ -278,6 +276,9 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener,
                 when (it) {
                     is SurahStates.DownloadVerse -> downloadVerse(it.workInfo)
                     is SurahStates.UpdateReader -> updateReader()
+                    else -> {
+                        Log.d("testing",it.toString())
+                    }
                 }
             }
         }
@@ -319,6 +320,9 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener,
                         Snackbar.make(viewBinding.root, error, Snackbar.LENGTH_SHORT).show()
                     }
                     loader.dismiss()
+                }
+                else -> {
+                    Log.d("testing","")
                 }
             }
         }
