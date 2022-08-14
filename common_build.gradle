@@ -44,11 +44,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
-        releaseDebug {
-            debuggable true
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
+//        releaseDebug {
+//            debuggable true
+//            minifyEnabled false
+//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//        }
 
     }
     compileOptions {
@@ -197,19 +197,7 @@ dependencies {
     implementation "com.facebook.flipper:flipper-network-plugin:$flipperVersion"
 }
 
-sonarqube {
-    sonarqube {
-        properties {
-            property "sonar.projectName", "DHA"
-            property "sonar.projectKey", "HDA"
-            property "sonar.host.url", "http://localhost:9000"
-            property "sonar.projectVersion", "1.0"
-            property "sonar.language", "kotlin"
-            property "sonar.sources", "src/main/java/"
-        }
-    }
 
-}
 
 kapt {
     correctErrorTypes = true
