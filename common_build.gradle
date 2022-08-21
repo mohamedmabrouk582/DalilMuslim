@@ -2,8 +2,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
-apply plugin: "org.sonarqube"
-apply plugin: 'jacoco'
 apply from: '../common_test_build.gradle'
 
 
@@ -95,7 +93,7 @@ android {
 dependencies {
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.6.0'
+    implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
@@ -145,38 +143,37 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2'
 
     //dagger hilt
-    implementation "com.google.dagger:hilt-android:2.40.1"
-    implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03'
+    implementation "com.google.dagger:hilt-android:2.43.2"
+   // implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03'
     implementation 'javax.inject:javax.inject:1'
     implementation 'androidx.hilt:hilt-work:1.0.0'
     kapt 'androidx.hilt:hilt-compiler:1.0.0'
-    kapt "com.google.dagger:hilt-android-compiler:2.40.1"
-    kapt 'androidx.hilt:hilt-compiler:1.0.0'
+    kapt "com.google.dagger:hilt-android-compiler:2.43.2"
 
     // lifecycle
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
-    implementation 'androidx.lifecycle:lifecycle-common-java8:2.4.1'
-    implementation 'androidx.lifecycle:lifecycle-reactivestreams-ktx:2.4.1'
-    implementation 'androidx.activity:activity-ktx:1.4.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
+    implementation 'androidx.lifecycle:lifecycle-common-java8:2.5.1'
+    implementation 'androidx.lifecycle:lifecycle-reactivestreams-ktx:2.5.1'
+    implementation 'androidx.activity:activity-ktx:1.5.1'
 
     //room
-    implementation "androidx.room:room-runtime:2.4.2"
-    implementation "androidx.room:room-ktx:2.4.2"
-    kapt "androidx.room:room-compiler:2.4.2"
-    testImplementation "androidx.room:room-testing:2.4.2"
+    implementation "androidx.room:room-runtime:2.4.3"
+    implementation "androidx.room:room-ktx:2.4.3"
+    kapt "androidx.room:room-compiler:2.4.3"
+    testImplementation "androidx.room:room-testing:2.4.3"
     //  kapt "android.arch.persistence.room:compiler:1.1.1"
 
     //navigation
-    implementation "androidx.navigation:navigation-fragment-ktx:2.4.2"
-    implementation "androidx.navigation:navigation-ui-ktx:2.4.2"
-    implementation "androidx.navigation:navigation-dynamic-features-fragment:2.4.2"
-    androidTestImplementation "androidx.navigation:navigation-testing:2.4.2"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.5.1"
+    implementation "androidx.navigation:navigation-ui-ktx:2.5.1"
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:2.5.1"
+    androidTestImplementation "androidx.navigation:navigation-testing:2.5.1"
 
     //exoplayer
-    implementation "com.google.android.exoplayer:exoplayer:2.17.1"
-    implementation 'com.google.android.exoplayer:exoplayer-smoothstreaming:2.17.1'
-    implementation 'com.google.android.exoplayer:exoplayer-dash:2.17.1'
+    implementation "com.google.android.exoplayer:exoplayer:2.18.1"
+    implementation 'com.google.android.exoplayer:exoplayer-smoothstreaming:2.18.1'
+    implementation 'com.google.android.exoplayer:exoplayer-dash:2.18.1'
 
     implementation 'com.facebook.stetho:stetho:1.6.0'
     implementation 'com.facebook.stetho:stetho-okhttp3:1.6.0'
@@ -186,7 +183,7 @@ dependencies {
 
     implementation "com.airbnb.android:lottie:5.0.3"
 
-    implementation 'com.google.firebase:firebase-crashlytics:18.2.11'
+    implementation 'com.google.firebase:firebase-crashlytics:18.2.12'
 
     //flipper
     implementation "com.facebook.flipper:flipper:$flipperVersion"

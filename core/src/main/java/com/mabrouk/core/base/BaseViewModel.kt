@@ -2,6 +2,7 @@ package com.mabrouk.core.base
 
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 
 /**

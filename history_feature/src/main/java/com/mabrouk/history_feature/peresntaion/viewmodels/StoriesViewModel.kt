@@ -11,7 +11,6 @@ import androidx.work.WorkManager
 import at.huber.youtubeExtractor.VideoMeta
 import at.huber.youtubeExtractor.YouTubeExtractor
 import at.huber.youtubeExtractor.YtFile
-import com.google.android.gms.common.util.IOUtils
 import com.google.common.reflect.TypeToken
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.gson.Gson

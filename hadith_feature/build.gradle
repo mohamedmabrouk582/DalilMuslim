@@ -14,5 +14,5 @@ android {
 
 dependencies {
     api project(":core")
-    implementation 'com.google.firebase:firebase-analytics-ktx:21.0.0'
+    implementation 'com.google.firebase:firebase-analytics-ktx:21.1.0'
 }
