@@ -91,27 +91,29 @@ dependencies {
     api project(":hadith_feature")
     api project(":quran_feature")
     api project(":radio_quran_feature")
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.5.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
-    implementation 'com.google.firebase:firebase-config:21.0.2'
-    implementation 'com.google.firebase:firebase-analytics-ktx:21.0.0'
+    implementation 'androidx.appcompat:appcompat:1.5.0'
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'com.google.firebase:firebase-config:21.1.1'
+    implementation 'com.google.firebase:firebase-analytics-ktx:21.1.0'
+   // implementation 'com.google.firebase:firebase-messaging:23.0.7'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
    // implementation 'np.com.susanthapa:curved_bottom_navigation:0.6.5'
     // hilt
-    implementation("com.google.dagger:hilt-android:2.40.1")
-    kapt("com.google.dagger:hilt-android-compiler:2.40.1")
-    implementation "androidx.navigation:navigation-ui-ktx:2.4.2"
-    implementation "androidx.navigation:navigation-fragment-ktx:2.4.2"
+    implementation("com.google.dagger:hilt-android:2.43.2")
+    kapt("com.google.dagger:hilt-android-compiler:2.43.2")
+    implementation "androidx.navigation:navigation-ui-ktx:2.5.1"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.5.1"
     implementation 'androidx.hilt:hilt-work:1.0.0'
+
 
     //work manger
     implementation "androidx.work:work-runtime-ktx:2.7.1"
     androidTestImplementation "androidx.work:work-testing:2.7.1"
 
-    implementation 'com.google.firebase:firebase-crashlytics:18.2.11'
+    implementation 'com.google.firebase:firebase-crashlytics:18.2.12'
 
     //flipper
     implementation "com.facebook.flipper:flipper:$flipperVersion"

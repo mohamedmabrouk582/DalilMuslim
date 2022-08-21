@@ -14,9 +14,9 @@ android {
 
 dependencies {
     api project(":core")
-    implementation 'com.google.firebase:firebase-config:21.0.2'
+    implementation 'com.google.firebase:firebase-config:21.1.1'
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.0.1'
     implementation 'com.github.HaarigerHarald:android-youtubeExtractor:master-SNAPSHOT'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.23'
-    implementation 'com.google.firebase:firebase-analytics-ktx:21.0.0'
+    implementation 'com.google.firebase:firebase-analytics-ktx:21.1.0'
 }

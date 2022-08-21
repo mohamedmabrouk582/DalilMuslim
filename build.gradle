@@ -5,13 +5,12 @@ buildscript {
         soLoaderVersion='0.10.3'
     }
     dependencies {
-        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.40.1'
-        classpath 'com.google.gms:google-services:4.3.10'
-        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:3.3"
+        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.43.2'
+        classpath 'com.google.gms:google-services:4.3.13'
         classpath "org.jacoco:org.jacoco.core:0.8.6"
         classpath 'com.android.tools.build:gradle:7.2.2'
-        classpath 'com.google.firebase:firebase-appdistribution-gradle:3.0.2'
-        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.0'
+        classpath 'com.google.firebase:firebase-appdistribution-gradle:3.0.3'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.1'
     }
 }
 
