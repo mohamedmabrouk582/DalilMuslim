@@ -14,4 +14,5 @@ interface StoryDefaultRepository {
     suspend fun insertStory(storyEntity: Story) : Long
     fun getStories() : Flow<List<Story>>
     fun searchStory(query:String) : Flow<Story>
+    fun getStory(url: String) : Flow<Result<Story>>
 }

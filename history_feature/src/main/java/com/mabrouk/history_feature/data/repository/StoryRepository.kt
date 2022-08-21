@@ -3,6 +3,7 @@ package com.mabrouk.history_feature.data.repository
 import android.content.Context
 import com.mabrouk.core.network.Result
 import com.mabrouk.core.network.executeCall
+import com.mabrouk.core.network.executeCall2
 import com.mabrouk.history_feature.data.db.StoryApi
 import com.mabrouk.history_feature.data.db.StoryDao
 import com.mabrouk.history_feature.domain.models.Story
@@ -25,6 +26,7 @@ class StoryRepository @Inject constructor(
         return executeCall(context) { api.downloadAudio(url) }
     }
 
+
     override suspend fun insertStory(storyEntity: Story): Long {
         return dao.insertStory(storyEntity)
     }
@@ -35,5 +37,9 @@ class StoryRepository @Inject constructor(
 
     override fun searchStory(query: String): Flow<Story> {
         return dao.search(query)
+    }
+
+    override fun getStory(url: String): Flow<Result<Story>> {
+        return executeCall2(context){api.getStory(url)}
     }
 }

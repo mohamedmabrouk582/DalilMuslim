@@ -15,9 +15,10 @@ import kotlinx.parcelize.Parcelize
 data class Story(
     @SerializedName("video_key")
     @PrimaryKey
-    val videoKey:String,
+    var videoKey:String,
     var url:String,
     var title:String,
+    @SerializedName("thumbnail_url")
     var getThumbUrl:String,
     val ext : String = "mp4",
     var suraId: Int? = 0,

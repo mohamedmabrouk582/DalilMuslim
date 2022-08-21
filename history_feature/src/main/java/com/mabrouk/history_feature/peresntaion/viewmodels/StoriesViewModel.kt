@@ -11,11 +11,13 @@ import androidx.work.WorkManager
 import at.huber.youtubeExtractor.VideoMeta
 import at.huber.youtubeExtractor.YouTubeExtractor
 import at.huber.youtubeExtractor.YtFile
+import com.google.android.gms.common.util.IOUtils
 import com.google.common.reflect.TypeToken
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.gson.Gson
 import com.mabrouk.core.base.BaseViewModel
 import com.mabrouk.core.network.CheckNetwork
+import com.mabrouk.core.network.Result
 import com.mabrouk.history_feature.R
 import com.mabrouk.history_feature.domain.models.Story
 import com.mabrouk.history_feature.domain.usecase.StoryRepositoryUseCase
@@ -25,7 +27,9 @@ import com.mabrouk.history_feature.peresntaion.workers.VideoDownloader
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import org.json.JSONObject
 import javax.inject.Inject
 
 /**
@@ -34,9 +38,9 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class StoriesViewModel @Inject constructor(
-    val  context: Application,
+    val context: Application,
     val repository: StoryRepositoryUseCase,
-    val remoteConfig: FirebaseRemoteConfig
+    private val remoteConfig: FirebaseRemoteConfig
 ) : BaseViewModel() {
 
     private val _states = MutableStateFlow<StoryStates>(StoryStates.Idle)
@@ -51,12 +55,6 @@ class StoriesViewModel @Inject constructor(
                 context.getString(R.string.no_internet_connection),
                 Toast.LENGTH_SHORT
             ).show()
-//            viewModelScope.launch {
-//               repository.getStories().first().forEach {
-//                   _states.value = StoryStates.AddStory(it)
-//
-//               }
-//            }
         }
     }
 
@@ -70,14 +68,17 @@ class StoriesViewModel @Inject constructor(
                         tt, type
                     )
                     viewModelScope.launch {
-                        // val stories = repository.getStories().first()
-                        data.forEach { story ->
-//                            val item = stories.find { it.video_key == story.video_key }
-//                            if (item!=null){
-//                                _states.value = StoryStates.AddStory(item)
-//                            }else{
-                            getYoutubeUrl(story.videoKey)
-                            //  }
+                        data.map { story ->
+                            repository.getStory(
+                                "https://www.youtube.com/oembed?url=youtube.com/watch?v=${story.videoKey}&format=json"
+                            ).collect {
+                                if (it is Result.OnSuccess) {
+                                    story.title = it.data.title
+                                    story.getThumbUrl = it.data.getThumbUrl
+                                    _states.value = StoryStates.AddStory(story)
+                                }
+                            }
+                            story
                         }
                     }
 
@@ -88,7 +89,7 @@ class StoriesViewModel @Inject constructor(
     }
 
     @SuppressLint("StaticFieldLeak")
-    fun getYoutubeUrl(key: String) {
+    fun getYoutubeUrl(key: String, onDownload: (model: Story) -> Unit) {
         object : YouTubeExtractor(context) {
             override fun onExtractionComplete(
                 ytFiles: SparseArray<YtFile>?,
@@ -102,11 +103,8 @@ class StoriesViewModel @Inject constructor(
                         videoMeta?.hqImageUrl ?: "",
                         ytFiles.get(18)?.format?.ext ?: "mp4"
                     )
-                    _states.value = StoryStates.AddStory(story)
+                    onDownload(story)
                 }
-//                viewModelScope.launch(Dispatchers.IO) {
-//                    repository.insertStory(story)
-//                }
             }
         }.extract("http://youtube.com/watch?v=${key}")
     }
@@ -116,14 +114,17 @@ class StoriesViewModel @Inject constructor(
         super.onCleared()
     }
 
-    fun downloadVideo(model: Story) {
-        val workManger = WorkManager.getInstance(context)
-        val data = Data.Builder().putString(VIDEO_KEY, Gson().toJson(model)).build()
-        val worker = OneTimeWorkRequest.Builder(VideoDownloader::class.java)
-            .setInputData(data)
-            .build()
-        workManger.enqueue(worker)
-        _states.value = StoryStates.DownloadVideo(workManger.getWorkInfoByIdLiveData(worker.id))
+    fun downloadVideo(item: Story) {
+        getYoutubeUrl(item.videoKey) { model ->
+            val workManger = WorkManager.getInstance(context)
+            val data = Data.Builder().putString(VIDEO_KEY, Gson().toJson(model)).build()
+            val worker = OneTimeWorkRequest.Builder(VideoDownloader::class.java)
+                .setInputData(data)
+                .build()
+            workManger.enqueue(worker)
+            _states.value = StoryStates.DownloadVideo(workManger.getWorkInfoByIdLiveData(worker.id))
+        }
+
     }
 
 }

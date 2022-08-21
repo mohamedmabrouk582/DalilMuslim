@@ -56,3 +56,11 @@ ihadith_feature/src/main/java/com/mabrouk/hadith_feature/presentaion/ui/fragment
 dquran_feature/src/main/java/com/mabrouk/quran_listing_feature/presentation/views/ui/SurahFragment.kt,b/3/b357897695016d1f275b12cdbc4631fa860ea4e5
 •
 equran_feature/src/main/java/com/mabrouk/quran_listing_feature/presentation/workers/AudioDownloader.kt,1/d/1de0b85702fa1ef2f3b7048ecf41ee17244d8b13
+”
+dquran_feature/src/main/java/com/mabrouk/quran_listing_feature/presentation/views/ui/QuranFragment.kt,2/3/23e3d8db151344bf3f15221504502b742aa0ebbc
+i
+9app/src/main/java/com/mabrouk/dalilmuslim/MainActivity.kt,5/d/5d770008b5fbf6cfd0ad903fb0e695e53f5b6996
+b
+2app/src/main/java/com/mabrouk/dalilmuslim/MyApp.kt,1/8/18b1e68feb6b9dc115a1aefa599b396be36dd012
+S
+#.idea/sonarlint/issuestore/index.pb,9/f/9fe84ebb15faf917b7def6236dba604453cc61e0

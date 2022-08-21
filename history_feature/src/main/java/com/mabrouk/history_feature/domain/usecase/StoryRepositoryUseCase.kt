@@ -28,4 +28,8 @@ class StoryRepositoryUseCase @Inject constructor(val repository: StoryDefaultRep
         return repository.searchStory(query)
     }
 
+    fun getStory(url: String) : Flow<Result<Story>>{
+        return repository.getStory(url)
+    }
+
 }
