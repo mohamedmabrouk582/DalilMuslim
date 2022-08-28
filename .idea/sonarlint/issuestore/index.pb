@@ -64,8 +64,6 @@ bhistory_feature/src/main/java/com/mabrouk/history_feature/domain/usecase/StoryR
 \history_feature/src/main/java/com/mabrouk/history_feature/data/repository/StoryRepository.kt,2/e/2e6b554f5bb8372b6a229f9ebce394bf2a027f0c
 `
 0radio_quran_feature/src/main/AndroidManifest.xml,9/0/90de9f2bff9834c09702b06cbc5b15b179aa2902
-‘
-ahadith_feature/src/main/java/com/mabrouk/hadith_feature/presentaion/viewmodels/HadithViewModel.kt,e/1/e16cd2b0f9c3e9b26258592847f7ddc68d4cad51
 A
 core/build.gradle,9/1/918ca359602392354123b7d3b63264baf7ea9dde
 —
@@ -74,8 +72,6 @@ P
  radio_quran_feature/build.gradle,f/4/f4ef8f5e0b845c9866fd039987a7a513d605bbb3
 J
 quran_feature/build.gradle,8/4/849f9ec177048f010a66865bfded970a2dfcc3f0
-L
-history_feature/build.gradle,5/b/5b2a9c3aa5e4ade98d157a3bae5dc39ee21609a0
 K
 hadith_feature/build.gradle,4/c/4c4aa44e1849137b23e02791411d5ee6d0dbb622
 J
@@ -100,3 +96,7 @@ b
 2app/src/main/java/com/mabrouk/dalilmuslim/MyApp.kt,1/8/18b1e68feb6b9dc115a1aefa599b396be36dd012
 i
 9app/src/main/java/com/mabrouk/dalilmuslim/MainActivity.kt,5/d/5d770008b5fbf6cfd0ad903fb0e695e53f5b6996
+@
+app/build.gradle,f/4/f4a01d6a4fcb971362ec00a83903fd3902f52164
+;
+SECURITY.md,7/c/7c875fef54268bc433a7fc46aa5fd6e96d58f32f

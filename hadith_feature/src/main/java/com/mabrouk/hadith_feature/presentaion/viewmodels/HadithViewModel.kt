@@ -54,9 +54,9 @@ class HadithViewModel @Inject constructor(
                 is Result.OnFailure -> error.set(it.throwable.message ?: "")
                 is Result.OnLoading -> loader.set(true)
                 is Result.OnSuccess -> {
-                    _states.value = HadithStates.LoadCategories(it.data.data)
+                    _states.value = HadithStates.LoadCategories(it.data.data?: arrayListOf())
                     withContext(io) {
-                        repository.savedHadithCategories(it.data.data)
+                        repository.savedHadithCategories(it.data.data?: arrayListOf())
                         dataStore.setBoolean(HADITH_CATEGORIES_DOWNLOADED, true)
                     }
                 }
@@ -85,7 +85,7 @@ class HadithViewModel @Inject constructor(
                 is Result.OnFailure -> error.set(it.throwable.message ?: "")
                 is Result.OnLoading -> loader.set(true)
                 is Result.OnSuccess -> {
-                    val books = ArrayList(it.data.data.map { num ->
+                    val books = ArrayList(it.data.data?.map { num ->
                         num.collectionName = name
                         num
                     })
@@ -120,9 +120,9 @@ class HadithViewModel @Inject constructor(
                 is Result.OnFailure -> error.set(it.throwable.message ?: "")
                 is Result.OnLoading -> if ((page ?: 1) == 1) loader.set(true)
                 is Result.OnSuccess -> {
-                    _states.value = HadithStates.LoadHadith(it.data.data)
+                    _states.value = HadithStates.LoadHadith(it.data.data ?: arrayListOf())
                     withContext(io) {
-                        repository.saveHadith(it.data.data)
+                        repository.saveHadith(it.data.data ?: arrayListOf())
                     }
                     if (it.data.next != null) {
                         loadHadiths(name, bookNumber, it.data.next)
