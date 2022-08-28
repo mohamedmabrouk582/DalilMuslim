@@ -19,4 +19,5 @@ dependencies {
     implementation 'com.github.HaarigerHarald:android-youtubeExtractor:master-SNAPSHOT'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.23'
     implementation 'com.google.firebase:firebase-analytics-ktx:21.1.0'
+    implementation 'com.google.firebase:firebase-firestore:24.2.2'
 }
