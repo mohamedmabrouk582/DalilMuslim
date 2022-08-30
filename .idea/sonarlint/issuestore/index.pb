@@ -48,10 +48,6 @@ ihadith_feature/src/main/java/com/mabrouk/hadith_feature/presentaion/ui/fragment
 dquran_feature/src/main/java/com/mabrouk/quran_listing_feature/presentation/views/ui/SurahFragment.kt,b/3/b357897695016d1f275b12cdbc4631fa860ea4e5
 •
 equran_feature/src/main/java/com/mabrouk/quran_listing_feature/presentation/workers/AudioDownloader.kt,1/d/1de0b85702fa1ef2f3b7048ecf41ee17244d8b13
-”
-dquran_feature/src/main/java/com/mabrouk/quran_listing_feature/presentation/views/ui/QuranFragment.kt,2/3/23e3d8db151344bf3f15221504502b742aa0ebbc
-S
-#.idea/sonarlint/issuestore/index.pb,9/f/9fe84ebb15faf917b7def6236dba604453cc61e0
 q
 Acore/src/main/java/com/mabrouk/core/utils/DataStorePreferences.kt,1/c/1c99d02ed6849dafad306e72c3e6d2f597b8b0da
 
