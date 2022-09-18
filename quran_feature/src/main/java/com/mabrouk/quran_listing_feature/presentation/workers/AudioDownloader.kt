@@ -74,7 +74,9 @@ class AudioDownloader @AssistedInject constructor(
                 }
                 is OnFailure -> result = it.throwable.message!!
                 is NoInternetConnect -> result = it.error
-                else -> {}
+                else -> {
+                    Log.d("TAG","")
+                }
             }
         }
         return result

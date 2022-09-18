@@ -13,7 +13,6 @@ import com.mabrouk.quran_listing_feature.presentation.utils.*
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.flow.firstOrNull
-import kotlin.math.log
 
 /**
  * @name Mohamed Mabrouk
