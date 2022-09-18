@@ -1,6 +1,7 @@
 package com.mabrouk.radio_quran_feature.presentaion.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -74,6 +75,9 @@ class QuranRadioFragment : Fragment() {
                     is RadioStates.LoadData -> {
                         adapter.items = it.data
                         viewBinding.progress.visibility = View.GONE
+                    }
+                    else -> {
+                        Log.d("Tag","else")
                     }
                 }
             }

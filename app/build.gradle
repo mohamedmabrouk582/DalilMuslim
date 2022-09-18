@@ -29,7 +29,7 @@ android {
         applicationId "com.mabrouk.dalilmuslim"
         minSdk 24
         targetSdk 32
-        versionCode 7
+        versionCode 8
         versionName "1.0.$versionCode"
         archivesBaseName = "dalilMuslim-$versionName"
 
@@ -54,6 +54,11 @@ android {
             debuggable true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        benchmark {
+            signingConfig signingConfigs.debug
+            matchingFallbacks = ['release']
+            debuggable false
         }
 
     }
