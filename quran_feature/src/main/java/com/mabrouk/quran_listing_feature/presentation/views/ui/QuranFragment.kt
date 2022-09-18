@@ -71,7 +71,9 @@ class QuranFragment : Fragment() {
                     is QuranStates.SearchResult -> {
                         Log.e("Error",it.query)
                     }
-                    else -> {}
+                    else -> {
+                        Log.d("TAG","")
+                    }
                 }
             }
         }

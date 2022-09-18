@@ -1,6 +1,7 @@
 package com.mabrouk.quran_listing_feature.presentation.workers
 
 import android.content.Context
+import android.util.Log
 import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.Data
@@ -12,6 +13,7 @@ import com.mabrouk.quran_listing_feature.presentation.utils.*
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.flow.firstOrNull
+import kotlin.math.log
 
 /**
  * @name Mohamed Mabrouk
@@ -50,7 +52,9 @@ class SurahDownloadWorker @AssistedInject constructor(
                 }
                 is OnFailure -> result = it.throwable.message!!
                 is NoInternetConnect -> result = it.error
-                else -> {}
+                else -> {
+                    Log.d("TAG","")
+                }
             }
         }
         return result
