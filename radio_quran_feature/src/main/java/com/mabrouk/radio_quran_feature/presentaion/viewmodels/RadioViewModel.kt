@@ -1,5 +1,6 @@
 package com.mabrouk.radio_quran_feature.presentaion.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.mabrouk.core.base.BaseViewModel
 import com.mabrouk.core.network.Result.*
@@ -40,7 +41,9 @@ class RadioViewModel @Inject constructor(
                             repository.saveRadios(it.data.radios)
                             dataStore.setBoolean(RADIOS_DOWNLOADS, true)
                         }
-                        else -> {}
+                        else -> {
+                            Log.d("YAG","")
+                        }
                     }
                 }
             }

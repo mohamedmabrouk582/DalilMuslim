@@ -92,16 +92,6 @@ D
 benchmark/.gitignore,5/3/53a20f00e1c2368bacac7bb59493fb18729c3e47
 ?
 settings.gradle,0/5/05efc8b1657769a27696d478ded1e95f38737233
-î
-dquran_feature/src/main/java/com/mabrouk/quran_listing_feature/presentation/views/ui/QuranFragment.kt,2/3/23e3d8db151344bf3f15221504502b742aa0ebbc
-ï
-equran_feature/src/main/java/com/mabrouk/quran_listing_feature/presentation/workers/AudioDownloader.kt,1/d/1de0b85702fa1ef2f3b7048ecf41ee17244d8b13
-ô
-iquran_feature/src/main/java/com/mabrouk/quran_listing_feature/presentation/workers/SurahDownloadWorker.kt,1/b/1b5915b8b4b841a0b7e7221ded0ed6e2adb66648
-ö
-jradio_quran_feature/src/main/java/com/mabrouk/radio_quran_feature/presentaion/viewmodels/RadioViewModel.kt,1/7/17c92571886bb3b219307af966fd0210b08012cd
-ê
-`history_feature/src/main/java/com/mabrouk/history_feature/peresntaion/workers/VideoDownloader.kt,6/8/68eba59846677feb1ed1a60c1ac120c5cc0049c1
 ä
 Zquran_feature/src/main/java/com/mabrouk/quran_listing_feature/domain/models/QuranReader.kt,3/b/3b10a000444486e042c4b99004a683768f2da6e2
 ó
