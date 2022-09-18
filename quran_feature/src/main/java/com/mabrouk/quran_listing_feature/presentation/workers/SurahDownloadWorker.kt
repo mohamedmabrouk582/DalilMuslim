@@ -50,6 +50,7 @@ class SurahDownloadWorker @AssistedInject constructor(
                 }
                 is OnFailure -> result = it.throwable.message!!
                 is NoInternetConnect -> result = it.error
+                else -> {}
             }
         }
         return result

@@ -40,6 +40,7 @@ class RadioViewModel @Inject constructor(
                             repository.saveRadios(it.data.radios)
                             dataStore.setBoolean(RADIOS_DOWNLOADS, true)
                         }
+                        else -> {}
                     }
                 }
             }
