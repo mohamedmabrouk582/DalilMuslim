@@ -2,7 +2,8 @@ package com.mabrouk.hadith_feature.presentaion.di
 
 import com.facebook.flipper.plugins.network.FlipperOkhttpInterceptor
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.mabrouk.hadith_feature.BuildConfig
+import com.mabrouk.core.network.getApiKey
+import com.mabrouk.core.network.getBaseUrlSunnah
 import com.mabrouk.hadith_feature.data.api.HadithApi
 import dagger.Module
 import dagger.Provides
@@ -32,7 +33,7 @@ class ApiModule {
     @Hadith
     fun getRetrofitSunnah(@Hadith client: OkHttpClient): Retrofit =
         Retrofit.Builder()
-            .baseUrl(BuildConfig.Base_Url_sunnah)
+            .baseUrl(getBaseUrlSunnah())
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
@@ -51,7 +52,7 @@ class ApiModule {
             .addInterceptor { chain ->
                 var request = chain.request()
                 request = request.newBuilder()
-                    .addHeader("X-API-Key", BuildConfig.API_KEY).build()
+                    .addHeader("X-API-Key", getApiKey()).build()
                 return@addInterceptor chain.proceed(request)
             }
             .build()

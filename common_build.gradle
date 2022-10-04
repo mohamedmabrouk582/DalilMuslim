@@ -6,20 +6,14 @@ apply from: '../common_test_build.gradle'
 
 
 android {
-    compileSdkVersion 32
+    compileSdkVersion 33
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         minSdkVersion 24
-        targetSdkVersion 32
+        targetSdkVersion 33
         multiDexEnabled true
 
-        buildConfigField ('String', 'BASE_URL', Base_Url)
-        buildConfigField ('String', 'API_KEY', API_KEY)
-        buildConfigField ('String', 'Base_Url_sunnah', Base_Url_sunnah)
-        buildConfigField ('String', 'Base_Url_tafseer', Base_Url_tafseer)
-        buildConfigField ('String', 'Audio_Url', Audio_Url)
-        buildConfigField ('String', 'Audio_Url2', Audio_Url2)
 
         javaCompileOptions {
             annotationProcessorOptions {

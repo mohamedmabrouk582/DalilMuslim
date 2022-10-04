@@ -3,7 +3,7 @@ package com.mabrouk.core.di
 import android.content.Context
 import com.facebook.flipper.plugins.network.FlipperOkhttpInterceptor
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.mabrouk.core.BuildConfig
+import com.mabrouk.core.network.getBaseUrl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,7 +23,7 @@ class ApiModule {
     @Singleton
     fun getQuranRetrofit(client: OkHttpClient): Retrofit =
         Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
+            .baseUrl(getBaseUrl())
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)

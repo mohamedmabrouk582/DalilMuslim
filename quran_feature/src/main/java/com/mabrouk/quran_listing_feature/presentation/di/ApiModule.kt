@@ -1,7 +1,8 @@
 package com.mabrouk.quran_listing_feature.presentation.di
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.mabrouk.quran_listing_feature.BuildConfig
+import com.mabrouk.core.network.getBaseUrl
+import com.mabrouk.core.network.getBaseUrlTafseer
 import com.mabrouk.quran_listing_feature.data.api.QuranApi
 import com.mabrouk.quran_listing_feature.data.api.TafseerApi
 import dagger.Module
@@ -35,7 +36,7 @@ class ApiModule {
     @Tafser
     fun getTafserRetrofit(client : OkHttpClient) : Retrofit =
         Retrofit.Builder()
-            .baseUrl(BuildConfig.Base_Url_tafseer)
+            .baseUrl(getBaseUrlTafseer())
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
@@ -45,7 +46,7 @@ class ApiModule {
     @Quran
     fun getQuranRetrofit(client : OkHttpClient) : Retrofit =
         Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
+            .baseUrl(getBaseUrl())
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)

@@ -18,6 +18,12 @@ android {
         consumerProguardFiles "consumer-rules.pro"
     }
 
+    externalNativeBuild {
+        ndkBuild {
+            path 'src/main/jni/Android.mk'
+        }
+    }
+
     hilt {
         enableTransformForLocalTests = true
     }

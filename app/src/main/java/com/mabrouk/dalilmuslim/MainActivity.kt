@@ -6,6 +6,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
+import com.mabrouk.core.network.loadLibrary
 import com.mabrouk.dalilmuslim.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,7 +19,7 @@ class MainActivity : LocalizationActivity() {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
-
+        loadLibrary()
         val navHostFragment: Fragment? =
             supportFragmentManager.findFragmentById(R.id.main_nav)
         navHostFragment?.findNavController()?.also { navController = it }

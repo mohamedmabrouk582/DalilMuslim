@@ -23,13 +23,13 @@ android {
             keyPassword System.getenv("BITRISEIO_ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD")
         }
     }
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.mabrouk.dalilmuslim"
         minSdk 24
-        targetSdk 32
-        versionCode 7
+        targetSdk 33
+        versionCode 8
         versionName "1.0.$versionCode"
         archivesBaseName = "dalilMuslim-$versionName"
 

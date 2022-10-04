@@ -11,8 +11,8 @@ import com.google.gson.Gson
 import com.mabrouk.core.di.IoDispatcher
 import com.mabrouk.core.network.Result.*
 import com.mabrouk.core.network.decimalFormat
+import com.mabrouk.core.network.getAudioUrl2
 import com.mabrouk.core.utils.FileUtils
-import com.mabrouk.quran_listing_feature.BuildConfig
 import com.mabrouk.quran_listing_feature.domain.usecases.AyaRepositoryUseCases
 import com.mabrouk.quran_listing_feature.presentation.utils.*
 import dagger.assisted.Assisted
@@ -66,20 +66,22 @@ class AudioDownloader @AssistedInject constructor(
 
     suspend fun downloadAya(url:String,sura:Int,aya:Int) : String?{
         var result:String? =null
-        repository.downloadAudio("${BuildConfig.Audio_Url2}$url/${sura.decimalFormat()}${aya.decimalFormat()}.mp3").collect {
+        repository.downloadAudio("${getAudioUrl2()}$url/${sura.decimalFormat()}${aya.decimalFormat()}.mp3").collect {
             when (it) {
                 is OnSuccess -> {
-                    //withContext(Dispatchers.IO){downloadTafsir(sura,aya,4)}
                     Log.d("save File", FileUtils.saveAudio(it.data,url, sura, aya).toString())
                 }
                 is OnFailure -> result = it.throwable.message!!
                 is NoInternetConnect -> result = it.error
+                else -> {
+                    Log.d("TAG","")
+                }
             }
         }
         return result
     }
 
-    suspend fun downloadTafsir(chapterId:Int, verseId:Int, count:Int) : String?{
+    private suspend fun downloadTafsir(chapterId:Int, verseId:Int, count:Int) : String?{
         var result:String? =null
         repository.requestTafsir(chapterId, verseId,count).collect{
             when(it){
@@ -93,12 +95,15 @@ class AudioDownloader @AssistedInject constructor(
                 }
                 is OnFailure -> result= it.throwable.message!!
                 is NoInternetConnect -> result = it.error
+                else -> {
+                    Log.d("TAG","")
+                }
             }
         }
         return result
     }
 
-    fun fromToObject(json:String?) : ArrayList<AudioDataPass>?{
+    private fun fromToObject(json:String?) : ArrayList<AudioDataPass>?{
         val type = object : TypeToken<ArrayList<AudioDataPass>>(){}.type
         return Gson().fromJson(json,type)
     }

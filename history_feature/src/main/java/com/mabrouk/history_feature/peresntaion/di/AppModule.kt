@@ -2,8 +2,6 @@ package com.mabrouk.history_feature.peresntaion.di
 
 import android.content.Context
 import androidx.room.Room
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.mabrouk.history_feature.BuildConfig
 import com.mabrouk.history_feature.data.db.StoryApi
 import com.mabrouk.history_feature.data.db.StoryDao
 import com.mabrouk.history_feature.data.db.StoryDb

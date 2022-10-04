@@ -1,6 +1,4 @@
 
-t
-Dcore/src/main/java/com/mabrouk/core/utils/ExpoNotificationManager.kt,3/b/3b62645bc113fb3189c45d9ea41f42b0154d2527
 ›
 khadith_feature/src/main/java/com/mabrouk/hadith_feature/presentaion/ui/fragments/HadithDetailBottomSheet.kt,b/5/b5e27141f917c88ff2d7f4867bc7305aefe7ba4b
 ’
@@ -13,8 +11,6 @@ mradio_quran_feature/src/main/java/com/mabrouk/radio_quran_feature/domain/reposi
 dradio_quran_feature/src/main/java/com/mabrouk/radio_quran_feature/data/repository/RadioRepository.kt,6/9/69642a3fcaa250fca0f70554e0349b43faecdf6e
 ‘
 aradio_quran_feature/src/main/java/com/mabrouk/radio_quran_feature/domain/usecases/RadioUseCase.kt,b/1/b1aa61198adf3a980ee2d957edf3acc950421409
-f
-6core/src/main/java/com/mabrouk/core/utils/FileUtils.kt,a/c/ac3862ef208371d539c71596f14c567b8591f7b5
 |
 Lhadith_feature/src/main/java/com/mabrouk/hadith_feature/data/db/HadithDao.kt,5/2/529e00bd11aca8e773424940a7711fb960e2e46a
 €
@@ -31,8 +27,6 @@ Yquran_feature/src/androidTest/java/com/mabrouk/quran_listing_feature/local/Qura
 [quran_feature/src/androidTest/java/com/mabrouk/quran_listing_feature/remote/TestQuranApi.kt,5/3/5379625046f220b044859e99e5e5519c296f49a3
 H
 common_test_build.gradle,7/9/79c1853d94ee8762ac14048ee9893d11ad3542bf
-Š
-Zquran_feature/src/main/java/com/mabrouk/quran_listing_feature/presentation/di/ApiModule.kt,7/b/7b6440f95a249ca1200ab33fbda8e8ca162fa337
 Z
 *quran_feature/src/main/AndroidManifest.xml,e/b/ebe730c35d7af76542e59b0ff1cc4df765496b9e
 ;
@@ -46,8 +40,6 @@ ihadith_feature/src/main/java/com/mabrouk/hadith_feature/presentaion/ui/fragment
 .gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
 ”
 dquran_feature/src/main/java/com/mabrouk/quran_listing_feature/presentation/views/ui/SurahFragment.kt,b/3/b357897695016d1f275b12cdbc4631fa860ea4e5
-•
-equran_feature/src/main/java/com/mabrouk/quran_listing_feature/presentation/workers/AudioDownloader.kt,1/d/1de0b85702fa1ef2f3b7048ecf41ee17244d8b13
 ”
 dquran_feature/src/main/java/com/mabrouk/quran_listing_feature/presentation/views/ui/QuranFragment.kt,2/3/23e3d8db151344bf3f15221504502b742aa0ebbc
 S
@@ -62,10 +54,6 @@ bhistory_feature/src/main/java/com/mabrouk/history_feature/domain/usecase/StoryR
 \history_feature/src/main/java/com/mabrouk/history_feature/data/repository/StoryRepository.kt,2/e/2e6b554f5bb8372b6a229f9ebce394bf2a027f0c
 `
 0radio_quran_feature/src/main/AndroidManifest.xml,9/0/90de9f2bff9834c09702b06cbc5b15b179aa2902
-A
-core/build.gradle,9/1/918ca359602392354123b7d3b63264baf7ea9dde
-—
-gquran_feature/src/main/java/com/mabrouk/quran_listing_feature/presentation/viewmodels/QuranViewModel.kt,f/9/f98b3a256d39f923fbc167e39c4f81ce4292b2b2
 P
  radio_quran_feature/build.gradle,f/4/f4ef8f5e0b845c9866fd039987a7a513d605bbb3
 J
@@ -94,5 +82,27 @@ fradio_quran_feature/src/main/java/com/mabrouk/radio_quran_feature/presentaion/u
 ^azkar_feature/src/main/java/com/mabrouk/azkar_feature/presentaion/viewmodels/AzkarViewModel.kt,e/3/e3e59264b7e0a9284c790ded055947bd5a510434
 b
 2app/src/main/java/com/mabrouk/dalilmuslim/MyApp.kt,1/8/18b1e68feb6b9dc115a1aefa599b396be36dd012
-i
-9app/src/main/java/com/mabrouk/dalilmuslim/MainActivity.kt,5/d/5d770008b5fbf6cfd0ad903fb0e695e53f5b6996
+–
+fquran_feature/src/main/java/com/mabrouk/quran_listing_feature/domain/usecases/AyaRepositoryUseCases.kt,f/6/f6a5c24dc88876e34734186a1d15854d2d0be1b6
+š
+jquran_feature/src/main/java/com/mabrouk/quran_listing_feature/domain/respository/QuranDefaultRepository.kt,c/8/c8c5eaa98138a62b5ecf65a501d6268a6837a04d
+œ
+lquran_feature/src/test/java/com/mabrouk/quran_listing_feature/presentation/viewmodels/FakeQuranRepository.kt,f/6/f68dc14f8aa45d5b2924226644328334381d97e8
+›
+kquran_feature/src/test/java/com/mabrouk/quran_listing_feature/presentation/viewmodels/SurahViewModelTest.kt,9/f/9f5d393ea6fb92d36823eb366cde564ae3fe6ccd
+“
+cquran_feature/src/androidTest/java/com/mabrouk/quran_listing_feature/remote/MockServerDispatcher.kt,7/f/7f1a0bbbfcc58a9a6c0ca6531e0caed4e0aa5342
+Œ
+\quran_feature/src/main/java/com/mabrouk/quran_listing_feature/presentation/utils/Constans.kt,1/f/1fd6b76ee2cb40023f4c3b8d20ce5f6f20440ebf
+—
+gquran_feature/src/main/java/com/mabrouk/quran_listing_feature/presentation/viewmodels/QuranViewModel.kt,f/9/f98b3a256d39f923fbc167e39c4f81ce4292b2b2
+•
+equran_feature/src/main/java/com/mabrouk/quran_listing_feature/presentation/views/ui/TafsirFragment.kt,9/1/9190ad4bf2a9220dbbf6b872538f1f0415a6d28d
+—
+gquran_feature/src/main/java/com/mabrouk/quran_listing_feature/presentation/viewmodels/SurahViewModel.kt,b/9/b92042685cc215640f9685301075ab0e17ec81b6
+e
+5core/src/main/java/com/mabrouk/core/utils/EventBus.kt,c/c/cc03afc005d1e69e6c84a06ae1edc785f9909122
+t
+Dcore/src/main/java/com/mabrouk/core/utils/ExpoNotificationManager.kt,3/b/3b62645bc113fb3189c45d9ea41f42b0154d2527
+P
+ app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
