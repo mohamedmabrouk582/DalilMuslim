@@ -6,6 +6,7 @@ plugins {
     id 'com.google.gms.google-services'
     id 'com.google.firebase.crashlytics'
     id 'com.google.firebase.appdistribution'
+    id "org.sonarqube" version "3.4.0.2513"
 }
 
 android {
@@ -131,4 +132,12 @@ kapt {
 }
 hilt {
     enableAggregatingTask = true
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "mohamedmabrouk582_DalilMuslim"
+        property "sonar.organization", "mohamedmabrouk582"
+        property "sonar.host.url", "https://sonarcloud.io"
+    }
 }
