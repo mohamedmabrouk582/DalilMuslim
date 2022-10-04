@@ -1,5 +1,6 @@
 package com.mabrouk.history_feature.peresntaion.view
 
+import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -30,6 +31,9 @@ class StoryFragment : Fragment(R.layout.story_fragment) {
     val viewModel: StoriesViewModel by viewModels()
     var selectedItem: Story? = null
     var youTubePlayer: YouTubePlayer? = null
+    companion object{
+        val sourceRectHint = Rect()
+    }
 
 
     private val adapter by lazy {
@@ -67,6 +71,7 @@ class StoryFragment : Fragment(R.layout.story_fragment) {
         lifecycle.addObserver(viewBinding.playerView)
         setVideoKey()
         handleStates()
+        viewBinding.playerView.getGlobalVisibleRect(sourceRectHint)
         viewBinding.downloadVideo.setOnClickListener {
             viewModel.downloadVideo(selectedItem!!)
         }

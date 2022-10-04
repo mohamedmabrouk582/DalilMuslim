@@ -42,6 +42,9 @@ class VideoDownloader @AssistedInject constructor (
                     FileUtils.saveVideo(it.data, storyEntity.title, storyEntity.ext)
                     result = Result.success()
                 }
+                else -> {
+                    Log.d("Tag","")
+                }
             }
         }
         return result

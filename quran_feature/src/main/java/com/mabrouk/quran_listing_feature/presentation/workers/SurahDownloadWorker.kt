@@ -1,6 +1,7 @@
 package com.mabrouk.quran_listing_feature.presentation.workers
 
 import android.content.Context
+import android.util.Log
 import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.Data
@@ -50,6 +51,9 @@ class SurahDownloadWorker @AssistedInject constructor(
                 }
                 is OnFailure -> result = it.throwable.message!!
                 is NoInternetConnect -> result = it.error
+                else -> {
+                    Log.d("TAG","")
+                }
             }
         }
         return result
