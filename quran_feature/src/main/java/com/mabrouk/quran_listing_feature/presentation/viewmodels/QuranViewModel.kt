@@ -12,6 +12,7 @@ import com.google.common.reflect.TypeToken
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.gson.Gson
 import com.mabrouk.core.base.BaseViewModel
+import com.mabrouk.core.network.Normalize
 import com.mabrouk.core.network.Result
 import com.mabrouk.core.network.toArrayList
 import com.mabrouk.core.utils.DataStorePreferences
@@ -26,6 +27,7 @@ import com.mabrouk.quran_listing_feature.presentation.workers.SurahDownloadWorke
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
+import java.text.Normalizer
 import javax.inject.Inject
 
 /**
@@ -140,7 +142,7 @@ class QuranViewModel @Inject constructor(
 
     val searchListener = object : SearchView.OnQueryTextListener {
         override fun onQueryTextSubmit(query: String?): Boolean {
-            _quranStates.value = QuranStates.SearchResult(query ?: "")
+            _quranStates.value = QuranStates.SearchResult((query?:"").Normalize())
             return false
         }
 
@@ -152,7 +154,7 @@ class QuranViewModel @Inject constructor(
                     .distinctUntilChanged()
                     .flowOn(Dispatchers.Default)
                     .collect {
-                        _quranStates.value = QuranStates.SearchResult(newText ?: "")
+                        _quranStates.value = QuranStates.SearchResult((newText?:"").Normalize())
                     }
             }
 

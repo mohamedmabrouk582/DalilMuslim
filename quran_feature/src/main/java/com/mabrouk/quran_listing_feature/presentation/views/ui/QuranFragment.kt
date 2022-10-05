@@ -69,6 +69,7 @@ class QuranFragment : Fragment() {
                         adapter.data = it.juzSurah
                     }
                     is QuranStates.SearchResult -> {
+                        Toast.makeText(requireContext(), it.query, Toast.LENGTH_SHORT).show()
                         Log.e("Error",it.query)
                     }
                     else -> {
