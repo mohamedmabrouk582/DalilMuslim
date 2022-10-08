@@ -1,10 +1,7 @@
 package com.mabrouk.quran_listing_feature.domain.usecases
 
 import com.mabrouk.core.network.Result
-import com.mabrouk.quran_listing_feature.domain.models.Juz
-import com.mabrouk.quran_listing_feature.domain.models.QuranReader
-import com.mabrouk.quran_listing_feature.domain.models.Surah
-import com.mabrouk.quran_listing_feature.domain.models.Verse
+import com.mabrouk.quran_listing_feature.domain.models.*
 import com.mabrouk.quran_listing_feature.domain.response.JuzResponse
 import com.mabrouk.quran_listing_feature.domain.response.SurahResponse
 import com.mabrouk.quran_listing_feature.domain.response.VersesResponse
@@ -60,7 +57,7 @@ class QuranRepositoryUseCase @Inject constructor(val repository: QuranDefaultRep
         repository.updateReader(readers)
     }
 
-     fun searchBySurah(query:String) : Flow<List<Surah>>{
+     fun searchBySurah(query:String) : Flow<List<SurahFts>>{
         return repository.searchBySurah(query)
     }
 }

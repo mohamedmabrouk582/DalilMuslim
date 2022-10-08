@@ -32,7 +32,7 @@ class HadithDetailBottomSheet : BottomSheetDialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         viewBinding = DataBindingUtil.inflate(inflater, R.layout.hadith_layout,container,false)
       return viewBinding.root
     }

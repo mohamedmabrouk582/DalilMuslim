@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext {
-        flipperVersion='0.149.0'
+        flipperVersion='0.164.0'
         soLoaderVersion='0.10.3'
     }
     dependencies {

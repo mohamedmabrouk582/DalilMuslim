@@ -33,6 +33,7 @@ class HadithFragment : Fragment(R.layout.hadith_layout_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewBinding = DataBindingUtil.bind(view)!!
+        viewBinding.vm = viewModel
         viewBinding.rcv.adapter = adapter
         viewBinding.rcv.layoutManager =
             GridLayoutManager(requireContext(), 3, GridLayoutManager.VERTICAL, false)

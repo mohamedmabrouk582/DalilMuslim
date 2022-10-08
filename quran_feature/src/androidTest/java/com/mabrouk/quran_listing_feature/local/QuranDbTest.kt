@@ -80,7 +80,7 @@ class QuranDbTest {
     @Test
     fun saveVerses() = runBlocking {
         dao.saveVerses(TestUtils.verses)
-        assertThat(dao.getSaveVerses(1).first()).isEqualTo(TestUtils.verses.filter { it.chapter_id == 1 }.toArrayList())
+        assertThat(dao.getSaveVerses(1).first()).isEqualTo(TestUtils.verses.filter { it.chapterId == 1 }.toArrayList())
     }
 
     @Test
@@ -121,7 +121,7 @@ class QuranDbTest {
     @Test
     fun updateSurah() = runBlocking {
         saveSurahs()
-        val surah = Surah(1, revelation_place = "text")
+        val surah = Surah(1, revelationPlace = "text")
         dao.updateSurah(surah)
         val items = dao.getSavedSurah().first()
         assertThat(surah).isIn(items)

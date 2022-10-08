@@ -33,10 +33,23 @@ import javax.inject.Inject
 class QuranFragment : Fragment() {
     lateinit var viewBinding: QuranFragmentLayoutBinding
     private val viewModel: QuranViewModel by activityViewModels()
+    var isSearch = false
 
     @Inject
     lateinit var eventBus: EventBus
-    private val adapter by lazy { QuranAdapter(::onJuzDownload, ::onSurahClick) }
+    private val adapter by lazy { QuranAdapter(::onJuzDownload, ::onSurahClick, ::onSurahDownload) }
+    private val searchAdapter by lazy {
+        QuranAdapter(::onJuzDownload, ::onSurahClick) { juzSurah, position ->
+            isSearch = true
+            downloadSurah(juzSurah, position)
+        }
+    }
+
+    private fun onSurahDownload(juzSurah: JuzSurah, position: Int) {
+        isSearch = false
+        downloadSurah(juzSurah, position)
+    }
+
     private val loader by lazy { requireContext().loader(eventBus.receiveType(), lifecycleScope) }
 
     override fun onCreateView(
@@ -62,23 +75,27 @@ class QuranFragment : Fragment() {
             viewModel.quranStates.collect {
                 when (it) {
                     is QuranStates.Error -> {
-                        Log.e("Error",it.error)
+                        Log.e("Error", it.error)
                     }
                     is QuranStates.LoadJuzSurahs -> {
                         viewModel.surahListDownloads()
                         adapter.data = it.juzSurah
                     }
                     is QuranStates.SearchResult -> {
-                        Toast.makeText(requireContext(), it.query, Toast.LENGTH_SHORT).show()
-                        Log.e("Error",it.query)
+                        searchAdapter.data = it.juzSurah
+                        viewBinding.quranRcv.adapter = searchAdapter
+                    }
+                    is QuranStates.ClearSearch -> {
+                        viewBinding.quranRcv.adapter = adapter
                     }
                     else -> {
-                        Log.d("TAG","")
+                        Log.d("TAG", "")
                     }
                 }
             }
         }
     }
+
 
     private fun onSurahClick(juzSurah: JuzSurah) {
         lifecycleScope.launch {
@@ -99,26 +116,90 @@ class QuranFragment : Fragment() {
         }
     }
 
+    /**
+     * Download Surah
+     * @param SurahId
+     * @param Position
+     */
+    private fun downloadSurah(juzSurah: JuzSurah, position: Int) {
+        loader.show()
+        viewModel.downloadJuz(arrayListOf(juzSurah.sura?.id ?: 0), requireContext()).observe(this) {
+            when (it.state) {
+                WorkInfo.State.SUCCEEDED -> {
+                    lifecycleScope.launch {
+                        viewModel.updateSurah(viewModel.surahs[(juzSurah.sura?.id ?: 0) - 1].apply {
+                            isDownload = true
+                        })
+                        val juzDownloaded = juzSurah.verseMap?.keys?.filter { surahId ->
+                            viewModel.surahs.find { it.id == surahId.toInt() }?.isDownload == false
+                        }.isNullOrEmpty()
+                        if (juzDownloaded) {
+                            updateJuz(juzSurah)
+                        }
+                        updateAdapter(position)
+                    }
+                    loader.dismiss()
+                }
+                WorkInfo.State.FAILED -> {
+                    loader.dismiss()
+                }
+                else -> {
+                    Log.d(Constants.DESTINATION_ARGS, it.state.name)
+                }
+
+            }
+        }
+    }
+
+    private fun updateAdapter(position: Int) {
+        if (isSearch){
+            searchAdapter.data[position].sura?.isDownload = true
+        }
+
+        searchAdapter.update(position)
+        adapter.update(position)
+    }
+
+    private suspend fun updateJuz(juzSurah: JuzSurah) {
+        viewModel.updateJuz(
+            Juz(
+                juzSurah.juzNum,
+                juzSurah.juzNum,
+                juzSurah.verseMap,
+                true
+            )
+        )
+    }
+
+    /**
+     * Download All Surah At Juz
+     * @param JuzSurah
+     * @param Position
+     */
     private fun onJuzDownload(item: JuzSurah, postion: Int) {
         loader.show()
         val ids = item.verseIds.filter { verseId -> !viewModel.surahs[verseId - 1].isDownload }
         viewModel.downloadJuz(ids, requireContext()).observe(this) {
-            if (it.state == WorkInfo.State.SUCCEEDED) {
-                lifecycleScope.launch {
-                    item.isDownload = true
-                    adapter.update(postion)
-                    ids.forEach { suraId ->
-                        viewModel.updateSurah(viewModel.surahs[suraId - 1].apply {
-                            isDownload = true
-                        })
+            when (it.state) {
+                WorkInfo.State.SUCCEEDED -> {
+                    lifecycleScope.launch {
+                        item.isDownload = true
+                        updateAdapter(postion)
+                        ids.forEach { suraId ->
+                            viewModel.updateSurah(viewModel.surahs[suraId - 1].apply {
+                                isDownload = true
+                            })
+                        }
+                        viewModel.updateJuz(Juz(item.juzNum, item.juzNum, item.verseMap, true))
+                        loader.dismiss()
                     }
-                    viewModel.updateJuz(Juz(item.juzNum, item.juzNum, item.verseMap, true))
+                }
+                WorkInfo.State.FAILED -> {
                     loader.dismiss()
                 }
-            } else if (it.state == WorkInfo.State.FAILED) {
-                loader.dismiss()
-            } else {
-                Log.d(Constants.DESTINATION_ARGS , it.state.name)
+                else -> {
+                    Log.d(Constants.DESTINATION_ARGS, it.state.name)
+                }
             }
         }
 

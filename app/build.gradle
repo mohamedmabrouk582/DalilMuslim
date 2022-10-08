@@ -30,7 +30,7 @@ android {
         applicationId "com.mabrouk.dalilmuslim"
         minSdk 24
         targetSdk 33
-        versionCode 8
+        versionCode 9
         versionName "1.0.$versionCode"
         archivesBaseName = "dalilMuslim-$versionName"
 
