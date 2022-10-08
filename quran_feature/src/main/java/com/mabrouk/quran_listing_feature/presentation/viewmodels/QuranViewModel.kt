@@ -12,14 +12,10 @@ import com.google.common.reflect.TypeToken
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.gson.Gson
 import com.mabrouk.core.base.BaseViewModel
-import com.mabrouk.core.network.Normalize
 import com.mabrouk.core.network.Result
 import com.mabrouk.core.network.toArrayList
 import com.mabrouk.core.utils.DataStorePreferences
-import com.mabrouk.quran_listing_feature.domain.models.Juz
-import com.mabrouk.quran_listing_feature.domain.models.QuranReader
-import com.mabrouk.quran_listing_feature.domain.models.Surah
-import com.mabrouk.quran_listing_feature.domain.models.Verse
+import com.mabrouk.quran_listing_feature.domain.models.*
 import com.mabrouk.quran_listing_feature.domain.usecases.QuranRepositoryUseCase
 import com.mabrouk.quran_listing_feature.presentation.utils.*
 import com.mabrouk.quran_listing_feature.presentation.states.QuranStates
@@ -27,7 +23,6 @@ import com.mabrouk.quran_listing_feature.presentation.workers.SurahDownloadWorke
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
-import java.text.Normalizer
 import javax.inject.Inject
 
 /**
@@ -50,7 +45,6 @@ class QuranViewModel @Inject constructor(
     fun loadData() {
         viewModelScope.launch {
             if (dataStore.getBoolean(SURAH_LIST_DOWNLOADS)) {
-
                 viewModelScope.launch {
                     repository.getSavedJuz().collect {
                         juzs = it.toArrayList()
@@ -68,19 +62,15 @@ class QuranViewModel @Inject constructor(
                         }
                     }
                 }
-
-
             } else {
                 requestJuz()
                 requestSurahs()
             }
         }
-
         getReaders()
-
     }
 
-     fun requestJuz() {
+    fun requestJuz() {
         viewModelScope.launch {
             repository.requestJuz().collect {
                 when (it) {
@@ -110,7 +100,7 @@ class QuranViewModel @Inject constructor(
         }
     }
 
-     fun requestSurahs() {
+    fun requestSurahs() {
         viewModelScope.launch {
             repository.requestSurahs().collect {
                 when (it) {
@@ -142,7 +132,13 @@ class QuranViewModel @Inject constructor(
 
     val searchListener = object : SearchView.OnQueryTextListener {
         override fun onQueryTextSubmit(query: String?): Boolean {
-            _quranStates.value = QuranStates.SearchResult((query?:"").Normalize())
+            viewModelScope.launch {
+                if (query.isNullOrEmpty()) {
+                    _quranStates.value = QuranStates.ClearSearch
+                } else repository.searchBySurah(query).first().let {
+                    mapSearchData(it)
+                }
+            }
             return false
         }
 
@@ -154,13 +150,60 @@ class QuranViewModel @Inject constructor(
                     .distinctUntilChanged()
                     .flowOn(Dispatchers.Default)
                     .collect {
-                        _quranStates.value = QuranStates.SearchResult((newText?:"").Normalize())
+                        if (newText.isNullOrEmpty()) {
+                            _quranStates.value = QuranStates.ClearSearch
+                        } else repository.searchBySurah((newText)).first().let {
+                            mapSearchData(it)
+                        }
                     }
             }
 
             return false
         }
 
+    }
+
+    private fun mapSearchData(items: List<SurahFts>) {
+        if (items.isEmpty()) return
+        val data: ArrayList<JuzSurah> = ArrayList()
+        juzs.forEach {
+            val ids = arrayListOf<Int>()
+            val surahs: ArrayList<JuzSurah> = ArrayList()
+            it.verseMapping?.keys?.forEach { key ->
+                items.find { it.id == key.toInt() }?.apply {
+                    ids.add(this.id)
+                    surahs.add(
+                        JuzSurah(
+                            it.juzNumber,
+                            arrayListOf(),
+                            it.verseMapping,
+                            Surah(
+                                id = this.id,
+                                nameArabic = this.nameArabic,
+                                nameComplex = this.nameComplex,
+                                nameSimple = this.nameSimple,
+                                isDownload = this.isDownload
+                            ),
+                            it.verseMapping[key],
+                            it.isDownload
+                        )
+                    )
+                }
+            }
+
+            if (ids.isNotEmpty()) data.add(JuzSurah(
+                it.juzNumber,
+                it.verseMapping?.keys?.map { it.toInt() } ?: arrayListOf(),
+                it.verseMapping,
+                null,
+                null,
+                true
+            ))
+            data.addAll(surahs)
+        }
+        _quranStates.value = QuranStates.SearchResult(
+            data
+        )
     }
 
     fun surahListDownloads(bool: Boolean = true) {
@@ -194,7 +237,7 @@ class QuranViewModel @Inject constructor(
         return repository.getSavedVerses(id)
     }
 
-    fun getReaders() {
+    private fun getReaders() {
         viewModelScope.launch {
             if (!dataStore.getBoolean(READERS_DOWNLOADS)) {
                 remoteConfig.fetchAndActivate()

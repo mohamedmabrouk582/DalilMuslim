@@ -26,5 +26,5 @@ interface QuranDefaultRepository {
     suspend fun updateSura(sura: Surah)
     suspend fun insertReaders(readers:ArrayList<QuranReader>)
     suspend fun updateReader(readers:QuranReader)
-    fun searchBySurah(query:String) : Flow<List<Surah>>
+    fun searchBySurah(query:String) : Flow<List<SurahFts>>
 }

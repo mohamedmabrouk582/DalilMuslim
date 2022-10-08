@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "a51f0b708b076509487b3cd8bbd6f675",
+    "identityHash": "2d91b1a3404e421d619ecf48f71855a1",
     "entities": [
       {
         "tableName": "Surah",
@@ -337,12 +337,77 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "ftsVersion": "FTS4",
+        "ftsOptions": {
+          "tokenizer": "simple",
+          "tokenizerArgs": [],
+          "contentTable": "Surah",
+          "languageIdColumnName": "",
+          "matchInfo": "FTS4",
+          "notIndexedColumns": [],
+          "prefixSizes": [],
+          "preferredOrder": "ASC"
+        },
+        "contentSyncTriggers": [
+          "CREATE TRIGGER IF NOT EXISTS room_fts_content_sync_surah_fts_BEFORE_UPDATE BEFORE UPDATE ON `Surah` BEGIN DELETE FROM `surah_fts` WHERE `docid`=OLD.`rowid`; END",
+          "CREATE TRIGGER IF NOT EXISTS room_fts_content_sync_surah_fts_BEFORE_DELETE BEFORE DELETE ON `Surah` BEGIN DELETE FROM `surah_fts` WHERE `docid`=OLD.`rowid`; END",
+          "CREATE TRIGGER IF NOT EXISTS room_fts_content_sync_surah_fts_AFTER_UPDATE AFTER UPDATE ON `Surah` BEGIN INSERT INTO `surah_fts`(`docid`, `id`, `nameComplex`, `nameArabic`, `nameSimple`, `isDownload`, `fromTo`) VALUES (NEW.`rowid`, NEW.`id`, NEW.`nameComplex`, NEW.`nameArabic`, NEW.`nameSimple`, NEW.`isDownload`, NEW.`fromTo`); END",
+          "CREATE TRIGGER IF NOT EXISTS room_fts_content_sync_surah_fts_AFTER_INSERT AFTER INSERT ON `Surah` BEGIN INSERT INTO `surah_fts`(`docid`, `id`, `nameComplex`, `nameArabic`, `nameSimple`, `isDownload`, `fromTo`) VALUES (NEW.`rowid`, NEW.`id`, NEW.`nameComplex`, NEW.`nameArabic`, NEW.`nameSimple`, NEW.`isDownload`, NEW.`fromTo`); END"
+        ],
+        "tableName": "surah_fts",
+        "createSql": "CREATE VIRTUAL TABLE IF NOT EXISTS `${TABLE_NAME}` USING FTS4(`id` INTEGER NOT NULL, `nameComplex` TEXT, `nameArabic` TEXT, `nameSimple` TEXT, `isDownload` INTEGER NOT NULL, `fromTo` TEXT, content=`Surah`)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nameComplex",
+            "columnName": "nameComplex",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nameArabic",
+            "columnName": "nameArabic",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nameSimple",
+            "columnName": "nameSimple",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "isDownload",
+            "columnName": "isDownload",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fromTo",
+            "columnName": "fromTo",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a51f0b708b076509487b3cd8bbd6f675')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2d91b1a3404e421d619ecf48f71855a1')"
     ]
   }
 }

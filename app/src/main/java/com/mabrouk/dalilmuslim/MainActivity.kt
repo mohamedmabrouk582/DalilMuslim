@@ -56,7 +56,7 @@ class MainActivity : LocalizationActivity() {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             PictureInPictureParams.Builder()
                 .setSourceRectHint(StoryFragment.sourceRectHint)
-                .setAspectRatio(Rational(20, 14))
+                .setAspectRatio(Rational(2, 1))
                 .setAutoEnterEnabled(true)
                 .build()
         } else null

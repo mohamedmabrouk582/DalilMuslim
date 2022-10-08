@@ -82,8 +82,8 @@ class QuranRepository @Inject constructor(
         dao.updateReader(readers)
     }
 
-    override  fun searchBySurah(query: String): Flow<List<Surah>> {
-        return dao.searchByAtSurah(query)
+    override  fun searchBySurah(query: String): Flow<List<SurahFts>> {
+        return dao.searchByAtSurah(query.let { "*$it*" })
     }
 
 }

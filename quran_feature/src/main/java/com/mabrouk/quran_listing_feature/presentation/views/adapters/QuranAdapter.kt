@@ -11,7 +11,8 @@ import com.mabrouk.quran_listing_feature.domain.models.JuzSurah
 
 class QuranAdapter(
     val onJuzDownload: (item: JuzSurah, postion: Int) -> Unit,
-    val onSurahClick: (item: JuzSurah) -> Unit
+    val onSurahClick: (item: JuzSurah) -> Unit ,
+    val onSurahDownload : (item : JuzSurah, position: Int) -> Unit
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var data: ArrayList<JuzSurah> = ArrayList()
@@ -68,7 +69,7 @@ class QuranAdapter(
             viewBinding.downloadImg.setOnClickListener {
                 onJuzDownload(
                     item,
-                    adapterPosition
+                    absoluteAdapterPosition
                 )
             }
         }
@@ -82,6 +83,7 @@ class QuranAdapter(
             viewBinding.juz = item
             viewBinding.executePendingBindings()
             viewBinding.root.setOnClickListener { onSurahClick(item) }
+            viewBinding.downloadImg.setOnClickListener{onSurahDownload(item,absoluteAdapterPosition)}
         }
 
     }

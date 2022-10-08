@@ -12,7 +12,8 @@ import com.mabrouk.quran_listing_feature.domain.models.*
         Juz::class,
         Verse::class,
         TafsirAya::class,
-        QuranReader::class
+        QuranReader::class ,
+        SurahFts::class
     ],
     version = 1,
     exportSchema = true

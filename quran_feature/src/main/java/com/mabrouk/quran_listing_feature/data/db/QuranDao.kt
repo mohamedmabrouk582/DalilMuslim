@@ -57,7 +57,7 @@ interface QuranDao {
     fun getSavedTafsir(key:String) : Flow<List<TafsirAya>>
 
 
-    @Query("select * from Surah where nameArabic LIKE '%' || :search || '%' ")
-    fun searchByAtSurah(search:String) : Flow<List<Surah>>
+    @Query("select * from surah_fts where surah_fts MATCH :search")
+    fun searchByAtSurah(search:String) : Flow<List<SurahFts>>
 
 }
