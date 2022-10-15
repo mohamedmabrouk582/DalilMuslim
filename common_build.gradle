@@ -84,104 +84,79 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.6.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.multidex:multidex:2.0.1'
-    implementation 'androidx.recyclerview:recyclerview:1.2.1'
-    implementation 'androidx.cardview:cardview:1.0.0'
-    implementation "androidx.datastore:datastore-preferences:1.0.0"
+    implementation libs.androidCore
+    implementation libs.appcompat
+    implementation libs.constraintlayout
+    implementation libs.materialDesgin
+    implementation libs.multidex
+    implementation libs.recyclerview
+    implementation libs.cardview
+    implementation libs.datastore_preferences
+    implementation libs.coordinatorlayout
+    implementation libs.legacy
 
 
     //glide
-    implementation 'com.github.bumptech.glide:glide:4.12.0'
-    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    kapt 'com.github.bumptech.glide:compiler:4.12.0'
+    implementation libs.glide
+    kapt libs.glideKapt
 
 
     //retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
-    implementation 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
-    implementation 'com.squareup.okhttp3:okhttp:4.9.3'
-    implementation 'com.google.android.flexbox:flexbox:3.0.0'
-    debugImplementation 'com.readystatesoftware.chuck:library:1.1.0'
-    releaseImplementation 'com.readystatesoftware.chuck:library-no-op:1.1.0'
+    implementation libs.retrofit
+    implementation libs.flexbox
 
     //paging
-    implementation("androidx.paging:paging-runtime:3.1.1")
+    implementation  libs.paging
 
     //security
-    implementation "androidx.security:security-crypto:1.1.0-alpha03"
+    implementation libs.securityCrypto
 
 
 
     //shimmer
-    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+    implementation libs.shimmer
    // implementation 'com.github.sharish:ShimmerRecyclerView:v1.3'
 
 
     //work manger
-    implementation "androidx.work:work-runtime-ktx:2.7.1"
-    androidTestImplementation "androidx.work:work-testing:2.7.1"
+    implementation libs.workManager
+    androidTestImplementation libs.workManagerTest
 
     //permission
-    implementation 'com.karumi:dexter:6.2.3'
+    implementation libs.permission
 
     //coroutines
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2'
+    implementation libs.coroutines
 
     //dagger hilt
-    implementation "com.google.dagger:hilt-android:2.43.2"
-   // implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03'
-    implementation 'javax.inject:javax.inject:1'
-    implementation 'androidx.hilt:hilt-work:1.0.0'
-    kapt 'androidx.hilt:hilt-compiler:1.0.0'
-    kapt "com.google.dagger:hilt-android-compiler:2.43.2"
+    implementation libs.daggerHilt
+    kapt libs.daggerHiltKapt
 
     // lifecycle
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
-    implementation 'androidx.lifecycle:lifecycle-common-java8:2.5.1'
-    implementation 'androidx.lifecycle:lifecycle-reactivestreams-ktx:2.5.1'
-    implementation 'androidx.activity:activity-ktx:1.5.1'
+    implementation libs.lifecycle
 
     //room
-    implementation "androidx.room:room-runtime:2.4.3"
-    implementation "androidx.room:room-ktx:2.4.3"
-    kapt "androidx.room:room-compiler:2.4.3"
-    testImplementation "androidx.room:room-testing:2.4.3"
+    implementation libs.room
+    kapt libs.roomKapt
+    testImplementation libs.roomTest
     //  kapt "android.arch.persistence.room:compiler:1.1.1"
 
     //navigation
-    implementation "androidx.navigation:navigation-fragment-ktx:2.5.1"
-    implementation "androidx.navigation:navigation-ui-ktx:2.5.1"
-    implementation "androidx.navigation:navigation-dynamic-features-fragment:2.5.1"
-    androidTestImplementation "androidx.navigation:navigation-testing:2.5.1"
+    implementation libs.navigation
+    androidTestImplementation libs.navigationTest
 
     //exoplayer
-    implementation "com.google.android.exoplayer:exoplayer:2.18.1"
-    implementation 'com.google.android.exoplayer:exoplayer-smoothstreaming:2.18.1'
-    implementation 'com.google.android.exoplayer:exoplayer-dash:2.18.1'
+    implementation libs.exoplayer
 
-    implementation 'com.facebook.stetho:stetho:1.6.0'
-    implementation 'com.facebook.stetho:stetho-okhttp3:1.6.0'
+    compileOnly libs.jsr250
+    debugImplementation libs.leakcanary
 
-    compileOnly 'javax.annotation:jsr250-api:1.0'
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.8.1'
+    implementation libs.lottie
 
-    implementation "com.airbnb.android:lottie:5.0.3"
-
-    implementation 'com.google.firebase:firebase-crashlytics:18.2.12'
+    implementation libs.firebaseCrashlytics
 
     //flipper
-    implementation "com.facebook.flipper:flipper:$flipperVersion"
-    implementation "com.facebook.soloader:soloader:$soLoaderVersion"
-    implementation "com.facebook.flipper:flipper-network-plugin:$flipperVersion"
+    implementation libs.flipper
 }
 
 
