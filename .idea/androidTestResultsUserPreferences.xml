@@ -42,6 +42,21 @@
             </AndroidTestResultsTableState>
           </value>
         </entry>
+        <entry key="491032521">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="OPPO&#10; CPH2113" value="120" />
+                  <entry key="Pixel_4_API_27" value="120" />
+                  <entry key="Tests" value="360" />
+                  <entry key="adb-df976793-sxnLLl._adb-tls-connect._tcp." value="120" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
       </map>
     </option>
   </component>
