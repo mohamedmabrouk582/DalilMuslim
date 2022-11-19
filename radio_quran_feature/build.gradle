@@ -4,7 +4,7 @@ plugins {
     id 'com.google.gms.google-services'
     id 'com.google.firebase.crashlytics'
 }
-apply from: '../common_build.gradle'
+apply from: '../common_compose_build.gradle'
 
 
 android {

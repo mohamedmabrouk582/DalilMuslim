@@ -1,0 +1,170 @@
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-parcelize'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+apply from: '../common_test_build.gradle'
+
+
+android {
+    compileSdkVersion 33
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        minSdkVersion 24
+        targetSdkVersion 33
+        multiDexEnabled true
+
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        releaseDebug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11.toString()
+       // useIR = true
+    }
+
+    lint {
+        abortOnError false
+    }
+
+    buildFeatures {
+        dataBinding true
+        viewBinding true
+    }
+
+    configurations {
+        androidTestImplementation {
+            exclude group: 'io.mockk', module: 'mockk-agent-jvm'
+        }
+    }
+
+//    configurations.all {
+//        resolutionStrategy {
+//            exclude group: "org.jetbrains.kotlinx", module: "kotlinx-coroutines-debug"
+//        }
+//    }
+
+    testOptions {
+        animationsDisabled = true
+//        unitTests.all {
+//            useJUnitPlatform() // <--- this is the important part
+//        }
+    }
+
+    hilt {
+        enableTransformForLocalTests = true
+    }
+
+}
+
+dependencies {
+    implementation libs.androidCore
+    implementation libs.appcompat
+    implementation libs.constraintlayout
+    implementation libs.materialDesgin
+    implementation libs.multidex
+    implementation libs.recyclerview
+    implementation libs.cardview
+    implementation libs.datastore_preferences
+    implementation libs.coordinatorlayout
+    implementation libs.legacy
+
+
+    //glide
+    implementation libs.glide
+    kapt libs.glideKapt
+
+
+    //retrofit
+    implementation libs.retrofit
+    implementation libs.flexbox
+
+    //paging
+    implementation  libs.paging
+
+    //security
+    implementation libs.securityCrypto
+
+
+
+    //shimmer
+    implementation libs.shimmer
+   // implementation 'com.github.sharish:ShimmerRecyclerView:v1.3'
+
+
+    //work manger
+    implementation libs.workManager
+    androidTestImplementation libs.workManagerTest
+
+    //permission
+    implementation libs.permission
+
+    //coroutines
+    implementation libs.coroutines
+
+    //dagger hilt
+    implementation libs.daggerHilt
+    kapt libs.daggerHiltKapt
+
+    // lifecycle
+    implementation libs.lifecycle
+
+    //room
+    implementation libs.room
+    kapt libs.roomKapt
+    testImplementation libs.roomTest
+    //  kapt "android.arch.persistence.room:compiler:1.1.1"
+
+    //navigation
+    implementation libs.navigation
+    androidTestImplementation libs.navigationTest
+
+    //exoplayer
+    implementation libs.exoplayer
+
+    compileOnly libs.jsr250
+    debugImplementation libs.leakcanary
+
+    implementation libs.lottie
+
+    implementation libs.firebaseCrashlytics
+
+    //flipper
+    implementation libs.flipper
+}
+
+
+
+kapt {
+    correctErrorTypes = true
+}
+
+hilt {
+    enableAggregatingTask = true
+}
