@@ -3,6 +3,7 @@ package com.mabrouk.quran_listing_feature.presentation.views.ui
 import android.Manifest
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.Settings
@@ -10,6 +11,8 @@ import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.ListPopupWindow
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.widget.NestedScrollView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -62,6 +65,7 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener,
     private val quranViewModel: QuranViewModel by activityViewModels()
     var playbackPosition: Long = 0
     private val adapter: AyaAdapter by lazy { AyaAdapter(::onAyaClick) }
+    lateinit var activityForResultLauncher: ActivityResultLauncher<Intent?>
 
     private val popAdapter: AyaPoupAdapter by lazy {
         AyaPoupAdapter(
@@ -80,16 +84,26 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener,
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activityForResultLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+                getReaders()
+            }
         DataBindingUtil.bind<SurahFragmentLayoutBinding>(view)?.apply { viewBinding = this }
         hideAudio()
         viewBinding.ayatRcv.adapter = adapter
         initPlayer()
         viewBinding.isPlaying = player.isPlaying
-        arguments?.getParcelable<Surah>(VERSES_LIST)?.apply {
-            viewBinding.surah = this
-            this@SurahFragment.sura = this
-            loadSurah()
-        }
+        (if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+            arguments?.getParcelable(
+                VERSES_LIST,
+                Surah::class.java
+            ) else arguments?.getParcelable(VERSES_LIST))
+            ?.apply {
+                viewBinding.surah = this
+                this@SurahFragment.sura = this
+                loadSurah()
+            }
+
 
         viewBinding.scroll.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
             if (scrollY > oldScrollY) {
@@ -225,7 +239,7 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener,
                 sura?.apply {
                     downloadSurahVerses(this)
                 }
-            }else{
+            } else {
                 viewBinding.loaderView.visibility = View.GONE
                 adapter.verses = ArrayList(data)
                 checkPermission()
@@ -234,9 +248,9 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener,
         }
     }
 
-    private fun downloadSurahVerses(surah: Surah){
-        quranViewModel.downloadJuz(listOf(surah.id),requireContext())
-            .observe(viewLifecycleOwner){
+    private fun downloadSurahVerses(surah: Surah) {
+        quranViewModel.downloadJuz(listOf(surah.id), requireContext())
+            .observe(viewLifecycleOwner) {
                 if (it.state == WorkInfo.State.SUCCEEDED) {
                     lifecycleScope.launch {
                         quranViewModel.updateSurah(surah.apply {
@@ -249,11 +263,14 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener,
     }
 
     private fun checkPermission() {
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R && !Environment.isExternalStorageManager()) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && !Environment.isExternalStorageManager()) {
             val permissionIntent = Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION)
-            startActivity(permissionIntent)
+            activityForResultLauncher.launch(permissionIntent)
         }
+        getReaders()
+    }
 
+    private fun getReaders() {
         surahViewModel.getReader {
             if (it.versesIds != null && it.versesIds?.contains(sura?.id?.toLong()) == true) {
                 prepareAudios()
@@ -267,7 +284,6 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener,
                     .check()
             }
         }
-
     }
 
     private fun handleStates() {
@@ -277,7 +293,7 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener,
                     is SurahStates.DownloadVerse -> downloadVerse(it.workInfo)
                     is SurahStates.UpdateReader -> updateReader()
                     else -> {
-                        Log.d("testing",it.toString())
+                        Log.d("testing", it.toString())
                     }
                 }
             }
@@ -322,7 +338,7 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener,
                     loader.dismiss()
                 }
                 else -> {
-                    Log.d("testing","")
+                    Log.d("testing", "")
                 }
             }
         }
