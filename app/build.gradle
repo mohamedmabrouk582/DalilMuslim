@@ -97,6 +97,7 @@ dependencies {
     api project(":hadith_feature")
     api project(":quran_feature")
     api project(":radio_quran_feature")
+    api project(":prayerTime")
     implementation libs.appcompat
     implementation libs.constraintlayout
     implementation libs.materialDesgin
