@@ -8,7 +8,7 @@ apply from: '../common_build.gradle'
 
 
 android {
-    namespace 'com.example.prayertime'
+    namespace 'com.mabrouk.prayertime'
     defaultConfig {
         testInstrumentationRunner "com.mabrouk.quran_listing_feature.HiltTestRunner"
         consumerProguardFiles "consumer-rules.pro"

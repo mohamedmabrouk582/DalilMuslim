@@ -22,13 +22,11 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.akexorcist.localizationactivity.ui.LocalizationActivity
-import com.example.prayertime.presentaion.view.SalatActivity
-import com.example.prayertime.presentaion.viewmodels.PrayerViewModel
+import com.mabrouk.prayertime.presentaion.viewmodels.PrayerViewModel
 import com.mabrouk.core.utils.*
 import com.mabrouk.dalilmuslim.databinding.ActivityMainBinding
 import com.mabrouk.history_feature.peresntaion.view.StoryFragment
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.*
 
 @AndroidEntryPoint
 class MainActivity : LocalizationActivity() {
