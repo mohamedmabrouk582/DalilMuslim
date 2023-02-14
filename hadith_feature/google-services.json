@@ -8,35 +8,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:641311743165:android:a8321e2adb2a7ba2172bd4",
-        "android_client_info": {
-          "package_name": "com.example.prayertime"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "641311743165-4uukkimd2udi53upot7jvvgobdtqht8a.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAoUpbkOFO5lr1G_ZHK6Ot3iV90Hfjsi1I"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "641311743165-4uukkimd2udi53upot7jvvgobdtqht8a.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:641311743165:android:31a34c10616c3640172bd4",
         "android_client_info": {
           "package_name": "com.mabrouk.azkar_feature"
@@ -156,6 +127,35 @@
         "mobilesdk_app_id": "1:641311743165:android:43f8554c9a4d51bc172bd4",
         "android_client_info": {
           "package_name": "com.mabrouk.history_feature"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "641311743165-4uukkimd2udi53upot7jvvgobdtqht8a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoUpbkOFO5lr1G_ZHK6Ot3iV90Hfjsi1I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "641311743165-4uukkimd2udi53upot7jvvgobdtqht8a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:641311743165:android:e6022e807187799b172bd4",
+        "android_client_info": {
+          "package_name": "com.mabrouk.prayertime"
         }
       },
       "oauth_client": [
