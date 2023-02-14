@@ -20,5 +20,16 @@
     <string name="no_internet_connection">لا يوجد اتصال بالإنترنت</string>
     <string name="txt_retry">Retry</string>
     <string name="txt_next_surah">السوره التاليه</string>
+    <string name="txt_salat">حان الان موعد اذان : </string>
+    <string name="txt_prayer">وقت الصلاه</string>
+    <string name="txt_qibla">أنت تواجه القبلة</string>
+
+    <string-array name="prayers">
+        <item>الفجر</item>
+        <item>الظهر</item>
+        <item>العصر</item>
+        <item>المغرب</item>
+        <item>العشاء</item>
+    </string-array>
 
 </resources>

@@ -26,11 +26,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.work.WorkInfo
 import com.google.android.exoplayer2.*
 import com.google.android.material.snackbar.Snackbar
-import com.karumi.dexter.Dexter
-import com.karumi.dexter.MultiplePermissionsReport
-import com.karumi.dexter.PermissionToken
-import com.karumi.dexter.listener.PermissionRequest
-import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.mabrouk.core.network.loader
 import com.mabrouk.core.utils.FileUtils
 import com.mabrouk.quran_listing_feature.R
@@ -53,8 +48,7 @@ import kotlinx.coroutines.launch
  * Copyright (c) 4/17/22
  */
 @AndroidEntryPoint
-class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener,
-    MultiplePermissionsListener {
+class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener {
     lateinit var viewBinding: SurahFragmentLayoutBinding
     private val player by lazy { ExoPlayer.Builder(requireContext()).build() }
     private val loader by lazy { requireContext().loader(scope = lifecycleScope) }
@@ -66,6 +60,7 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener,
     var playbackPosition: Long = 0
     private val adapter: AyaAdapter by lazy { AyaAdapter(::onAyaClick) }
     lateinit var activityForResultLauncher: ActivityResultLauncher<Intent?>
+    private var permissionLauncher: ActivityResultLauncher<Array<String>>? = null
 
     private val popAdapter: AyaPoupAdapter by lazy {
         AyaPoupAdapter(
@@ -87,6 +82,17 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener,
         activityForResultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
                 getReaders()
+            }
+        permissionLauncher =
+            registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
+                it.values.all { it }.let {
+                    loader.show()
+                    surahViewModel.downloadVerseAudio(
+                        requireContext(),
+                        sura?.nameArabic!!,
+                        arrayListOf(adapter.verses.first())
+                    )
+                }
             }
         DataBindingUtil.bind<SurahFragmentLayoutBinding>(view)?.apply { viewBinding = this }
         hideAudio()
@@ -275,13 +281,12 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener,
             if (it.versesIds != null && it.versesIds?.contains(sura?.id?.toLong()) == true) {
                 prepareAudios()
             } else {
-                Dexter.withContext(requireContext())
-                    .withPermissions(
+                permissionLauncher?.launch(
+                    arrayOf(
                         Manifest.permission.WRITE_EXTERNAL_STORAGE,
                         Manifest.permission.READ_EXTERNAL_STORAGE
                     )
-                    .withListener(this)
-                    .check()
+                )
             }
         }
     }
@@ -410,27 +415,6 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener,
     private fun addMediaItem(path: String, id: String): MediaItem {
         return MediaItem.Builder().setUri(Uri.parse(path)).setMediaId(id).build()
     }
-
-    override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
-        report?.let {
-            if (report.areAllPermissionsGranted()) {
-                loader.show()
-                surahViewModel.downloadVerseAudio(
-                    requireContext(),
-                    sura?.nameArabic!!,
-                    arrayListOf(adapter.verses.first())
-                )
-            }
-        }
-    }
-
-    override fun onPermissionRationaleShouldBeShown(
-        p0: MutableList<PermissionRequest>?,
-        p1: PermissionToken?
-    ) {
-        p1?.continuePermissionRequest()
-    }
-
 
     override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {
         // super.onMediaItemTransition(mediaItem, reason)
