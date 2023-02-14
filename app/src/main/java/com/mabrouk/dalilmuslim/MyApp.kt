@@ -2,6 +2,7 @@ package com.mabrouk.dalilmuslim
 
 import android.content.Context
 import androidx.hilt.work.HiltWorkerFactory
+import androidx.startup.AppInitializer
 import androidx.work.Configuration
 import com.akexorcist.localizationactivity.ui.LocalizationApplication
 import com.facebook.flipper.android.AndroidFlipperClient
@@ -14,13 +15,15 @@ import com.facebook.flipper.plugins.network.NetworkFlipperPlugin
 import com.facebook.flipper.plugins.sharedpreferences.SharedPreferencesFlipperPlugin
 import com.facebook.soloader.SoLoader
 import com.google.firebase.FirebaseApp
+import com.mabrouk.core.network.loadLibrary
 import com.mabrouk.core.utils.DataStorePreferences
 import dagger.hilt.android.HiltAndroidApp
+import net.danlew.android.joda.JodaTimeInitializer
 import java.util.*
 import javax.inject.Inject
 
 @HiltAndroidApp
-class MyApp : LocalizationApplication()  , Configuration.Provider{
+class MyApp : LocalizationApplication(), Configuration.Provider {
     @Inject
     lateinit var workerFactory: HiltWorkerFactory
 
@@ -33,6 +36,8 @@ class MyApp : LocalizationApplication()  , Configuration.Provider{
 
     override fun onCreate() {
         super.onCreate()
+        loadLibrary()
+        AppInitializer.getInstance(this).initializeComponent(JodaTimeInitializer::class.java)
         FirebaseApp.initializeApp(this)
         if (BuildConfig.DEBUG) {
             SoLoader.init(this, false)
@@ -42,7 +47,12 @@ class MyApp : LocalizationApplication()  , Configuration.Provider{
                     addPlugin(CrashReporterPlugin.getInstance())
                     addPlugin(DatabasesFlipperPlugin(this@MyApp))
                     addPlugin(networkFlipperPlugin)
-                    addPlugin(SharedPreferencesFlipperPlugin(this@MyApp, DataStorePreferences.FILE_NAME))
+                    addPlugin(
+                        SharedPreferencesFlipperPlugin(
+                            this@MyApp,
+                            DataStorePreferences.FILE_NAME
+                        )
+                    )
                 }.start()
             }
         }

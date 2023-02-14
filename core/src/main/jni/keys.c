@@ -30,3 +30,8 @@ JNIEXPORT jstring JNICALL
 Java_com_mabrouk_core_network_KeysKt_getAudioUrl2(JNIEnv *env, jclass clazz) {
  return (*env)-> NewStringUTF(env,"http://verse.mp3quran.net/arabic/");
 }
+
+JNIEXPORT jstring JNICALL
+Java_com_mabrouk_core_network_KeysKt_getPreryTime(JNIEnv *env, jclass clazz) {
+ return (*env)-> NewStringUTF(env,"http://api.aladhan.com/");
+}

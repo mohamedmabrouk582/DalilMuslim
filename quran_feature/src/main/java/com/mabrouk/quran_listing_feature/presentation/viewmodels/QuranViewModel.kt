@@ -145,7 +145,7 @@ class QuranViewModel @Inject constructor(
         override fun onQueryTextChange(newText: String?): Boolean {
             searchJob?.cancel()
             searchJob = viewModelScope.launch {
-                MutableStateFlow(newText)
+                MutableStateFlow(newText?.trim())
                     .debounce(400)
                     .distinctUntilChanged()
                     .flowOn(Dispatchers.Default)

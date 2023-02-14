@@ -28,9 +28,9 @@ android {
 
     defaultConfig {
         applicationId "com.mabrouk.dalilmuslim"
-        minSdk 24
+        minSdk 26
         targetSdk 33
-        versionCode 9
+        versionCode 10
         versionName "1.0.$versionCode"
         archivesBaseName = "dalilMuslim-$versionName"
 
@@ -110,6 +110,9 @@ dependencies {
     kapt libs.daggerHiltKapt
     implementation libs.navigation
 
+    //permission
+    implementation libs.permission
+
 
     //work manger
     implementation libs.workManager
@@ -119,6 +122,9 @@ dependencies {
 
     //flipper
     implementation libs.flipper
+
+    implementation 'net.danlew:android.joda:2.12.1.1'
+
 }
 
 kapt {

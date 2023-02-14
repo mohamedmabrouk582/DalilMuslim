@@ -40,9 +40,7 @@ fun mapJuz(juzs: ArrayList<Juz>, suras: ArrayList<Surah>): ArrayList<JuzSurah> {
         })
     }
 
-    data.forEach {
-        Log.d("susususu", "${it}")
-    }
+
 
     return data
 }

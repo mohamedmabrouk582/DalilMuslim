@@ -20,3 +20,5 @@ external fun getBaseUrlTafseer(): String
 external fun getAudioUrl(): String
 
 external fun getAudioUrl2(): String
+
+external fun getPreryTime():String

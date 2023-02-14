@@ -20,5 +20,16 @@
     <string name="no_internet_connection">No internet connection</string>
     <string name="txt_retry">Retry</string>
     <string name="txt_next_surah">Next Surah</string>
+    <string name="txt_salat">Now is the time for prayer : </string>
+    <string name="txt_prayer">Prayer</string>
+    <string name="txt_qibla">You\'re Facing Qibla</string>
+
+    <string-array name="prayers">
+        <item>Fajr</item>
+        <item>Dhuhr</item>
+        <item>Asr</item>
+        <item>Maghrib</item>
+        <item>Isha</item>
+    </string-array>
 
 </resources>
