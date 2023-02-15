@@ -44,10 +44,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.example.prayertime.presentaion.view.SalatActivity" />
+        <activity android:name="com.mabrouk.prayertime.presentaion.view.SalatActivity" />
 
 
-        <receiver android:name="com.example.prayertime.presentaion.workers.PrayerReceiver" />
+        <receiver android:name="com.mabrouk.prayertime.presentaion.workers.PrayerReceiver" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"

@@ -1,7 +1,6 @@
 package com.mabrouk.prayertime.data.db
 
 import androidx.room.TypeConverter
-import com.mabrouk.prayertime.domian.models.PrayerDate
 import com.mabrouk.prayertime.domian.models.PrayerDateData
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken

@@ -7,12 +7,14 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.location.Address
 import android.location.Location
+import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.mabrouk.prayertime.presentaion.qibla.LocationUtils.checkLocationPermission
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.mabrouk.core.utils.NOTIFICATION_CHANNEL
 
 /**
  * @name Mohamed Mabrouk
@@ -84,7 +86,9 @@ class CompassQibla {
             model.updateCompassDirection(qiblaDirection)
         }
 
-        override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {}
+        override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
+            Log.d(NOTIFICATION_CHANNEL,accuracy.toString())
+        }
 
         @SuppressLint("NewApi")
         fun requestLocationPermission() {

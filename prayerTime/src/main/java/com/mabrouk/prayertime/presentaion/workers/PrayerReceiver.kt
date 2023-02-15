@@ -28,7 +28,6 @@ class PrayerReceiver : BroadcastReceiver() {
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 context.startActivity(this)
             }
-
         }
 
     }
@@ -43,15 +42,4 @@ class PrayerReceiver : BroadcastReceiver() {
         workManager.enqueueUniqueWork(SOUND_TAG, ExistingWorkPolicy.KEEP, build)
     }
 
-    private fun createPendingIntent(context: Context): PendingIntent {
-        val intent = Intent(context, SalatActivity::class.java).apply {
-            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        }
-        return PendingIntent.getActivity(
-            context,
-            0,
-            intent,
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-        )
-    }
 }
