@@ -34,7 +34,6 @@ class AddPrayerAlarmsWorker @AssistedInject constructor(
                 val header = context.getString(R.string.txt_salat)
                 val salatTimings = context.resources.getStringArray(R.array.prayers)
                 val content = this.meta.timezone
-                Log.d("getSavedPrayerTimings", this.toString())
                 this.timings.apply {
                     setAlarm(
                         context,

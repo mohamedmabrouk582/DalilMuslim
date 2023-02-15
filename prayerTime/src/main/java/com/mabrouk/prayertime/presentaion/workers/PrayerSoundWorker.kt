@@ -43,6 +43,7 @@ class PrayerSoundWorker @AssistedInject constructor(
             val sound = Uri.parse("file:///android_asset/prayer.mp3")
             val mediaItem = MediaItem.fromUri(sound)
             player.addMediaItem(mediaItem)
+            player.addMediaItem(MediaItem.fromUri(Uri.parse("file:///android_asset/sharawy_doaa.mp3")))
             player.prepare()
             player.play()
             val manager = createNotification(

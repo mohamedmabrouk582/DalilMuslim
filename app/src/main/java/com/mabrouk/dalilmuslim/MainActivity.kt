@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.AlarmManager
 import android.app.PictureInPictureParams
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.net.Uri
@@ -27,6 +28,7 @@ import com.mabrouk.core.utils.*
 import com.mabrouk.dalilmuslim.databinding.ActivityMainBinding
 import com.mabrouk.history_feature.peresntaion.view.StoryFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : LocalizationActivity() {
@@ -41,7 +43,7 @@ class MainActivity : LocalizationActivity() {
         DefaultLocationClient(applicationContext)
     }
     private var permissionLauncher: ActivityResultLauncher<Array<String>>? = null
-    private var activityForResultLauncher : ActivityResultLauncher<Intent>? = null
+    private var activityForResultLauncher: ActivityResultLauncher<Intent>? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,7 +64,7 @@ class MainActivity : LocalizationActivity() {
 
     private fun getLocation() {
         locationClient.getMyCurrentLocation(lifecycleScope, locationError = {
-            if (it == LocationError.GPS){
+            if (it == LocationError.GPS) {
                 val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                 activityForResultLauncher?.launch(intent)
             }
@@ -71,10 +73,11 @@ class MainActivity : LocalizationActivity() {
         }
     }
 
-    private fun registerActivity(){
-        activityForResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
-            getLocation()
-        }
+    private fun registerActivity() {
+        activityForResultLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+                getLocation()
+            }
     }
 
     private fun registerPermission() {
@@ -134,8 +137,11 @@ class MainActivity : LocalizationActivity() {
         val alarmManager =
             getSystemService(AlarmManager::class.java)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && !alarmManager.canScheduleExactAlarms()) {
-            applicationContext.startActivity(Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM))
+            applicationContext.startActivity(Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM).apply {
+                addFlags(FLAG_ACTIVITY_NEW_TASK)
+            })
         }
     }
+
 
 }
