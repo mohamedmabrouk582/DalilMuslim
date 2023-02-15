@@ -1,7 +1,6 @@
 package com.mabrouk.prayertime.presentaion.workers
 
 import android.content.Context
-import android.util.Log
 import androidx.hilt.work.HiltWorker
 import androidx.work.*
 import com.mabrouk.prayertime.domian.alram.AlarmItem
@@ -37,25 +36,25 @@ class AddPrayerAlarmsWorker @AssistedInject constructor(
                 this.timings.apply {
                     setAlarm(
                         context,
-                        this.Fajr,
+                        this.fajr,
                         "$header ${salatTimings[0]} ($content)"
                     )
                     setAlarm(
                         context,
-                        this.Dhuhr,
+                        this.dhuhr,
                         "$header ${salatTimings[1]} ($content)"
                     )
 
                     setAlarm(
-                        context, this.Asr,
+                        context, this.asr,
                         "$header ${salatTimings[2]} ($content)"
                     )
                     setAlarm(
-                        context, this.Maghrib,
+                        context, this.maghrib,
                         "$header ${salatTimings[3]} ($content)"
                     )
                     setAlarm(
-                        context, this.Isha,
+                        context, this.isha,
                         "$header ${salatTimings[4]} ($content)"
                     )
                 }

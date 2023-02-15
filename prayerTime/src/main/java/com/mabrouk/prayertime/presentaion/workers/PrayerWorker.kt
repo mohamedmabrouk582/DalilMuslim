@@ -38,19 +38,15 @@ class PrayerWorker @AssistedInject constructor(
         val month = currentTime.month?.value
         val year = currentTime.year
         useCases.getPrayerTiming(lat, long, month ?: 1, year).collect {
-            when (it) {
-                is com.mabrouk.core.network.Result.OnSuccess -> {
-                    useCases.deleteAllPrayerTimings()
-                    useCases.savePrayerTimings(
-                        it.data.data.map { time ->
-                            time.dayDate = time.date.gregorian.date
-                            time
-                        }
-                    )
-                    alarmTask()
-                }
-                else -> {
-                }
+            if (it is com.mabrouk.core.network.Result.OnSuccess) {
+                useCases.deleteAllPrayerTimings()
+                useCases.savePrayerTimings(
+                    it.data.data.map { time ->
+                        time.dayDate = time.date.gregorian.date
+                        time
+                    }
+                )
+                alarmTask()
             }
         }
     }
