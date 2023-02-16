@@ -28,12 +28,12 @@ class AddPrayerAlarmsWorker @AssistedInject constructor(
     }
 
     private suspend fun getSavedPrayerTimings(context: Context) {
-        useCases.getSavedTimingsByDay(getCurrentDate()).apply {
+        useCases.getSavedTimingsByDay(getCurrentDate()).let { prayer ->
             try {
                 val header = context.getString(R.string.txt_salat)
                 val salatTimings = context.resources.getStringArray(R.array.prayers)
-                val content = this.meta.timezone
-                this.timings.apply {
+                val content = prayer.meta.timezone
+                prayer.timings.apply {
                     setAlarm(
                         context,
                         this.fajr,
@@ -57,6 +57,12 @@ class AddPrayerAlarmsWorker @AssistedInject constructor(
                         context, this.isha,
                         "$header ${salatTimings[4]} ($content)"
                     )
+                    if (prayer.date.hijri.month.number == 9) {
+                        setAlarm(
+                            context, this.lastthird,
+                            "${context.getString(R.string.txt_sohor)} ${salatTimings[4]} ($content)"
+                        )
+                    }
                 }
             } catch (e: Exception) {
                 e.printStackTrace()

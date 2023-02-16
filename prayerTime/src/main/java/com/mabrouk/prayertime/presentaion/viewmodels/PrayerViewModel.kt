@@ -3,9 +3,11 @@ package com.mabrouk.prayertime.presentaion.viewmodels
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.work.*
+import com.mabrouk.prayertime.domian.alram.AlarmItem
 import com.mabrouk.prayertime.presentaion.*
 import com.mabrouk.prayertime.presentaion.workers.PrayerWorker
 import dagger.hilt.android.lifecycle.HiltViewModel
+import java.time.LocalDateTime
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -32,5 +34,22 @@ class PrayerViewModel @Inject constructor() : ViewModel() {
 
         val instance = WorkManager.getInstance(context)
         instance.enqueueUniquePeriodicWork("prayer", ExistingPeriodicWorkPolicy.KEEP, build)
+    }
+
+     fun setAlarm(context: Context, time: String, massage: String) {
+        val split = time.split(":")
+        val hour = split[0].toInt()
+        val min = split[1].split(" ")[0].toInt()
+        val alarm = com.mabrouk.prayertime.data.alarm.AlarmSchedulerManager(context)
+        val current = LocalDateTime.now()
+        val alarmTime = LocalDateTime.of(current.year, current.month, current.dayOfMonth, hour, min)
+
+        if (alarmTime.isAfter(current))
+            alarm.alarmSchedule(
+                AlarmItem(
+                    alarmTime,
+                    massage
+                )
+            )
     }
 }

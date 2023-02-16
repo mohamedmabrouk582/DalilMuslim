@@ -23,6 +23,7 @@
     <string name="txt_salat">Now is the time for prayer : </string>
     <string name="txt_prayer">Prayer</string>
     <string name="txt_qibla">You\'re Facing Qibla</string>
+    <string name="txt_sohor">Now is the time for Suhoor : </string>
 
     <string-array name="prayers">
         <item>Fajr</item>
@@ -30,6 +31,7 @@
         <item>Asr</item>
         <item>Maghrib</item>
         <item>Isha</item>
+        <item>Suhoor</item>
     </string-array>
 
 </resources>

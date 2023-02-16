@@ -94,10 +94,13 @@ class MainActivity : LocalizationActivity() {
     private fun checkPermission() {
         registerPermission()
         permissionLauncher?.launch(
-            arrayOf(
+            arrayListOf(
                 Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION,
-            )
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ).apply {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+                    add(Manifest.permission.POST_NOTIFICATIONS)
+            }.toTypedArray()
         )
     }
 
