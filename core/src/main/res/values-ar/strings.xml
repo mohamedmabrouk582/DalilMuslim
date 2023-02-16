@@ -23,6 +23,7 @@
     <string name="txt_salat">حان الان موعد اذان : </string>
     <string name="txt_prayer">وقت الصلاه</string>
     <string name="txt_qibla">أنت تواجه القبلة</string>
+    <string name="txt_sohor">حان الان موعد اذان السحور : </string>
 
     <string-array name="prayers">
         <item>الفجر</item>
@@ -30,6 +31,7 @@
         <item>العصر</item>
         <item>المغرب</item>
         <item>العشاء</item>
+        <item>السحور</item>
     </string-array>
 
 </resources>
