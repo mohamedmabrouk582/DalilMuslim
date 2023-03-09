@@ -6,6 +6,7 @@ apply from: '../common_test_build.gradle'
 
 
 android {
+    ndkVersion "25.2.9519653"
     compileSdkVersion 33
     buildToolsVersion "30.0.3"
 
