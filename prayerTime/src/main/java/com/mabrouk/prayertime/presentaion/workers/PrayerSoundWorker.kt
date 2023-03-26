@@ -16,6 +16,8 @@ import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
 import com.mabrouk.core.utils.NOTIFICATION_CHANNEL
 import com.mabrouk.core.utils.createNotification
+import com.mabrouk.prayertime.presentaion.IS_TOSHYEAH
+import com.mabrouk.prayertime.presentaion.Twasheh_Fajar
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.CoroutineScope
@@ -28,22 +30,24 @@ import kotlinx.coroutines.launch
  */
 @HiltWorker
 class PrayerSoundWorker @AssistedInject constructor(
-    @Assisted appContext: Context,
-    @Assisted params: WorkerParameters
-) :
-    CoroutineWorker(
-        appContext,
-        params
-    ) {
+    @Assisted appContext: Context, @Assisted params: WorkerParameters
+) : CoroutineWorker(
+    appContext, params
+) {
     private val player by lazy { ExoPlayer.Builder(appContext).build() }
 
     override suspend fun doWork(): Result {
         val content = inputData.getString(MASSAGE_KEY) ?: "test"
+        val tosheh = inputData.getBoolean(IS_TOSHYEAH, false)
+        val twashehFajar = inputData.getBoolean(Twasheh_Fajar, false)
         CoroutineScope(Dispatchers.Main).launch {
-            val sound = Uri.parse("file:///android_asset/prayer.mp3")
+            val sound = if (tosheh) Uri.parse("file:///android_asset/magrad_ramadan.mp3")
+            else if (twashehFajar) Uri.parse("file:///android_asset/twasheh.mp3")
+            else Uri.parse("file:///android_asset/prayer.mp3")
             val mediaItem = MediaItem.fromUri(sound)
             player.addMediaItem(mediaItem)
-            player.addMediaItem(MediaItem.fromUri(Uri.parse("file:///android_asset/sharawy_doaa.mp3")))
+
+            if (!tosheh) player.addMediaItem(MediaItem.fromUri(Uri.parse("file:///android_asset/sharawy_doaa.mp3")))
             player.prepare()
             player.play()
             val manager = createNotification(
@@ -79,10 +83,7 @@ class PrayerSoundWorker @AssistedInject constructor(
             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         }
         return PendingIntent.getActivity(
-            context,
-            0,
-            intent,
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
     }
 }

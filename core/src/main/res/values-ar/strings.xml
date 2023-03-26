@@ -23,7 +23,8 @@
     <string name="txt_salat">حان الان موعد اذان : </string>
     <string name="txt_prayer">وقت الصلاه</string>
     <string name="txt_qibla">أنت تواجه القبلة</string>
-    <string name="txt_sohor">حان الان موعد اذان السحور : </string>
+    <string name="txt_sohor">حان الان موعد : </string>
+    <string name="txt_twasheh">تواشيح : </string>
 
     <string-array name="prayers">
         <item>الفجر</item>

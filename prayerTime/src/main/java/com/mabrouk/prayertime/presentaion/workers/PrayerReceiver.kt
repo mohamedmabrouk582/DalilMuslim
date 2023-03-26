@@ -12,6 +12,8 @@ import com.mabrouk.prayertime.presentaion.MASSAGE_KEY
 import com.mabrouk.prayertime.presentaion.SOUND_TAG
 import com.mabrouk.prayertime.presentaion.view.SalatActivity
 import com.mabrouk.core.utils.NOTIFICATION_CHANNEL
+import com.mabrouk.prayertime.presentaion.IS_TOSHYEAH
+import com.mabrouk.prayertime.presentaion.Twasheh_Fajar
 
 
 /**
@@ -23,7 +25,9 @@ class PrayerReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
         context?.apply {
             val massage = intent?.extras?.getString(NOTIFICATION_CHANNEL) ?: "tee"
-            soundTask(this, massage)
+            val tosheh = intent?.extras?.getBoolean(IS_TOSHYEAH) ?: false
+            val twashehFajar = intent?.extras?.getBoolean(Twasheh_Fajar) ?: false
+            soundTask(this, massage, tosheh, twashehFajar = twashehFajar)
             Intent(context, SalatActivity::class.java).apply {
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 context.startActivity(this)
@@ -32,8 +36,15 @@ class PrayerReceiver : BroadcastReceiver() {
 
     }
 
-    private fun soundTask(context: Context, massage: String) {
-        val input = Data.Builder().putString(MASSAGE_KEY, massage).build()
+    private fun soundTask(
+        context: Context,
+        massage: String,
+        tosheh: Boolean,
+        twashehFajar: Boolean
+    ) {
+        val input =
+            Data.Builder().putString(MASSAGE_KEY, massage).putBoolean(IS_TOSHYEAH, tosheh)
+                .putBoolean(Twasheh_Fajar, twashehFajar).build()
         val build = OneTimeWorkRequest.Builder(PrayerSoundWorker::class.java)
             .addTag(SOUND_TAG)
             .setInputData(input)

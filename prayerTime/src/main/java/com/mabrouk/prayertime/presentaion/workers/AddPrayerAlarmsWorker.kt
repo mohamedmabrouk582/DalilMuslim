@@ -10,6 +10,7 @@ import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import java.time.LocalDateTime
 import com.mabrouk.core.R
+import org.joda.time.Minutes
 
 /**
  * @name Mohamed Mabrouk
@@ -31,13 +32,21 @@ class AddPrayerAlarmsWorker @AssistedInject constructor(
         useCases.getSavedTimingsByDay(getCurrentDate()).let { prayer ->
             try {
                 val header = context.getString(R.string.txt_salat)
+                val twasheh = context.getString(R.string.txt_twasheh)
                 val salatTimings = context.resources.getStringArray(R.array.prayers)
                 val content = prayer.meta.timezone
                 prayer.timings.apply {
                     setAlarm(
                         context,
                         this.fajr,
-                        "$header ${salatTimings[0]} ($content)"
+                        "$twasheh ${salatTimings[0]} ($content)",
+                        twashehFajar = true
+                    )
+                    setAlarm(
+                        context,
+                        this.fajr,
+                        "$header ${salatTimings[0]} ($content)",
+                        plusMinutes = -8
                     )
                     setAlarm(
                         context,
@@ -49,6 +58,7 @@ class AddPrayerAlarmsWorker @AssistedInject constructor(
                         context, this.asr,
                         "$header ${salatTimings[2]} ($content)"
                     )
+
                     setAlarm(
                         context, this.maghrib,
                         "$header ${salatTimings[3]} ($content)"
@@ -59,8 +69,15 @@ class AddPrayerAlarmsWorker @AssistedInject constructor(
                     )
                     if (prayer.date.hijri.month.number == 9) {
                         setAlarm(
-                            context, this.lastthird,
-                            "${context.getString(R.string.txt_sohor)} ${salatTimings[4]} ($content)"
+                            context, this.maghrib,
+                            "$twasheh ${salatTimings[3]} ($content)",
+                            plusMinutes = -11,
+                            tosheh = true
+                        )
+                        setAlarm(
+                            context, this.fajr,
+                            "${context.getString(R.string.txt_sohor)} ${salatTimings[5]} ($content)",
+                            -2
                         )
                     }
                 }
@@ -70,10 +87,18 @@ class AddPrayerAlarmsWorker @AssistedInject constructor(
         }
     }
 
-    private fun setAlarm(context: Context, time: String, massage: String) {
+    private fun setAlarm(
+        context: Context,
+        time: String,
+        massage: String,
+        plusHours: Int = 0,
+        plusMinutes: Int = 0,
+        tosheh: Boolean = false,
+        twashehFajar: Boolean = false
+    ) {
         val split = time.split(":")
-        val hour = split[0].toInt()
-        val min = split[1].split(" ")[0].toInt()
+        val hour = split[0].toInt() + plusHours
+        val min = split[1].split(" ")[0].toInt() + plusMinutes
         val alarm = com.mabrouk.prayertime.data.alarm.AlarmSchedulerManager(context)
         val current = LocalDateTime.now()
         val alarmTime = LocalDateTime.of(current.year, current.month, current.dayOfMonth, hour, min)
@@ -82,7 +107,9 @@ class AddPrayerAlarmsWorker @AssistedInject constructor(
             alarm.alarmSchedule(
                 AlarmItem(
                     alarmTime,
-                    massage
+                    massage,
+                    tosheh,
+                    twashehFajar
                 )
             )
     }

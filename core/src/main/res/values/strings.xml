@@ -24,6 +24,8 @@
     <string name="txt_prayer">Prayer</string>
     <string name="txt_qibla">You\'re Facing Qibla</string>
     <string name="txt_sohor">Now is the time for Suhoor : </string>
+    <string name="txt_twasheh">Tawasheh : </string>
+
 
     <string-array name="prayers">
         <item>Fajr</item>

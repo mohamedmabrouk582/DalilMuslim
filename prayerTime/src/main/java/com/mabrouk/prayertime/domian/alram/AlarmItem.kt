@@ -8,5 +8,7 @@ import java.time.LocalDateTime
  */
 data class AlarmItem(
     val time: LocalDateTime,
-    val massage: String
+    val massage: String,
+    val tosheh: Boolean = false,
+    val Twasheh_Fajar: Boolean = false
 )
