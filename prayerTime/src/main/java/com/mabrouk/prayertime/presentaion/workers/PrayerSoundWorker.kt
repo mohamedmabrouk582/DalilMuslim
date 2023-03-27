@@ -41,7 +41,7 @@ class PrayerSoundWorker @AssistedInject constructor(
         val tosheh = inputData.getBoolean(IS_TOSHYEAH, false)
         val twashehFajar = inputData.getBoolean(Twasheh_Fajar, false)
         CoroutineScope(Dispatchers.Main).launch {
-            val sound = if (tosheh) Uri.parse("file:///android_asset/magrad_ramadan.mp3")
+            val sound = if (tosheh) Uri.parse("file:///android_asset/magrab_ramadan.mp3")
             else if (twashehFajar) Uri.parse("file:///android_asset/twasheh.mp3")
             else Uri.parse("file:///android_asset/prayer.mp3")
             val mediaItem = MediaItem.fromUri(sound)
