@@ -79,6 +79,7 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        currentPosition = arguments?.getInt(SURAH_INDEX) ?: 0
         activityForResultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
                 getReaders()
@@ -151,6 +152,7 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener 
                 player.pause()
             } else {
                 player.play()
+                player.seekTo(currentPosition, C.TIME_UNSET)
             }
             viewBinding.isPlaying = player.isPlaying
         }
@@ -248,6 +250,10 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener 
             } else {
                 viewBinding.loaderView.visibility = View.GONE
                 adapter.verses = ArrayList(data)
+                if (currentPosition > 1) {
+                    handleScrolling(1)
+                    showAudio()
+                }
                 checkPermission()
             }
             handleStates()
@@ -429,7 +435,7 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener 
         }
     }
 
-    private fun handleScrolling() {
+    private fun handleScrolling(subPosition:Int=0) {
         viewBinding.scroll.post {
             try {
                 val pos =
@@ -437,7 +443,7 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener 
                 if (currentPosition >= pos) {
                     viewBinding.scroll.smoothScrollTo(
                         0,
-                        viewBinding.ayatRcv.getChildAt(currentPosition).y.toInt()
+                        viewBinding.ayatRcv.getChildAt(currentPosition-subPosition).y.toInt()
                     )
                 }
             } catch (e: Exception) {
@@ -461,7 +467,7 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener 
     }
 
     private fun reset() {
-        currentPosition = 0
+        currentPosition = arguments?.getInt(SURAH_INDEX) ?: 0
         lastPosition = 0
         playbackPosition = 0
         adapter.verses = arrayListOf()

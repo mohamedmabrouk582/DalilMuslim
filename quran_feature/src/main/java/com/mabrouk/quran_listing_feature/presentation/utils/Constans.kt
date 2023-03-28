@@ -22,6 +22,7 @@ const val AUDIO_DOWNLOAD = "AUDIO_DOWNLOAD"
 const val AYA_CONTENT = "AYA_CONTENT"
 const val AYA_TRANSLATE = "AYA_TRANSLATE"
 const val AYA_TAFSIRS = "AYA_TAFSIRS"
+const val SURAH_INDEX = "SURAH_INDEX"
 
 
 fun mapJuz(juzs: ArrayList<Juz>, suras: ArrayList<Surah>): ArrayList<JuzSurah> {

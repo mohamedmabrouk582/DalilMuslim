@@ -40,42 +40,39 @@ class AddPrayerAlarmsWorker @AssistedInject constructor(
                         context,
                         this.fajr,
                         "$twasheh ${salatTimings[0]} ($content)",
+                        plusMinutes = -8,
                         twashehFajar = true
                     )
                     setAlarm(
                         context,
                         this.fajr,
                         "$header ${salatTimings[0]} ($content)",
-                        plusMinutes = -8
                     )
                     setAlarm(
-                        context,
-                        this.dhuhr,
-                        "$header ${salatTimings[1]} ($content)"
+                        context, this.dhuhr, "$header ${salatTimings[1]} ($content)"
                     )
 
                     setAlarm(
-                        context, this.asr,
-                        "$header ${salatTimings[2]} ($content)"
+                        context, this.asr, "$header ${salatTimings[2]} ($content)"
                     )
 
                     setAlarm(
-                        context, this.maghrib,
-                        "$header ${salatTimings[3]} ($content)"
+                        context, this.maghrib, "$header ${salatTimings[3]} ($content)"
                     )
                     setAlarm(
-                        context, this.isha,
-                        "$header ${salatTimings[4]} ($content)"
+                        context, this.isha, "$header ${salatTimings[4]} ($content)"
                     )
                     if (prayer.date.hijri.month.number == 9) {
                         setAlarm(
-                            context, this.maghrib,
+                            context,
+                            this.maghrib,
                             "$twasheh ${salatTimings[3]} ($content)",
                             plusMinutes = -11,
                             tosheh = true
                         )
                         setAlarm(
-                            context, this.fajr,
+                            context,
+                            this.fajr,
                             "${context.getString(R.string.txt_sohor)} ${salatTimings[5]} ($content)",
                             -2
                         )
@@ -103,15 +100,11 @@ class AddPrayerAlarmsWorker @AssistedInject constructor(
         val current = LocalDateTime.now()
         val alarmTime = LocalDateTime.of(current.year, current.month, current.dayOfMonth, hour, min)
 
-        if (alarmTime.isAfter(current))
-            alarm.alarmSchedule(
-                AlarmItem(
-                    alarmTime,
-                    massage,
-                    tosheh,
-                    twashehFajar
-                )
+        if (alarmTime.isAfter(current)) alarm.alarmSchedule(
+            AlarmItem(
+                alarmTime, massage, tosheh, twashehFajar
             )
+        )
     }
 
 }

@@ -108,6 +108,12 @@ class QuranFragment : Fragment() {
                 ).show()
             } else {
                 val bundle = Bundle()
+
+                bundle.putInt(
+                    SURAH_INDEX,
+                    juzSurah.verseMap?.get(juzSurah.sura.id.toString())?.split("-")?.get(0)?.toInt()
+                        ?: 0
+                )
                 bundle.putInt(VERSES_ID, juzSurah.sura.id)
                 bundle.putParcelable(VERSES_LIST, juzSurah.sura)
                 findNavController()
@@ -152,7 +158,7 @@ class QuranFragment : Fragment() {
     }
 
     private fun updateAdapter(position: Int) {
-        if (isSearch){
+        if (isSearch) {
             searchAdapter.data[position].sura?.isDownload = true
         }
 

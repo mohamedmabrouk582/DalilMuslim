@@ -30,8 +30,8 @@ android {
         applicationId "com.mabrouk.dalilmuslim"
         minSdk 26
         targetSdk 33
-        versionCode 16
-        versionName "1.1.$versionCode"
+        versionCode 0
+        versionName "1.2.$versionCode"
         archivesBaseName = "dalilMuslim-$versionName"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
