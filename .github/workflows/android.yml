@@ -24,3 +24,14 @@ jobs:
         run: chmod +x gradlew  
       - name: Build with Gradle
         run: ./gradlew build
+
+  upload-app-to-appsweep:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Upload app to AppSweep with Gradle
+        env:
+          APPSWEEP_API_KEY: ${{ secrets.APPSWEEP_API_KEY }}
+        run: ./gradlew uploadToAppSweepRelease
