@@ -14,7 +14,9 @@ import com.mabrouk.prayertime.presentaion.view.SalatActivity
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
+import com.mabrouk.core.utils.FileUtils
 import com.mabrouk.core.utils.NOTIFICATION_CHANNEL
+import com.mabrouk.core.utils.PrayerSounds
 import com.mabrouk.core.utils.createNotification
 import com.mabrouk.prayertime.presentaion.IS_TOSHYEAH
 import com.mabrouk.prayertime.presentaion.Twasheh_Fajar
@@ -41,13 +43,32 @@ class PrayerSoundWorker @AssistedInject constructor(
         val tosheh = inputData.getBoolean(IS_TOSHYEAH, false)
         val twashehFajar = inputData.getBoolean(Twasheh_Fajar, false)
         CoroutineScope(Dispatchers.Main).launch {
-            val sound = if (tosheh) Uri.parse("file:///android_asset/magrab_ramadan.mp3")
-            else if (twashehFajar) Uri.parse("file:///android_asset/twasheh.mp3")
-            else Uri.parse("file:///android_asset/prayer.mp3")
+            val sound = if (tosheh) Uri.parse(
+                FileUtils.getMp3Path(
+                    applicationContext,
+                    PrayerSounds.MagrabRamadan.type
+                )
+            )
+            else if (twashehFajar) Uri.parse(
+                FileUtils.getMp3Path(
+                    applicationContext,
+                    PrayerSounds.TwashehFajar.type
+                )
+            )
+            else Uri.parse(FileUtils.getMp3Path(applicationContext, PrayerSounds.Prayer.type))
             val mediaItem = MediaItem.fromUri(sound)
             player.addMediaItem(mediaItem)
 
-            if (!tosheh) player.addMediaItem(MediaItem.fromUri(Uri.parse("file:///android_asset/sharawy_doaa.mp3")))
+            if (!tosheh) player.addMediaItem(
+                MediaItem.fromUri(
+                    Uri.parse(
+                        FileUtils.getMp3Path(
+                            applicationContext,
+                            PrayerSounds.SharawyDoaa.type
+                        )
+                    )
+                )
+            )
             player.prepare()
             player.play()
             val manager = createNotification(

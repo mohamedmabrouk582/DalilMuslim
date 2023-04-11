@@ -42,11 +42,11 @@ class AudioDownloader @AssistedInject constructor(
 //            }
 
             fromToObject(it)?.apply {
-                if (!FileUtils.fileIsFound(this.first().url,1,0)){
+                if (!FileUtils.fileIsFound(context,this.first().url,1,0)){
                     downloadAya(this.first().url,1,0)
                 }
                 forEach { item ->
-                    result = if (FileUtils.fileIsFound(item.url,item.chapterId,item.ayaNum)){
+                    result = if (FileUtils.fileIsFound(context,item.url,item.chapterId,item.ayaNum)){
                         null
                     }else {
                         downloadAya(item.url, item.chapterId, item.ayaNum)
@@ -69,7 +69,7 @@ class AudioDownloader @AssistedInject constructor(
         repository.downloadAudio("${getAudioUrl2()}$url/${sura.decimalFormat()}${aya.decimalFormat()}.mp3").collect {
             when (it) {
                 is OnSuccess -> {
-                    Log.d("save File", FileUtils.saveAudio(it.data,url, sura, aya).toString())
+                    Log.d("save File", FileUtils.saveMp3(context,it.data,url, sura, aya).toString())
                 }
                 is OnFailure -> result = it.throwable.message!!
                 is NoInternetConnect -> result = it.error

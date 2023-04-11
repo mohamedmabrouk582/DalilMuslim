@@ -9,6 +9,7 @@ import androidx.work.WorkManager
 import com.google.gson.Gson
 import com.mabrouk.core.base.BaseViewModel
 import com.mabrouk.core.utils.DataStorePreferences
+import com.mabrouk.core.utils.downloadBasmalla
 import com.mabrouk.quran_listing_feature.domain.models.QuranReader
 import com.mabrouk.quran_listing_feature.domain.models.Surah
 import com.mabrouk.quran_listing_feature.domain.models.TafsirAya

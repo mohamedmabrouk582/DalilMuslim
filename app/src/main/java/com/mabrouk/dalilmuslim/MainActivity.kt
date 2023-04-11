@@ -43,6 +43,7 @@ class MainActivity : LocalizationActivity() {
         DefaultLocationClient(applicationContext)
     }
     private var permissionLauncher: ActivityResultLauncher<Array<String>>? = null
+    private var permissionFilesLauncher: ActivityResultLauncher<Array<String>>? = null
     private var activityForResultLauncher: ActivityResultLauncher<Intent>? = null
 
 
@@ -65,10 +66,13 @@ class MainActivity : LocalizationActivity() {
     private fun getLocation() {
         locationClient.getMyCurrentLocation(lifecycleScope, locationError = {
             if (it == LocationError.GPS) {
+                Toast.makeText(this, "LocationError", Toast.LENGTH_SHORT).show()
+
                 val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                 activityForResultLauncher?.launch(intent)
             }
         }) {
+            Toast.makeText(this, "yyygy", Toast.LENGTH_SHORT).show()
             viewModel.startService(applicationContext, it.latitude, it.longitude)
         }
     }
@@ -81,6 +85,14 @@ class MainActivity : LocalizationActivity() {
     }
 
     private fun registerPermission() {
+        permissionFilesLauncher =
+            registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { result ->
+                if (result.values.any { !it }) {
+                    Toast.makeText(this, "need", Toast.LENGTH_SHORT).show()
+                } else {
+                    downloadAllSounds(this)
+                }
+            }
         permissionLauncher =
             registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { result ->
                 if (result.values.any { !it }) {
@@ -93,10 +105,20 @@ class MainActivity : LocalizationActivity() {
 
     private fun checkPermission() {
         registerPermission()
+        permissionFilesLauncher?.launch(
+            arrayListOf(
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            ).toTypedArray()
+        )
         permissionLauncher?.launch(
             arrayListOf(
                 Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE
             ).apply {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
                     add(Manifest.permission.POST_NOTIFICATIONS)
