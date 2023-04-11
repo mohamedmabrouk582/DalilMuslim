@@ -28,6 +28,7 @@ import com.google.android.exoplayer2.*
 import com.google.android.material.snackbar.Snackbar
 import com.mabrouk.core.network.loader
 import com.mabrouk.core.utils.FileUtils
+import com.mabrouk.core.utils.PrayerSounds
 import com.mabrouk.quran_listing_feature.R
 import com.mabrouk.quran_listing_feature.databinding.SurahFragmentLayoutBinding
 import com.mabrouk.quran_listing_feature.domain.models.AyaTafsirs
@@ -388,7 +389,8 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener 
         if (player.mediaItemCount >= adapter.verses.size) return
         player.addMediaItem(
             addMediaItem(
-                FileUtils.getAudioPath(
+                FileUtils.getMp3Path(
+                    requireContext(),
                     surahViewModel.currentReader.sufix,
                     1,
                     0
@@ -398,7 +400,8 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener 
         if (sura?.bismillahPre!!)
             player.addMediaItem(
                 addMediaItem(
-                    FileUtils.getAudioPath(
+                    FileUtils.getMp3Path(
+                        requireContext(),
                         surahViewModel.currentReader.sufix,
                         1,
                         1
@@ -406,15 +409,17 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener 
                 )
             )
         player.addMediaItems(adapter.verses.map {
+            val filePath = FileUtils.getMp3Path(
+                requireContext(),
+                surahViewModel.currentReader.sufix,
+                it.chapterId,
+                it.verseNumber
+            )
+            Log.d("FILEPATH",filePath)
             addMediaItem(
-                FileUtils.getAudioPath(
-                    surahViewModel.currentReader.sufix,
-                    it.chapterId,
-                    it.verseNumber
-                ), "${it.verseNumber - 1}"
+                filePath , "${it.verseNumber - 1}"
             )
         })
-        // player.addMediaItem(MediaItem.fromUri("http://www.liveradiu.com/2018/06/holy-quran-radio-station-cairo-live.html"))
         player.prepare()
     }
 
@@ -435,7 +440,7 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener 
         }
     }
 
-    private fun handleScrolling(subPosition:Int=0) {
+    private fun handleScrolling(subPosition: Int = 0) {
         viewBinding.scroll.post {
             try {
                 val pos =
@@ -443,7 +448,7 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener 
                 if (currentPosition >= pos) {
                     viewBinding.scroll.smoothScrollTo(
                         0,
-                        viewBinding.ayatRcv.getChildAt(currentPosition-subPosition).y.toInt()
+                        viewBinding.ayatRcv.getChildAt(currentPosition - subPosition).y.toInt()
                     )
                 }
             } catch (e: Exception) {
