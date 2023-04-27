@@ -28,6 +28,7 @@ import com.google.android.exoplayer2.*
 import com.google.android.material.snackbar.Snackbar
 import com.mabrouk.core.network.loader
 import com.mabrouk.core.utils.FileUtils
+import com.mabrouk.core.utils.PrayerSounds
 import com.mabrouk.quran_listing_feature.R
 import com.mabrouk.quran_listing_feature.databinding.SurahFragmentLayoutBinding
 import com.mabrouk.quran_listing_feature.domain.models.AyaTafsirs

@@ -3,6 +3,8 @@ package com.mabrouk.core.utils
 import android.content.Context
 import android.media.MediaScannerConnection
 import android.os.Environment
+import android.util.Log
+import com.mabrouk.core.utils.FileUtils.isFileBathFound
 import okhttp3.ResponseBody
 import java.io.File
 import java.io.FileOutputStream
@@ -83,6 +85,7 @@ object FileUtils {
 
     fun videoIsFound(title: String, ext: String) = File(getVideoPath(title, ext)).exists()
 
+
     fun getVideoPath(title: String, ext: String): String {
         val root = Environment.getExternalStorageDirectory().toString()
         val dir = File("$root/quran_videos")
@@ -90,5 +93,4 @@ object FileUtils {
         val file = File(dir, fileName)
         return file.absolutePath
     }
-
 }

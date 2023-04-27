@@ -71,6 +71,7 @@ class MainActivity : LocalizationActivity() {
                 activityForResultLauncher?.launch(intent)
             }
         }) {
+            Toast.makeText(this, "yyygy", Toast.LENGTH_SHORT).show()
             viewModel.startService(applicationContext, it.latitude, it.longitude)
         }
     }
