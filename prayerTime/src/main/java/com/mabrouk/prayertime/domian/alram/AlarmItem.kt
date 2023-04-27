@@ -10,5 +10,5 @@ data class AlarmItem(
     val time: LocalDateTime,
     val massage: String,
     val tosheh: Boolean = false,
-    val Twasheh_Fajar: Boolean = false
+    val TwashehFajar: Boolean = false
 )

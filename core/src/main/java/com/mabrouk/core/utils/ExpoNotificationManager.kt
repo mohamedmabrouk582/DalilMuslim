@@ -43,19 +43,6 @@ class DescriptionAdapter(val reader:String , val context: Context, val activity 
         callback: PlayerNotificationManager.BitmapCallback
     ): Bitmap? {
         val bitmap: Bitmap? = BitmapFactory.decodeResource(context.resources, R.drawable.download)
-//        Glide.with(context)
-//            .asBitmap()
-//            .load(items[player.currentWindowIndex].getThumbUrl)
-//            .into(object : CustomTarget<Bitmap>() {
-//                override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-//                    bitmap = resource
-//                }
-//
-//                override fun onLoadCleared(placeholder: Drawable?) {
-//                    bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.download)
-//                }
-//
-//            })
         return bitmap
     }
 

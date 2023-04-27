@@ -7,7 +7,6 @@ import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.content.pm.PackageManager
 import android.content.res.Configuration
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
@@ -72,7 +71,6 @@ class MainActivity : LocalizationActivity() {
                 activityForResultLauncher?.launch(intent)
             }
         }) {
-            Toast.makeText(this, "yyygy", Toast.LENGTH_SHORT).show()
             viewModel.startService(applicationContext, it.latitude, it.longitude)
         }
     }

@@ -28,7 +28,6 @@ import com.google.android.exoplayer2.*
 import com.google.android.material.snackbar.Snackbar
 import com.mabrouk.core.network.loader
 import com.mabrouk.core.utils.FileUtils
-import com.mabrouk.core.utils.PrayerSounds
 import com.mabrouk.quran_listing_feature.R
 import com.mabrouk.quran_listing_feature.databinding.SurahFragmentLayoutBinding
 import com.mabrouk.quran_listing_feature.domain.models.AyaTafsirs
@@ -428,7 +427,6 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener 
     }
 
     override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {
-        // super.onMediaItemTransition(mediaItem, reason)
         mediaItem?.mediaId?.toInt()?.run {
             if (this >= 0) {
                 currentPosition = mediaItem.mediaId.toInt()
