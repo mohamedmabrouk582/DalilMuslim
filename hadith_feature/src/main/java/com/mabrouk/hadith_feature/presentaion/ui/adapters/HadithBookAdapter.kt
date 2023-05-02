@@ -26,10 +26,6 @@ class HadithBookAdapter(val onBookClick: (item: HadithBookNumber) -> Unit) :
         }
     }
 
-    interface HadithListener {
-        fun onBookClick(item: HadithBookNumber)
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         return Holder(
             DataBindingUtil.inflate(

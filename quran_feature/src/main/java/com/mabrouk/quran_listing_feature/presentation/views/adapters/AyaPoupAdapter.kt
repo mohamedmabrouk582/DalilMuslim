@@ -35,7 +35,6 @@ class AyaPoupAdapter(
         view.playImg.setOnClickListener { onPlayClick(verse) }
         view.translationImg.setOnClickListener { onTranlationClick(verse) }
         view.tafsirImg.setOnClickListener { onTafsirClick(verse) }
-        //view.youtube.setOnClickListener { listener.OnYoutClick(verse) }
         return view.root
     }
 }

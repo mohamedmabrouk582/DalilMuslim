@@ -1,7 +1,6 @@
 package com.mabrouk.core.utils
 
 import android.content.Context
-import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
 import com.google.gson.Gson
@@ -45,17 +44,5 @@ class DataStorePreferences @Inject constructor(@ApplicationContext val context: 
            it[booleanPreferencesKey(key)]=value
         }
     }
-
-//    suspend fun setReader(reader:QuranReaderEntity){
-//        context.dataStore.edit {
-//            it[stringPreferencesKey("Reader")] = Gson().toJson(reader)
-//        }
-//    }
-//
-//    suspend fun getReader(): QuranReaderEntity {
-//       return context.dataStore.data.map {
-//            Gson().fromJson(it[stringPreferencesKey("Reader")],QuranReaderEntity::class.java)
-//        }.first() ?: QuranReaderEntity(1,"عبد الباسط","abdulbasit_abdulsamad_mujawwad/128")
-//    }
 
 }

@@ -37,10 +37,6 @@ class AudioDownloader @AssistedInject constructor(
     override suspend fun doWork(): Result {
         val data = Data.Builder()
         inputData.getString(SURA_LIST_AUDIOS)?.let {
-//            if (!FileUtils.fileIsFound(READER_1,1,0)){
-//                downloadAya(READER_1,1,0)
-//            }
-
             fromToObject(it)?.apply {
                 if (!FileUtils.fileIsFound(context,this.first().url,1,0)){
                     downloadAya(this.first().url,1,0)

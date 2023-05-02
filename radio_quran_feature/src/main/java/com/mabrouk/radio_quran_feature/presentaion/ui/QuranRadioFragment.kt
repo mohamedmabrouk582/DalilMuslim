@@ -16,6 +16,7 @@ import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.source.DefaultMediaSourceFactory
 import com.mabrouk.radio_quran_feature.R
 import com.mabrouk.radio_quran_feature.databinding.QuranRadioLayoutBinding
+import com.mabrouk.radio_quran_feature.domain.models.Radio
 import com.mabrouk.radio_quran_feature.presentaion.viewmodels.RadioStates
 import com.mabrouk.radio_quran_feature.presentaion.viewmodels.RadioViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,14 +36,7 @@ class QuranRadioFragment : Fragment() {
         ).build()
     }
     private val adapter by lazy {
-        RadioAdapter {
-            player.clearMediaItems()
-            player.addMediaItem(addLiveMediaItem(it.radioUrl))
-            player.seekTo(playbackPosition)
-            player.prepare()
-            player.play()
-            viewBinding.name = it.name
-        }
+        RadioAdapter(::playLiveItem)
     }
     var playbackPosition: Long = 0
 
@@ -51,7 +45,8 @@ class QuranRadioFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        viewBinding = DataBindingUtil.inflate(inflater,R.layout.quran_radio_layout,container,false)
+        viewBinding =
+            DataBindingUtil.inflate(inflater, R.layout.quran_radio_layout, container, false)
         return viewBinding.root
     }
 
@@ -62,9 +57,7 @@ class QuranRadioFragment : Fragment() {
         viewBinding.rcv.adapter = adapter
         viewBinding.rcv.layoutManager =
             StaggeredGridLayoutManager(2, GridLayoutManager.VERTICAL)
-        player.addMediaItem(addLiveMediaItem("http://live.mp3quran.net:9722/;"))
         player.prepare()
-        player.play()
         handleStates()
     }
 
@@ -74,10 +67,14 @@ class QuranRadioFragment : Fragment() {
                 when (it) {
                     is RadioStates.LoadData -> {
                         adapter.items = it.data
+                        adapter.items.firstOrNull()?.apply {
+                            playLiveItem(this)
+                        }
                         viewBinding.progress.visibility = View.GONE
                     }
+
                     else -> {
-                        Log.d("Tag","else")
+                        Log.d("Tag", "else")
                     }
                 }
             }
@@ -100,6 +97,15 @@ class QuranRadioFragment : Fragment() {
                     .build()
             )
             .build()
+    }
+
+    private fun playLiveItem(radio: Radio) {
+        player.clearMediaItems()
+        player.addMediaItem(addLiveMediaItem(radio.radioUrl))
+        player.seekTo(playbackPosition)
+        player.prepare()
+        player.play()
+        viewBinding.name = radio.name
     }
 
 }
