@@ -29,79 +29,95 @@ import kotlinx.coroutines.withContext
 class AudioDownloader @AssistedInject constructor(
     @Assisted val context: Context,
     @Assisted params: WorkerParameters,
-    val repository: AyaRepositoryUseCases ,
-    @IoDispatcher val io : CoroutineDispatcher
+    val repository: AyaRepositoryUseCases,
+    @IoDispatcher val io: CoroutineDispatcher
 ) : CoroutineWorker(context, params) {
 
-    var result:String?=null
+    var result: String? = null
     override suspend fun doWork(): Result {
         val data = Data.Builder()
         inputData.getString(SURA_LIST_AUDIOS)?.let {
             fromToObject(it)?.apply {
-                if (!FileUtils.fileIsFound(context,this.first().url,1,0)){
-                    downloadAya(this.first().url,1,0)
+                if (!FileUtils.fileIsFound(context, this.first().url, 1, 0)) {
+                    downloadAya(this.first().url, 1, 0)
                 }
-                forEach { item ->
-                    result = if (FileUtils.fileIsFound(context,item.url,item.chapterId,item.ayaNum)){
-                        null
-                    }else {
-                        downloadAya(item.url, item.chapterId, item.ayaNum)
-                    }
 
-                    if (repository.getSavedTafsir(item.chapterId,item.ayaNum).firstOrNull().isNullOrEmpty()){
-                        downloadTafsir(item.chapterId,item.ayaNum,4)
+                // download pasmalla if not downloaded
+                if (!FileUtils.fileIsFound(context, this.first().url, 1, 1)) {
+                    downloadAya(this.first().url, 1, 1)
+                }
+
+
+                forEach { item ->
+                    result =
+                        if (FileUtils.fileIsFound(context, item.url, item.chapterId, item.ayaNum)) {
+                            null
+                        } else {
+                            downloadAya(item.url, item.chapterId, item.ayaNum)
+                        }
+
+                    if (repository.getSavedTafsir(item.chapterId, item.ayaNum).firstOrNull()
+                            .isNullOrEmpty()
+                    ) {
+                        downloadTafsir(item.chapterId, item.ayaNum, 4)
                     }
                 }
-                data.putInt(LAST_ID,last().id)
+                data.putInt(LAST_ID, last().id)
             }
         }
         data.putString(AUDIO_DOWNLOAD, result)
-        if (result==null)return Result.success(data.build())
+        if (result == null) return Result.success(data.build())
         return Result.failure(data.build())
     }
 
-    suspend fun downloadAya(url:String,sura:Int,aya:Int) : String?{
-        var result:String? =null
-        repository.downloadAudio("${getAudioUrl2()}$url/${sura.decimalFormat()}${aya.decimalFormat()}.mp3").collect {
-            when (it) {
-                is OnSuccess -> {
-                    Log.d("save File", FileUtils.saveMp3(context,it.data,url, sura, aya).toString())
-                }
-                is OnFailure -> result = it.throwable.message!!
-                is NoInternetConnect -> result = it.error
-                else -> {
-                    Log.d("TAG","")
+    suspend fun downloadAya(url: String, sura: Int, aya: Int): String? {
+        var result: String? = null
+        repository.downloadAudio("${getAudioUrl2()}$url/${sura.decimalFormat()}${aya.decimalFormat()}.mp3")
+            .collect {
+                when (it) {
+                    is OnSuccess -> {
+                        Log.d(
+                            "save File",
+                            FileUtils.saveMp3(context, it.data, url, sura, aya).toString()
+                        )
+                    }
+
+                    is OnFailure -> result = it.throwable.message!!
+                    is NoInternetConnect -> result = it.error
+                    else -> {
+                        Log.d("TAG", "")
+                    }
                 }
             }
-        }
         return result
     }
 
-    private suspend fun downloadTafsir(chapterId:Int, verseId:Int, count:Int) : String?{
-        var result:String? =null
-        repository.requestTafsir(chapterId, verseId,count).collect{
-            when(it){
+    private suspend fun downloadTafsir(chapterId: Int, verseId: Int, count: Int): String? {
+        var result: String? = null
+        repository.requestTafsir(chapterId, verseId, count).collect {
+            when (it) {
                 is OnSuccess -> {
                     withContext(io) {
                         repository.saveTafsir(it.data)
                     }
-                    if (count>1){
-                        downloadTafsir(chapterId, verseId, count-1)
+                    if (count > 1) {
+                        downloadTafsir(chapterId, verseId, count - 1)
                     }
                 }
-                is OnFailure -> result= it.throwable.message!!
+
+                is OnFailure -> result = it.throwable.message!!
                 is NoInternetConnect -> result = it.error
                 else -> {
-                    Log.d("TAG","")
+                    Log.d("TAG", "")
                 }
             }
         }
         return result
     }
 
-    private fun fromToObject(json:String?) : ArrayList<AudioDataPass>?{
-        val type = object : TypeToken<ArrayList<AudioDataPass>>(){}.type
-        return Gson().fromJson(json,type)
+    private fun fromToObject(json: String?): ArrayList<AudioDataPass>? {
+        val type = object : TypeToken<ArrayList<AudioDataPass>>() {}.type
+        return Gson().fromJson(json, type)
     }
 
 }
