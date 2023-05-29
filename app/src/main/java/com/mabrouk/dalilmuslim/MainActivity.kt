@@ -27,6 +27,7 @@ import com.mabrouk.core.utils.*
 import com.mabrouk.dalilmuslim.databinding.ActivityMainBinding
 import com.mabrouk.history_feature.peresntaion.view.StoryFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -71,7 +72,7 @@ class MainActivity : LocalizationActivity() {
                 activityForResultLauncher?.launch(intent)
             }
         }) {
-            Toast.makeText(this, "yyygy", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "startService", Toast.LENGTH_SHORT).show()
             viewModel.startService(applicationContext, it.latitude, it.longitude)
         }
     }
@@ -97,7 +98,10 @@ class MainActivity : LocalizationActivity() {
                 if (result.values.any { !it }) {
                     Toast.makeText(this, "need", Toast.LENGTH_SHORT).show()
                 } else {
-                    getLocation()
+                    lifecycleScope.launch {
+                        delay(3000)
+                        getLocation()
+                    }
                 }
             }
     }
