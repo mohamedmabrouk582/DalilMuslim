@@ -42,6 +42,7 @@ class AudioDownloader @AssistedInject constructor(
                     downloadAya(this.first().url, 1, 0)
                 }
 
+
                 // download pasmalla if not downloaded
                 if (!FileUtils.fileIsFound(context, this.first().url, 1, 1)) {
                     downloadAya(this.first().url, 1, 1)
