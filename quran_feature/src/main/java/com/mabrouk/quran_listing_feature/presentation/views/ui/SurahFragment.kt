@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.ListPopupWindow
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.widget.NestedScrollView
@@ -25,6 +26,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.work.WorkInfo
 import com.google.android.exoplayer2.*
+import com.google.android.exoplayer2.audio.AudioAttributes
 import com.google.android.material.snackbar.Snackbar
 import com.mabrouk.core.network.loader
 import com.mabrouk.core.utils.FileUtils
@@ -51,7 +53,10 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener {
     lateinit var viewBinding: SurahFragmentLayoutBinding
-    private val player by lazy { ExoPlayer.Builder(requireContext()).build() }
+    private val player by lazy {
+        ExoPlayer.Builder(requireContext()).setHandleAudioBecomingNoisy(true).setAudioAttributes(
+            AudioAttributes.DEFAULT,true).build()
+    }
     private val loader by lazy { requireContext().loader(scope = lifecycleScope) }
     var currentPosition: Int = 0
     var lastPosition: Int = 0
@@ -153,7 +158,7 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener 
                 player.pause()
             } else {
                 player.play()
-                player.seekTo(currentPosition, C.TIME_UNSET)
+               // player.seekTo(currentPosition, C.TIME_UNSET)
             }
             viewBinding.isPlaying = player.isPlaying
         }
@@ -342,6 +347,7 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener 
                 WorkInfo.State.SUCCEEDED -> {
                     downloadVerseSuccess()
                 }
+
                 WorkInfo.State.FAILED -> {
                     val error = info.outputData.getString(AUDIO_DOWNLOAD)
                     if (!error.isNullOrBlank()) {
@@ -349,6 +355,7 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener 
                     }
                     loader.dismiss()
                 }
+
                 else -> {
                     Log.d("testing", "")
                 }
@@ -415,9 +422,9 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener 
                 it.chapterId,
                 it.verseNumber
             )
-            Log.d("FILEPATH",filePath)
+            Log.d("FILEPATH", filePath)
             addMediaItem(
-                filePath , "${it.verseNumber - 1}"
+                filePath, "${it.verseNumber - 1}"
             )
         })
         player.prepare()
@@ -465,7 +472,6 @@ class SurahFragment : Fragment(R.layout.surah_fragment_layout), Player.Listener 
     override fun onPlaybackStateChanged(playbackState: Int) {
         super.onPlaybackStateChanged(playbackState)
         if (playbackState == ExoPlayer.STATE_ENDED && lastPosition > 0) {
-            viewBinding.nextSurah.visibility = View.VISIBLE
             player.stop()
         }
     }

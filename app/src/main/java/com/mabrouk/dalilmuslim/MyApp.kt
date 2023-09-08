@@ -1,6 +1,7 @@
 package com.mabrouk.dalilmuslim
 
 import android.content.Context
+import android.util.Log
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.startup.AppInitializer
 import androidx.work.Configuration
@@ -60,6 +61,7 @@ class MyApp : LocalizationApplication(), Configuration.Provider {
 
     override fun getWorkManagerConfiguration(): Configuration =
         Configuration.Builder()
+            .setMinimumLoggingLevel(Log.DEBUG)
             .setWorkerFactory(workerFactory)
             .build()
 }

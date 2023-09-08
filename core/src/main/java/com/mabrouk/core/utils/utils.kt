@@ -9,6 +9,8 @@ import com.mabrouk.core.network.getAudioUrl2
 import com.mabrouk.core.utils.FileUtils.isFileBathFound
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.Calendar
+import java.util.concurrent.TimeUnit
 
 
 /**
@@ -63,6 +65,27 @@ fun downloadAllSounds(context: Context) {
 fun getCurrentDate(pattern: String = "dd-MM-yyyy"): String {
     val formatter = DateTimeFormatter.ofPattern(pattern)
     return formatter.format(LocalDateTime.now())
+}
+
+fun calculateInitialDelay(numDays: Long,hour: Int): Long {
+    val currentTimeMillis = System.currentTimeMillis()
+    val desiredTimeMillis = getDesiredTimeMillis(hour)
+    var initialDelay = desiredTimeMillis - currentTimeMillis
+    if (initialDelay < 0) {
+        initialDelay += TimeUnit.DAYS.toMillis(numDays)
+    }
+    return initialDelay
+}
+
+fun getDesiredTimeMillis(hour: Int): Long {
+    val calendar = Calendar.getInstance().apply {
+        set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY)
+        set(Calendar.HOUR_OF_DAY, 16)
+        set(Calendar.MINUTE, 36)
+        set(Calendar.SECOND, 0)
+        set(Calendar.MILLISECOND, 0)
+    }
+    return calendar.timeInMillis
 }
 
 fun getDate(date: LocalDateTime, pattern: String = "dd-MM-yyyy"): String {

@@ -4,9 +4,13 @@ import android.content.Context
 import androidx.hilt.work.HiltWorker
 import androidx.work.*
 import com.mabrouk.prayertime.domian.usecases.PrayerUseCases
+import com.mabrouk.prayertime.presentaion.IS_TOSHYEAH
 import com.mabrouk.prayertime.presentaion.LAT_KEY
 import com.mabrouk.prayertime.presentaion.LONG_KEY
+import com.mabrouk.prayertime.presentaion.MASSAGE_KEY
 import com.mabrouk.prayertime.presentaion.PRAYER_ALARM_TAG
+import com.mabrouk.prayertime.presentaion.SOUND_TAG
+import com.mabrouk.prayertime.presentaion.Twasheh_Fajar
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import java.time.LocalDateTime
@@ -37,6 +41,7 @@ class PrayerWorker @AssistedInject constructor(
         val currentTime = LocalDateTime.now()
         val month = currentTime.month?.value
         val year = currentTime.year
+        soundTask(applicationContext,"testing",tosheh = false,true)
         useCases.getPrayerTiming(lat, long, month ?: 1, year).collect {
             if (it is com.mabrouk.core.network.Result.OnSuccess) {
                 useCases.deleteAllPrayerTimings()
@@ -49,6 +54,23 @@ class PrayerWorker @AssistedInject constructor(
                 alarmTask()
             }
         }
+    }
+
+    private fun soundTask(
+        context: Context,
+        massage: String,
+        tosheh: Boolean,
+        twashehFajar: Boolean
+    ) {
+        val input =
+            Data.Builder().putString(MASSAGE_KEY, massage).putBoolean(IS_TOSHYEAH, tosheh)
+                .putBoolean(Twasheh_Fajar, twashehFajar).build()
+        val build = OneTimeWorkRequest.Builder(PrayerSoundWorker::class.java)
+            .addTag(SOUND_TAG)
+            .setInputData(input)
+            .build()
+        val workManager = WorkManager.getInstance(context)
+        workManager.enqueueUniqueWork(SOUND_TAG, ExistingWorkPolicy.KEEP, build)
     }
 
     private fun alarmTask() {

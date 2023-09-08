@@ -10,6 +10,7 @@ import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.util.Rational
 import android.view.View
 import android.widget.Toast
@@ -43,7 +44,6 @@ class MainActivity : LocalizationActivity() {
         DefaultLocationClient(applicationContext)
     }
     private var permissionLauncher: ActivityResultLauncher<Array<String>>? = null
-    private var permissionFilesLauncher: ActivityResultLauncher<Array<String>>? = null
     private var activityForResultLauncher: ActivityResultLauncher<Intent>? = null
 
 
@@ -60,19 +60,17 @@ class MainActivity : LocalizationActivity() {
         navHostFragment?.findNavController()?.also { navController = it }
         viewBinding.navView.setupWithNavController(navController)
         getLocation()
+        downloadAllSounds(this)
     }
 
 
     private fun getLocation() {
         locationClient.getMyCurrentLocation(lifecycleScope, locationError = {
             if (it == LocationError.GPS) {
-                Toast.makeText(this, "LocationError", Toast.LENGTH_SHORT).show()
-
                 val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                 activityForResultLauncher?.launch(intent)
             }
         }) {
-            Toast.makeText(this, "startService", Toast.LENGTH_SHORT).show()
             viewModel.startService(applicationContext, it.latitude, it.longitude)
         }
     }
@@ -85,22 +83,20 @@ class MainActivity : LocalizationActivity() {
     }
 
     private fun registerPermission() {
-        permissionFilesLauncher =
-            registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { result ->
-                if (result.values.any { !it }) {
-                    Toast.makeText(this, "need", Toast.LENGTH_SHORT).show()
-                } else {
-                    downloadAllSounds(this)
-                }
-            }
         permissionLauncher =
             registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { result ->
-                if (result.values.any { !it }) {
-                    Toast.makeText(this, "need", Toast.LENGTH_SHORT).show()
-                } else {
-                    lifecycleScope.launch {
-                        delay(3000)
-                        getLocation()
+                result.entries.filter {
+                    it.key in arrayOf(
+                        Manifest.permission.ACCESS_COARSE_LOCATION,
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                    )
+                }.all { it.value }.apply {
+                    if (this) {
+                        lifecycleScope.launch {
+                            //delay(3000)
+                            getLocation()
+                            downloadAllSounds(this@MainActivity)
+                        }
                     }
                 }
             }
@@ -108,14 +104,6 @@ class MainActivity : LocalizationActivity() {
 
     private fun checkPermission() {
         registerPermission()
-        permissionFilesLauncher?.launch(
-            arrayListOf(
-                Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_EXTERNAL_STORAGE
-            ).toTypedArray()
-        )
         permissionLauncher?.launch(
             arrayListOf(
                 Manifest.permission.ACCESS_COARSE_LOCATION,

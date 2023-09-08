@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.audio.AudioAttributes
 import com.google.android.exoplayer2.source.DefaultMediaSourceFactory
 import com.mabrouk.radio_quran_feature.R
 import com.mabrouk.radio_quran_feature.databinding.QuranRadioLayoutBinding
@@ -31,7 +32,8 @@ class QuranRadioFragment : Fragment() {
     lateinit var viewBinding: QuranRadioLayoutBinding
     val viewModel: RadioViewModel by viewModels()
     private val player by lazy {
-        ExoPlayer.Builder(requireContext()).setMediaSourceFactory(
+        ExoPlayer.Builder(requireContext()).setAudioAttributes(AudioAttributes.DEFAULT, true)
+            .setHandleAudioBecomingNoisy(true).setMediaSourceFactory(
             DefaultMediaSourceFactory(requireContext()).setLiveTargetOffsetMs(5000)
         ).build()
     }

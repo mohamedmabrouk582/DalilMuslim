@@ -45,6 +45,16 @@ class QuranFragment : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        val query = viewBinding.searchView.query.toString()
+        if (query.isNotBlank()) {
+            lifecycleScope.launch {
+                viewModel.executeSearch(query)
+            }
+        }
+    }
+
     private fun onSurahDownload(juzSurah: JuzSurah, position: Int) {
         isSearch = false
         downloadSurah(juzSurah, position)
@@ -77,17 +87,21 @@ class QuranFragment : Fragment() {
                     is QuranStates.Error -> {
                         Log.e("Error", it.error)
                     }
+
                     is QuranStates.LoadJuzSurahs -> {
                         viewModel.surahListDownloads()
                         adapter.data = it.juzSurah
                     }
+
                     is QuranStates.SearchResult -> {
                         searchAdapter.data = it.juzSurah
                         viewBinding.quranRcv.adapter = searchAdapter
                     }
+
                     is QuranStates.ClearSearch -> {
                         viewBinding.quranRcv.adapter = adapter
                     }
+
                     else -> {
                         Log.d("TAG", "")
                     }
@@ -146,9 +160,11 @@ class QuranFragment : Fragment() {
                     }
                     loader.dismiss()
                 }
+
                 WorkInfo.State.FAILED -> {
                     loader.dismiss()
                 }
+
                 else -> {
                     Log.d(Constants.DESTINATION_ARGS, it.state.name)
                 }
@@ -200,9 +216,11 @@ class QuranFragment : Fragment() {
                         loader.dismiss()
                     }
                 }
+
                 WorkInfo.State.FAILED -> {
                     loader.dismiss()
                 }
+
                 else -> {
                     Log.d(Constants.DESTINATION_ARGS, it.state.name)
                 }
