@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.mabrouk.prayertime.domian.models.CallingApi
 import com.mabrouk.prayertime.domian.models.PrayerTiming
 import kotlinx.coroutines.flow.Flow
 
@@ -16,6 +17,9 @@ interface PrayerDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertPrayerTimings(list: List<PrayerTiming>): List<Long>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertCalling(callingApi: CallingApi) : Long
 
     @Query("select * from PrayerTiming")
     fun getSavedPrayerTimings(): Flow<List<PrayerTiming>>

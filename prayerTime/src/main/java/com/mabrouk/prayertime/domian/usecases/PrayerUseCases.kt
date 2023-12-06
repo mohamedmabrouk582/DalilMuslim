@@ -4,6 +4,7 @@ import com.mabrouk.prayertime.domian.models.PrayerResponse
 import com.mabrouk.prayertime.domian.models.PrayerTiming
 import com.mabrouk.prayertime.domian.repository.PrayerDefaultRepository
 import com.mabrouk.core.network.Result
+import com.mabrouk.prayertime.domian.models.CallingApi
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -35,6 +36,10 @@ class PrayerUseCases @Inject constructor(val repository: PrayerDefaultRepository
 
     suspend fun deleteAllPrayerTimings(){
         return repository.deleteAllPrayerTimings()
+    }
+
+    suspend fun saveCallingApi(callingApi: CallingApi){
+        repository.saveCallingApi(callingApi)
     }
 
 }

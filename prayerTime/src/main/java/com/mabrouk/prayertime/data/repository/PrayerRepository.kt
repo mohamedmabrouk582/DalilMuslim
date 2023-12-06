@@ -9,6 +9,7 @@ import com.mabrouk.prayertime.domian.repository.PrayerDefaultRepository
 import com.mabrouk.core.network.Result
 import com.mabrouk.core.network.executeCall2
 import com.mabrouk.core.network.toArrayList
+import com.mabrouk.prayertime.domian.models.CallingApi
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
@@ -49,5 +50,9 @@ class PrayerRepository @Inject constructor(
 
     override suspend fun deleteAllPrayerTimings() {
         prayerDao.clearDb()
+    }
+
+    override suspend fun saveCallingApi(callingApi: CallingApi): Long {
+        return prayerDao.insertCalling(callingApi)
     }
 }

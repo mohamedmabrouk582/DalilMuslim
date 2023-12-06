@@ -11,6 +11,7 @@ import com.mabrouk.prayertime.domian.alram.AlarmScheduler
 import com.mabrouk.prayertime.presentaion.workers.PrayerReceiver
 import com.mabrouk.core.utils.NOTIFICATION_CHANNEL
 import com.mabrouk.prayertime.presentaion.IS_TOSHYEAH
+import com.mabrouk.prayertime.presentaion.Twasheh_Fajar
 import java.time.ZoneId
 
 /**
@@ -25,6 +26,7 @@ class AlarmSchedulerManager(val context: Context) : AlarmScheduler {
         val intent = Intent(context, PrayerReceiver::class.java).apply {
             putExtra(NOTIFICATION_CHANNEL, item.massage)
             putExtra(IS_TOSHYEAH,item.tosheh)
+            putExtra(Twasheh_Fajar,item.TwashehFajar)
         }
         alarmManager.setExactAndAllowWhileIdle(
             AlarmManager.RTC_WAKEUP,

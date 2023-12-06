@@ -1,6 +1,7 @@
 package com.mabrouk.prayertime.presentaion.viewmodels
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.work.*
 import com.mabrouk.core.utils.calculateInitialDelay
@@ -8,9 +9,12 @@ import com.mabrouk.prayertime.domian.alram.AlarmItem
 import com.mabrouk.prayertime.presentaion.*
 import com.mabrouk.prayertime.presentaion.workers.PrayerWorker
 import dagger.hilt.android.lifecycle.HiltViewModel
+import okhttp3.internal.checkDuration
+import java.time.Duration
 import java.time.LocalDateTime
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
+import kotlin.random.Random
 
 
 /**
@@ -23,26 +27,29 @@ class PrayerViewModel @Inject constructor() : ViewModel() {
     fun startService(context: Context, lat: Double, long: Double) {
         val putDouble =
             Data.Builder().putDouble(LAT_KEY, lat).putDouble(LONG_KEY, long).build()
+        Log.d("testing work", "$lat : $long")
+
+//      val build =   PeriodicWorkRequestBuilder<PrayerWorker>(
+//            repeatInterval = 20,
+//            repeatIntervalTimeUnit = TimeUnit.MINUTES,
+//            flexTimeInterval = 15,
+//            flexTimeIntervalUnit = TimeUnit.MINUTES
+//        ).setBackoffCriteria(
+//            BackoffPolicy.LINEAR, Duration.ofSeconds(15)
+//        ).setInputData(putDouble).build()
         val build = PeriodicWorkRequest.Builder(
             PrayerWorker::class.java,
-            1,
-            TimeUnit.DAYS,
-            1,
-            TimeUnit.HOURS
-        ).setInputData(putDouble)
-            .setInitialDelay(calculateInitialDelay(1, 11), TimeUnit.MILLISECONDS)
-            .setBackoffCriteria(
-                BackoffPolicy.LINEAR,
-                1,
-                TimeUnit.HOURS
-            )
-            .build()
+            20,
+            TimeUnit.MINUTES,
+        ).setInputData(putDouble).build()
 
         val instance = WorkManager.getInstance(context)
-        instance.enqueueUniquePeriodicWork("prayer", ExistingPeriodicWorkPolicy.KEEP, build)
+
+        // instance.enqueue(build)
+        instance.enqueueUniquePeriodicWork("prayer", ExistingPeriodicWorkPolicy.REPLACE, build)
     }
 
-    private fun setAlarm(
+    fun setAlarm(
         context: Context,
         time: String,
         massage: String,

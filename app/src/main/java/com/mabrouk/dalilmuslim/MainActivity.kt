@@ -9,6 +9,7 @@ import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.provider.Settings
 import android.util.Log
 import android.util.Rational
@@ -78,7 +79,11 @@ class MainActivity : LocalizationActivity() {
     private fun registerActivity() {
         activityForResultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-                getLocation()
+                try {
+                    getLocation()
+                } catch (e: Exception) {
+                    e.stackTrace
+                }
             }
     }
 
@@ -115,6 +120,11 @@ class MainActivity : LocalizationActivity() {
                     add(Manifest.permission.POST_NOTIFICATIONS)
             }.toTypedArray()
         )
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && !Environment.isExternalStorageManager()) {
+            val permissionIntent = Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION)
+            activityForResultLauncher?.launch(permissionIntent)
+        }
     }
 
     override fun onPictureInPictureModeChanged(
