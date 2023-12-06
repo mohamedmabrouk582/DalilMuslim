@@ -26,7 +26,7 @@ class CompassQibla {
         private lateinit var fusedLocationClient: FusedLocationProviderClient
         private lateinit var currentLocation: Location
         private lateinit var sensorManager: SensorManager
-        private lateinit var sensor: Sensor
+        private  var sensor: Sensor? = null
         private var currentDegree = 0f
         private var currentDegreeNeedle = 0f
         private val model: CompassQiblaViewModel =

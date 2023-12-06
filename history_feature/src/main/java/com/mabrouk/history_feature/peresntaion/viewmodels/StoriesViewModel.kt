@@ -5,12 +5,6 @@ import android.app.Application
 import android.util.SparseArray
 import android.widget.Toast
 import androidx.lifecycle.viewModelScope
-import androidx.work.Data
-import androidx.work.OneTimeWorkRequest
-import androidx.work.WorkManager
-import at.huber.youtubeExtractor.VideoMeta
-import at.huber.youtubeExtractor.YouTubeExtractor
-import at.huber.youtubeExtractor.YtFile
 import com.google.common.reflect.TypeToken
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.gson.Gson
@@ -87,26 +81,26 @@ class StoriesViewModel @Inject constructor(
             }
     }
 
-    @SuppressLint("StaticFieldLeak")
-    fun getYoutubeUrl(key: String, onDownload: (model: Story) -> Unit) {
-        object : YouTubeExtractor(context) {
-            override fun onExtractionComplete(
-                ytFiles: SparseArray<YtFile>?,
-                videoMeta: VideoMeta?
-            ) {
-                if (ytFiles?.get(18)?.url != null) {
-                    val story = Story(
-                        key,
-                        ytFiles.get(18)?.url ?: "",
-                        videoMeta?.title ?: "",
-                        videoMeta?.hqImageUrl ?: "",
-                        ytFiles.get(18)?.format?.ext ?: "mp4"
-                    )
-                    onDownload(story)
-                }
-            }
-        }.extract("http://youtube.com/watch?v=${key}")
-    }
+//    @SuppressLint("StaticFieldLeak")
+//    fun getYoutubeUrl(key: String, onDownload: (model: Story) -> Unit) {
+//        object : YouTubeExtractor(context) {
+//            override fun onExtractionComplete(
+//                ytFiles: SparseArray<YtFile>?,
+//                videoMeta: VideoMeta?
+//            ) {
+//                if (ytFiles?.get(18)?.url != null) {
+//                    val story = Story(
+//                        key,
+//                        ytFiles.get(18)?.url ?: "",
+//                        videoMeta?.title ?: "",
+//                        videoMeta?.hqImageUrl ?: "",
+//                        ytFiles.get(18)?.format?.ext ?: "mp4"
+//                    )
+//                    onDownload(story)
+//                }
+//            }
+//        }.extract("http://youtube.com/watch?v=${key}")
+//    }
 
     override fun onCleared() {
         _states.value = StoryStates.Idle
@@ -114,15 +108,15 @@ class StoriesViewModel @Inject constructor(
     }
 
     fun downloadVideo(item: Story) {
-        getYoutubeUrl(item.videoKey) { model ->
-            val workManger = WorkManager.getInstance(context)
-            val data = Data.Builder().putString(VIDEO_KEY, Gson().toJson(model)).build()
-            val worker = OneTimeWorkRequest.Builder(VideoDownloader::class.java)
-                .setInputData(data)
-                .build()
-            workManger.enqueue(worker)
-            _states.value = StoryStates.DownloadVideo(workManger.getWorkInfoByIdLiveData(worker.id))
-        }
+//        getYoutubeUrl(item.videoKey) { model ->
+//            val workManger = WorkManager.getInstance(context)
+//            val data = Data.Builder().putString(VIDEO_KEY, Gson().toJson(model)).build()
+//            val worker = OneTimeWorkRequest.Builder(VideoDownloader::class.java)
+//                .setInputData(data)
+//                .build()
+//            workManger.enqueue(worker)
+//            _states.value = StoryStates.DownloadVideo(workManger.getWorkInfoByIdLiveData(worker.id))
+//        }
 
     }
 

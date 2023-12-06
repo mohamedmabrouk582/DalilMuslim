@@ -9,6 +9,8 @@ import com.mabrouk.core.network.getAudioUrl2
 import com.mabrouk.core.utils.FileUtils.isFileBathFound
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.Calendar
+import java.util.concurrent.TimeUnit
 
 
 /**
@@ -32,10 +34,6 @@ enum class PrayerSounds(val type: String, val url: String) {
         "twasheh_fajar",
         "https://firebasestorage.googleapis.com/v0/b/dalil-muslim-50dfb.appspot.com/o/twasheh.mp3?alt=media&token=b3d320b1-a04d-4d5b-91e2-0307a735ecd5"
     )
-}
-
-enum class PrayerType(val type: String) {
-    FAJAR("fajr"), DHUHR("dhuhr"), ASR("asr"), MAGHRIB("maghrib"), ISHA("isha")
 }
 
 
@@ -63,6 +61,27 @@ fun downloadAllSounds(context: Context) {
 fun getCurrentDate(pattern: String = "dd-MM-yyyy"): String {
     val formatter = DateTimeFormatter.ofPattern(pattern)
     return formatter.format(LocalDateTime.now())
+}
+
+fun calculateInitialDelay(numDays: Long,hour: Int): Long {
+    val currentTimeMillis = System.currentTimeMillis()
+    val desiredTimeMillis = getDesiredTimeMillis(hour)
+    var initialDelay = desiredTimeMillis - currentTimeMillis
+    if (initialDelay < 0) {
+        initialDelay += TimeUnit.DAYS.toMillis(numDays)
+    }
+    return initialDelay
+}
+
+fun getDesiredTimeMillis(hour: Int): Long {
+    val calendar = Calendar.getInstance().apply {
+        set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY)
+        set(Calendar.HOUR_OF_DAY, 16)
+        set(Calendar.MINUTE, 36)
+        set(Calendar.SECOND, 0)
+        set(Calendar.MILLISECOND, 0)
+    }
+    return calendar.timeInMillis
 }
 
 fun getDate(date: LocalDateTime, pattern: String = "dd-MM-yyyy"): String {

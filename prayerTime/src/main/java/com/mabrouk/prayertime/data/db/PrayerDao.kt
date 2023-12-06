@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.mabrouk.prayertime.domian.models.CallingApi
 import com.mabrouk.prayertime.domian.models.PrayerTiming
 import kotlinx.coroutines.flow.Flow
 

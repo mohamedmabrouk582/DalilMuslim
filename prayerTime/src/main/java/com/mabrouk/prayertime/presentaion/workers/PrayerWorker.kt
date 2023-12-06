@@ -69,5 +69,4 @@ class PrayerWorker @AssistedInject constructor(
             )
     }
 
-
 }

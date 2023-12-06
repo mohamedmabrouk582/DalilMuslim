@@ -1,6 +1,7 @@
 package com.mabrouk.quran_listing_feature.presentation.viewmodels
 
 import android.content.Context
+import android.util.Log
 import android.widget.SearchView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
@@ -130,14 +131,18 @@ class QuranViewModel @Inject constructor(
         }
     }
 
+    suspend fun executeSearch(query:String){
+        repository.searchBySurah(query).first().let {
+            mapSearchData(it)
+        }
+    }
+
     val searchListener = object : SearchView.OnQueryTextListener {
         override fun onQueryTextSubmit(query: String?): Boolean {
             viewModelScope.launch {
                 if (query.isNullOrEmpty()) {
                     _quranStates.value = QuranStates.ClearSearch
-                } else repository.searchBySurah(query).first().let {
-                    mapSearchData(it)
-                }
+                } else executeSearch(query)
             }
             return false
         }
@@ -150,6 +155,7 @@ class QuranViewModel @Inject constructor(
                     .distinctUntilChanged()
                     .flowOn(Dispatchers.Default)
                     .collect {
+                        Log.d("efefef",it.toString())
                         if (newText.isNullOrEmpty()) {
                             _quranStates.value = QuranStates.ClearSearch
                         } else repository.searchBySurah((newText)).first().let {
