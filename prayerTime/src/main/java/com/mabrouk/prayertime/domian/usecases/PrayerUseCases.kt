@@ -38,8 +38,4 @@ class PrayerUseCases @Inject constructor(val repository: PrayerDefaultRepository
         return repository.deleteAllPrayerTimings()
     }
 
-    suspend fun saveCallingApi(callingApi: CallingApi){
-        repository.saveCallingApi(callingApi)
-    }
-
 }

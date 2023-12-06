@@ -23,5 +23,4 @@ interface PrayerDefaultRepository {
     suspend fun getSavedTimingsByDay(day: String): PrayerTiming
     suspend fun deleteAllPrayerTimings()
 
-    suspend fun saveCallingApi(callingApi: CallingApi): Long
 }

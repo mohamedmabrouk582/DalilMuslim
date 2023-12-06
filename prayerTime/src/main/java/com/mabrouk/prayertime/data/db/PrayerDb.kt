@@ -10,7 +10,7 @@ import com.mabrouk.prayertime.domian.models.PrayerTiming
  * @name Mohamed Mabrouk
  * Copyright (c) 2/9/23
  */
-@Database(entities = [PrayerTiming::class,CallingApi::class], version = 2, exportSchema = false)
+@Database(entities = [PrayerTiming::class], version = 3, exportSchema = false)
 @TypeConverters(PrayerConverter::class)
 abstract class PrayerDb : RoomDatabase() {
     abstract fun getPrayerDao(): PrayerDao

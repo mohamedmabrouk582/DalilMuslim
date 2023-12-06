@@ -36,10 +36,6 @@ enum class PrayerSounds(val type: String, val url: String) {
     )
 }
 
-enum class PrayerType(val type: String) {
-    FAJAR("fajr"), DHUHR("dhuhr"), ASR("asr"), MAGHRIB("maghrib"), ISHA("isha")
-}
-
 
 fun downloadSound(context: Context, name: String, url: String) {
     Log.d("tdftft", name.isFileBathFound(context).toString())

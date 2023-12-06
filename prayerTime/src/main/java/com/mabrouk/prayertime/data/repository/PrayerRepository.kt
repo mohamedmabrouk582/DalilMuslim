@@ -51,8 +51,4 @@ class PrayerRepository @Inject constructor(
     override suspend fun deleteAllPrayerTimings() {
         prayerDao.clearDb()
     }
-
-    override suspend fun saveCallingApi(callingApi: CallingApi): Long {
-        return prayerDao.insertCalling(callingApi)
-    }
 }

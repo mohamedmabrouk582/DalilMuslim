@@ -18,9 +18,6 @@ interface PrayerDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertPrayerTimings(list: List<PrayerTiming>): List<Long>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertCalling(callingApi: CallingApi) : Long
-
     @Query("select * from PrayerTiming")
     fun getSavedPrayerTimings(): Flow<List<PrayerTiming>>
 
